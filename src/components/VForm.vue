@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { cloneDeep } from "lodash-es";
 import renderer from "./renderer";
+import transform from "./transform";
 
 export default {
   name: "v-form",
@@ -34,7 +34,7 @@ export default {
       this.$emit("input", value);
     },
     fieldsTransform(value) {
-      this.transFields = cloneDeep(value);
+      this.transFields = transform(value);
     }
   },
   created() {

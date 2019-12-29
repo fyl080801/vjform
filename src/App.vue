@@ -58,8 +58,7 @@ export default {
                 domProps: {
                   innerText: {
                     $type: "bind",
-                    $source: { $type: "static", $path: "mydata" },
-                    $path: "text"
+                    $source: { $type: "model", $path: "text" }
                   }
                 }
               }
