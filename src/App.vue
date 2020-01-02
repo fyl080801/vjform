@@ -16,7 +16,11 @@ export default {
   data() {
     return {
       model: {
-        text: "xxxxxx"
+        text: "xxxxxx",
+        list: [
+          { key: 1, value: "111" },
+          { key: 1, value: "111" }
+        ]
       },
       fields: [
         {
@@ -25,20 +29,7 @@ export default {
           children: [
             {
               component: "input",
-              model: [
-                "text"
-                // {
-                //   $type: "on",
-                //   $arguments: {
-                //     value: {
-                //       $type: "bind",
-                //       $source: { $type: "arguments", $path: 0 },
-                //       $path: "target.value"
-                //     }
-                //   },
-                //   $result: "value"
-                // }
-              ]
+              model: ["text"]
             },
             {
               component: "input",
@@ -58,7 +49,7 @@ export default {
                 domProps: {
                   innerText: {
                     $type: "bind",
-                    $source: { $type: "model", $path: "text" }
+                    $source: "model.text"
                   }
                 }
               }
@@ -95,15 +86,40 @@ export default {
                       component: "span",
                       fieldOptions: {
                         domProps: {
-                          innerText: (() => {
-                            return "asdasdasdasd";
-                          })()
+                          innerText: {
+                            $type: "func",
+                            $arguments: {
+                              value: { $type: "bind", $source: "model.text" }
+                            },
+                            $result: "value + '_ssss'"
+                          }
                         }
                       }
                     }
                   ]
                 }
               ]
+            },
+            {
+              component: "ul",
+              children: {
+                $type: "array",
+                $data: {
+                  $type: "bind",
+                  $source: "model.list"
+                },
+                $field: {
+                  component: "li",
+                  fieldOptions: {
+                    domProps: {
+                      innerText: {
+                        $type: "bind",
+                        $source: "scope.value"
+                      }
+                    }
+                  }
+                }
+              }
             }
           ]
         }
@@ -111,8 +127,8 @@ export default {
     };
   },
   methods: {
-    changed(value) {
-      console.log(value);
+    changed() {
+      // console.log(value);
     }
   }
 };

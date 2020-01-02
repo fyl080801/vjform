@@ -5,7 +5,8 @@ import { isEmpty } from "lodash-es";
 export default Vue.component("renderer", {
   props: {
     fields: Array,
-    value: [Object, Array]
+    value: [Object, Array],
+    params: [Object, Array]
   },
   watch: {
     value: {
@@ -28,7 +29,7 @@ export default Vue.component("renderer", {
         return null;
       }
 
-      provider.call({ model: this.value }, field);
+      provider.call({ model: this.value, params: this.params }, field);
 
       const { fieldOptions = {}, children = [] } = field;
 

@@ -1,8 +1,7 @@
-import "./providers/fieldOptions";
-import "./providers/model";
-
 import store from "./store";
 import { isEmpty } from "lodash-es";
+import "./providers/fieldOptions";
+import "./providers/model";
 
 export default function(field) {
   store.forEach(factory => {

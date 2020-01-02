@@ -1,5 +1,10 @@
 <template>
-  <renderer :fields="transFields" :value="value" @input="onInput" />
+  <renderer
+    :fields="transFields"
+    :value="value"
+    :params="params"
+    @input="onInput"
+  />
 </template>
 
 <script>
@@ -34,7 +39,10 @@ export default {
       this.$emit("input", value);
     },
     fieldsTransform(value) {
-      this.transFields = transform(value);
+      this.transFields = transform.call(
+        { model: this.value, params: this.params },
+        value
+      );
     }
   },
   created() {
