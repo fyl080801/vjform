@@ -18,11 +18,55 @@ export default {
       model: {
         text: "xxxxxx",
         list: [
-          { key: 1, value: "111" },
-          { key: 1, value: "111" }
+          { key: 1, value: "111", children: [1, 2, 3, 4] },
+          { key: 2, value: "222", children: [4, 5, 6] }
         ]
       },
       fields: [
+        {
+          component: "ul",
+          children: {
+            $type: "array",
+            $data: {
+              $type: "bind",
+              $source: "model.list"
+            },
+            $field: {
+              component: "li",
+              children: [
+                {
+                  component: "span",
+                  fieldOptions: {
+                    domProps: {
+                      innerText: {
+                        $type: "bind",
+                        $source: "scope.value"
+                      }
+                    }
+                  }
+                },
+                {
+                  component: "ul",
+                  children: {
+                    $type: "array",
+                    $data: { $type: "bind", $source: "scope.children" },
+                    $field: {
+                      component: "li",
+                      fieldOptions: {
+                        domProps: {
+                          innerText: {
+                            $type: "bind",
+                            $source: "scope"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
         {
           component: "div",
           fieldOptions: {},
@@ -99,27 +143,6 @@ export default {
                   ]
                 }
               ]
-            },
-            {
-              component: "ul",
-              children: {
-                $type: "array",
-                $data: {
-                  $type: "bind",
-                  $source: "model.list"
-                },
-                $field: {
-                  component: "li",
-                  fieldOptions: {
-                    domProps: {
-                      innerText: {
-                        $type: "bind",
-                        $source: "scope.value"
-                      }
-                    }
-                  }
-                }
-              }
             }
           ]
         }

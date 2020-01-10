@@ -1,8 +1,9 @@
 import store from "./store";
 
-export const register = (getter, deal) => {
+export const register = (getter, deal, convert = false) => {
   store.push({
     getter,
-    deal
+    deal,
+    convert
   });
 };
