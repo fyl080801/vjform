@@ -29,7 +29,10 @@ export default Vue.component("renderer", {
         return null;
       }
 
-      provider.call({ model: this.value, params: this.params }, field);
+      provider.call(
+        { model: this.value, params: this.params, scope: this.scope || {} },
+        field
+      );
 
       const { fieldOptions = {}, children = [] } = field;
 
