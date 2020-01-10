@@ -7,8 +7,8 @@ export function getSourceValue(option) {
 
   const data = transform.call(this, [$data]);
 
-  return (data[0] || $default || []).map(item => {
-    return transform.call(Object.assign({}, this, { scope: item }), $field);
+  return (data[0] || $default || []).map((scope, index) => {
+    return transform.call(Object.assign({}, this, { scope, index }), $field);
   });
 }
 
