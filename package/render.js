@@ -45,6 +45,6 @@ export default Vue.component("renderer", {
     }
   },
   render(h) {
-    return h("div", { class: ["vform"] }, this.createFields(h));
+    return h("div", { class: ["j-form"] }, this.createFields(h));
   }
 });

@@ -1,7 +1,7 @@
-import AxiosFactory from "./axios";
+import Axios from "axios";
 
-const axios = new AxiosFactory({
-  pure: true
+const axios = Axios.create({
+  ...{ timeout: 30000, withCredentials: true }
 });
 
 // 获取标签keys
