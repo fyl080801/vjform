@@ -22,13 +22,10 @@ module.exports = {
         ],
         sidebar: [
           {
-            title: "目录",
-            collapsable: false
-          },
-          {
             title: "基础",
+            path: "/guide/basic/",
             collapsable: false,
-            children: []
+            children: ["/guide/basic/1", "/guide/basic/2"]
           }
         ]
       },
@@ -41,12 +38,14 @@ module.exports = {
         ],
         sidebar: [
           {
-            title: "dir",
-            collapsable: false
+            title: "Basic",
+            path: "/en-us/guide/basic/",
+            collapsable: false,
+            children: ["/en-us/guide/basic/1", "/en-us/guide/basic/2"]
           }
         ]
       }
     },
-    sidebarDepth: 1
+    sidebarDepth: 2
   }
 };

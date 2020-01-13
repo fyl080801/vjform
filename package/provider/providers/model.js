@@ -19,6 +19,7 @@ function provider(field) {
   } = onDefine;
 
   const currentVaule = get(this.model, propertyName);
+
   // 要判断一下哪些是html原生的组件
   set(
     domPropsValueElements.indexOf(component) >= 0
