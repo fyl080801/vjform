@@ -1,6 +1,6 @@
 import { register } from "../register";
 import { resolveGetter, resolveSetter } from "../helper";
-import transform from "../../transform";
+import transform from "..";
 
 export function getSourceValue(option) {
   const { $data, $field, $default } = option;

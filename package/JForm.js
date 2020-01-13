@@ -1,23 +1,13 @@
-<template>
-  <renderer
-    :fields="transFields"
-    :value="data.model"
-    :params="data.params"
-    @input="onInput"
-  />
-</template>
-
-<script>
-import renderer from "./renderer";
+import render from "./render";
 import transform from "./transform";
 import datasource from "./mixins/datasource";
 import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
 
 export default {
-  name: "v-form",
+  name: "j-form",
   components: {
-    renderer
+    render
   },
   mixins: [datasource, schema, watchs],
   props: {
@@ -59,6 +49,17 @@ export default {
   },
   created() {
     this.fieldsTransform(this.fields);
+  },
+  render(h) {
+    return h("render", {
+      props: {
+        fields: this.transFields,
+        value: this.data.model,
+        params: this.data.params
+      },
+      on: {
+        input: this.onInput
+      }
+    });
   }
 };
-</script>

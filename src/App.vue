@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <v-form
+    <j-form
       :fields="fields"
       :value="model"
       :datasource="datasource"
       :watchs="watchs"
       :schema="schema"
       @input="changed"
+      @state-changed="stateChanged"
     />
     <button @click="setModel">change</button>
     <span>{{ JSON.stringify(model) }}</span>
@@ -14,12 +15,12 @@
 </template>
 
 <script>
-import VForm from "./components/VForm.vue";
+import JForm from "../package/index";
 
 export default {
   name: "app",
   components: {
-    VForm
+    JForm
   },
   data() {
     return {
@@ -259,6 +260,9 @@ export default {
     },
     changed() {
       // console.log(value);
+    },
+    stateChanged(state) {
+      console.log(state);
     }
   }
 };
