@@ -1,8 +1,8 @@
 <template>
   <renderer
     :fields="transFields"
-    :value="value"
-    :params="params"
+    :value="data.model"
+    :params="data.params"
     @input="onInput"
   />
 </template>
@@ -23,10 +23,11 @@ export default {
   props: {
     value: [Object, Array],
     params: [Object, Array],
-    fields: Array,
-    schema: Object,
-    datasource: Object,
-    watchs: Array
+    fields: { type: Array, default: () => [] },
+    schema: { type: Object, default: () => ({}) },
+    datasource: { type: Object, default: () => ({}) },
+    watchs: { type: Object, default: () => ({}) },
+    options: { type: Object, default: () => ({}) }
   },
   watch: {
     fields: {
@@ -38,7 +39,14 @@ export default {
   },
   data() {
     return {
-      transFields: []
+      transFields: [],
+      data: {
+        model: this.value,
+        params: this.params,
+        state: { valid: false, fields: {}, errors: [] },
+        sourcedata: {},
+        datasource: {}
+      }
     };
   },
   methods: {
@@ -46,10 +54,7 @@ export default {
       this.$emit("input", value);
     },
     fieldsTransform(value) {
-      this.transFields = transform.call(
-        { model: this.value, params: this.params },
-        value
-      );
+      this.transFields = transform.call(this.data, value);
     }
   },
   created() {

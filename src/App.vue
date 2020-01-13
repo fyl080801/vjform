@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <v-form :fields="fields" :value="model" @input="changed" />
+    <v-form
+      :fields="fields"
+      :value="model"
+      :datasource="datasource"
+      :watchs="watchs"
+      @input="changed"
+    />
     <button @click="setModel">change</button>
     <span>{{ JSON.stringify(model) }}</span>
   </div>
@@ -16,14 +22,53 @@ export default {
   },
   data() {
     return {
+      datasource: {
+        testsource: {
+          type: "object",
+          data: [
+            { id: 1, text: "option-1" },
+            { id: 2, text: "option-2" }
+          ]
+        },
+        requestsource: {
+          type: "request",
+          watchs: ["model.text"],
+          url: "https://www.baidu.com",
+          method: "GET",
+          defaultData: []
+        }
+      },
+      watchs: {
+        "model.text": {
+          subtext: {
+            $type: "func",
+            $arguments: {
+              val: { $type: "bind", $source: "model.text" }
+            },
+            $result: "val?val.length:0"
+          }
+        }
+      },
       model: {
         text: "xxxxxx",
+        subtext: "",
         list: [
           { key: 1, value: "111", children: [1, 2, 3, 4] },
           { key: 2, value: "222", children: [4, 5, 6] }
         ]
       },
       fields: [
+        {
+          component: "span",
+          fieldOptions: {
+            domProps: {
+              innerText: {
+                $type: "bind",
+                $source: "model.subtext"
+              }
+            }
+          }
+        },
         {
           component: "ul",
           children: {
@@ -112,6 +157,29 @@ export default {
             {
               component: "h1",
               fieldOptions: { domProps: { innerText: "title" } }
+            },
+            {
+              component: "ul",
+              children: {
+                $type: "array",
+                $data: {
+                  $type: "bind",
+                  $source: "sourcedata.testsource"
+                },
+                $field: {
+                  component: "li",
+                  children: [
+                    {
+                      component: "span",
+                      fieldOptions: {
+                        domProps: {
+                          innerText: { $type: "bind", $source: "scope.text" }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
             },
             {
               component: "ul",
