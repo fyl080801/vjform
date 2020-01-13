@@ -22,7 +22,7 @@ export default {
   mixins: [datasource, schema, watchs],
   props: {
     value: [Object, Array],
-    params: [Object, Array],
+    params: { type: [Object, Array], default: () => ({}) },
     fields: { type: Array, default: () => [] },
     schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },

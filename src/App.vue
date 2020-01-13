@@ -5,6 +5,7 @@
       :value="model"
       :datasource="datasource"
       :watchs="watchs"
+      :schema="schema"
       @input="changed"
     />
     <button @click="setModel">change</button>
@@ -22,6 +23,12 @@ export default {
   },
   data() {
     return {
+      schema: {
+        type: "object",
+        properties: {
+          text: { type: "string", minLength: 1 }
+        }
+      },
       datasource: {
         testsource: {
           type: "object",
@@ -32,7 +39,7 @@ export default {
         },
         requestsource: {
           type: "request",
-          watchs: ["model.text"],
+          // watchs: ["model.text"],
           url: "https://www.baidu.com",
           method: "GET",
           defaultData: []
@@ -45,7 +52,7 @@ export default {
             $arguments: {
               val: { $type: "bind", $source: "model.text" }
             },
-            $result: "val?val.length:0"
+            $result: "val ? val.length : 0"
           }
         }
       },
@@ -59,12 +66,23 @@ export default {
       },
       fields: [
         {
-          component: "span",
+          component: "p",
           fieldOptions: {
             domProps: {
               innerText: {
                 $type: "bind",
                 $source: "model.subtext"
+              }
+            }
+          }
+        },
+        {
+          component: "p",
+          fieldOptions: {
+            domProps: {
+              innerText: {
+                $type: "bind",
+                $source: "state.valid"
               }
             }
           }
