@@ -9504,6 +9504,13 @@ vuepress-plugin-container@^2.0.2:
   dependencies:
     markdown-it-container "^2.0.0"
 
+vuepress-plugin-container@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-container/download/vuepress-plugin-container-2.1.2.tgz?cache=0&sync_timestamp=1575025498034&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuepress-plugin-container%2Fdownload%2Fvuepress-plugin-container-2.1.2.tgz#688c1e5a9709a1b8658605bcaee580b3abb19d16"
+  integrity sha1-aIweWpcJobhlhgW8ruWAs6uxnRY=
+  dependencies:
+    markdown-it-container "^2.0.0"
+
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
   resolved "https://registry.npm.taobao.org/vuepress-plugin-smooth-scroll/download/vuepress-plugin-smooth-scroll-0.0.3.tgz#6eff2d4c186cca917cc9f7df2b0af7de7c8c6438"

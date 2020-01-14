@@ -5,11 +5,11 @@
   "main": "dist/jform.umd.js",
   "module": "dist/jform.esm.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "dist": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "dev": "vue-cli-service serve",
-    "lint": "vue-cli-service lint",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "ajv": "^6.10.2",
@@ -33,6 +33,7 @@
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.2.0",
+    "vuepress-plugin-container": "^2.1.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2",
