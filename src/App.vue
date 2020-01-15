@@ -10,7 +10,7 @@
       @state-changed="stateChanged"
     />
     <button @click="setModel">change</button>
-    <span>{{ JSON.stringify(model) }}</span>
+    <div>{{ JSON.stringify(model) }}</div>
   </div>
 </template>
 
@@ -63,6 +63,7 @@ export default {
       model: {
         text: "xxxxxx",
         subtext: "",
+        checked: true,
         select: null,
         selectcase: null,
         list: [
@@ -194,162 +195,27 @@ export default {
                           }
                         }
                       ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          component: "ul",
-          children: {
-            $type: "array",
-            $data: {
-              $type: "bind",
-              $source: "model.list"
-            },
-            $field: {
-              component: "li",
-              fieldOptions: {
-                key: { $type: "bind", $source: "scope.key" },
-                domProps: { id: { $type: "bind", $source: "index" } }
-              },
-              children: [
-                {
-                  component: "span",
-                  fieldOptions: {
-                    domProps: {
-                      innerText: {
-                        $type: "bind",
-                        $source: "scope.value"
-                      }
-                    }
-                  }
-                },
-                {
-                  component: "ul",
-                  children: {
-                    $type: "array",
-                    $data: { $type: "bind", $source: "scope.children" },
-                    $field: {
-                      component: "li",
-                      fieldOptions: {
-                        domProps: {
-                          innerText: {
-                            $type: "bind",
-                            $source: "scope"
-                          }
+                    },
+                    {
+                      component: "el-form-item",
+                      fieldOptions: { props: { label: "选中:" } },
+                      children: [
+                        {
+                          component: "input",
+                          model: ["checked"],
+                          fieldOptions: { domProps: { type: "checkbox" } }
                         }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        },
-        {
-          component: "div",
-          fieldOptions: {},
-          children: [
-            {
-              component: "input",
-              model: ["text"]
-            },
-            {
-              component: "input",
-              model: [
-                "text",
-                {
-                  on: "input",
-                  handler: value => {
-                    return value.target.value;
-                  }
-                }
-              ]
-            },
-            {
-              component: "input",
-              fieldOptions: {
-                domProps: { value: { $type: "bind", $source: "model.text" } }
-              }
-            },
-            {
-              component: "p",
-              fieldOptions: {
-                domProps: {
-                  innerText: {
-                    $type: "bind",
-                    $source: "model.text"
-                  }
-                }
-              }
-            },
-            {
-              component: "h1",
-              fieldOptions: { domProps: { innerText: "title" } }
-            },
-            {
-              component: "ul",
-              children: {
-                $type: "array",
-                $data: {
-                  $type: "bind",
-                  $source: "sourcedata.testsource"
-                },
-                $field: {
-                  component: "li",
-                  children: [
+                      ]
+                    },
                     {
-                      component: "span",
-                      fieldOptions: {
-                        domProps: {
-                          innerText: { $type: "bind", $source: "scope.text" }
+                      component: "el-form-item",
+                      fieldOptions: { props: { label: "选中:" } },
+                      children: [
+                        {
+                          component: "textarea",
+                          model: ["text"]
                         }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              component: "ul",
-              children: [
-                {
-                  component: "li",
-                  children: [
-                    {
-                      component: "span",
-                      fieldOptions: { domProps: { innerText: "xxxxxx" } }
-                    }
-                  ]
-                },
-                {
-                  component: "li",
-                  children: [
-                    {
-                      component: "span",
-                      fieldOptions: { domProps: { innerText: "xxxxxx" } }
-                    }
-                  ]
-                },
-                {
-                  component: "li",
-                  children: [
-                    {
-                      component: "span",
-                      fieldOptions: {
-                        domProps: {
-                          innerText: {
-                            $type: "func",
-                            $arguments: {
-                              value: { $type: "bind", $source: "model.text" }
-                            },
-                            $result: "value + '_ssss'"
-                          }
-                        }
-                      }
+                      ]
                     }
                   ]
                 }

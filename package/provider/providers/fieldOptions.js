@@ -5,6 +5,7 @@ function provider(field) {
 
   const { fieldOptions } = field;
 
+  fieldOptions.attrs = fieldOptions.attrs || {};
   fieldOptions.props = fieldOptions.props || {};
   fieldOptions.domProps = fieldOptions.domProps || {};
   fieldOptions.on = fieldOptions.on || {};

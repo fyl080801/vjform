@@ -1,37 +1,56 @@
 import { register } from "../register";
 import { set, get } from "lodash-es";
 
-// const attrsValueElements = ["input", "option", "textarea"];
+const attrsValueElements = ["input", "option", "textarea"];
 const domPropsValueElements = ["input", "textarea"];
 const domPropsCheckedElements = ["checkbox", "radio"];
-// const innerHTMLElements = ["textarea"];
+const innerHTMLElements = ["textarea"];
 // const requiredElements = ["input", "select", "textarea"];
+
+function defaultHandler(field) {
+  const { component, fieldOptions } = field;
+
+  if (
+    domPropsValueElements.indexOf(component) >= 0 &&
+    domPropsCheckedElements.indexOf(fieldOptions.domProps.type) >= 0
+  ) {
+    return value => value.target.checked;
+  }
+
+  if (domPropsValueElements.indexOf(component) >= 0) {
+    return value => value.target.value;
+  }
+
+  return value => value;
+}
+
+function initFieldOptions(component, fieldOptions, currentValue) {
+  if (domPropsValueElements.indexOf(component) >= 0) {
+    set(fieldOptions.domProps, "value", currentValue);
+  }
+
+  if (domPropsCheckedElements.indexOf(fieldOptions.domProps.type) >= 0) {
+    set(fieldOptions.domProps, "checked", currentValue);
+  }
+
+  if (innerHTMLElements.indexOf(component) >= 0) {
+    set(fieldOptions.domProps, "innerHtml", currentValue);
+  }
+
+  if (attrsValueElements.indexOf(component) >= 0) {
+    set(fieldOptions.attrs, "value", currentValue);
+  }
+
+  set(fieldOptions.props, "value", currentValue);
+}
 
 function provider(field) {
   const { component, fieldOptions } = field;
   const propertyName = field.model[0];
   const onDefine = field.model[1] || {};
-  const {
-    on = "input",
-    handler = domPropsValueElements.indexOf(component) >= 0
-      ? value => value.target.value
-      : value => value
-  } = onDefine;
+  const { on = "input", handler = defaultHandler.call(this, field) } = onDefine;
 
-  const currentVaule = get(this.model, propertyName);
-
-  // 要判断一下哪些是html原生的组件
-  set(
-    domPropsValueElements.indexOf(component) >= 0
-      ? fieldOptions.domProps
-      : fieldOptions.props,
-    domPropsCheckedElements.indexOf(component) >= 0 ? "checked" : "value",
-    domPropsCheckedElements.indexOf(component) >= 0
-      ? currentVaule
-        ? "checked"
-        : ""
-      : currentVaule
-  );
+  initFieldOptions(component, fieldOptions, get(this.model, propertyName));
 
   if (typeof get(fieldOptions.on, on) !== "function") {
     Object.assign(fieldOptions.on, {
