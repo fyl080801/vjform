@@ -9,7 +9,6 @@
       @input="changed"
       @state-changed="stateChanged"
     />
-    <button @click="setModel">change</button>
     <div>{{ JSON.stringify(model) }}</div>
   </div>
 </template>
@@ -66,6 +65,8 @@ export default {
         checked: true,
         select: null,
         selectcase: null,
+        radiovalue: null,
+        checklist: [],
         list: [
           { key: 1, value: "111", children: [1, 2, 3, 4] },
           { key: 2, value: "222", children: [4, 5, 6] }
@@ -198,22 +199,65 @@ export default {
                     },
                     {
                       component: "el-form-item",
-                      fieldOptions: { props: { label: "选中:" } },
+                      fieldOptions: { props: { label: "选中1:" } },
                       children: [
                         {
                           component: "input",
                           model: ["checked"],
                           fieldOptions: { domProps: { type: "checkbox" } }
+                        },
+                        {
+                          component: "input",
+                          model: ["checked"],
+                          fieldOptions: { domProps: { type: "radio" } }
                         }
                       ]
                     },
                     {
                       component: "el-form-item",
-                      fieldOptions: { props: { label: "选中:" } },
+                      displayOptions: {
+                        model: "checked",
+                        schema: { type: "boolean", const: true }
+                      },
+                      fieldOptions: { props: { label: "选中2:" } },
                       children: [
                         {
-                          component: "textarea",
-                          model: ["text"]
+                          component: "el-checkbox-group",
+                          model: ["checklist"],
+                          children: {
+                            $type: "array",
+                            $data: ["选项1", "选项2", "选项3"],
+                            $field: {
+                              component: "el-checkbox",
+                              fieldOptions: {
+                                props: {
+                                  label: { $type: "bind", $source: "scope" }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      component: "el-form-item",
+                      fieldOptions: { props: { label: "选中3:" } },
+                      children: [
+                        {
+                          component: "el-radio-group",
+                          model: ["radiovalue"],
+                          children: {
+                            $type: "array",
+                            $data: ["选项1", "选项2", "选项3"],
+                            $field: {
+                              component: "el-radio",
+                              fieldOptions: {
+                                props: {
+                                  label: { $type: "bind", $source: "scope" }
+                                }
+                              }
+                            }
+                          }
                         }
                       ]
                     }

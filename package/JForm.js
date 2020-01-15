@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      transFields: [],
+      renderFields: [],
       data: {
         model: this.value,
         params: this.params,
@@ -44,7 +44,7 @@ export default {
       this.$emit("input", value);
     },
     fieldsTransform(value) {
-      this.transFields = transform.call(this.data, value);
+      this.renderFields = transform.call(this.data, value);
     }
   },
   created() {
@@ -53,7 +53,7 @@ export default {
   render(h) {
     return h("render", {
       props: {
-        fields: this.transFields,
+        fields: this.renderFields,
         value: this.data.model,
         params: this.data.params
       },

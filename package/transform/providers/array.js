@@ -4,7 +4,6 @@ import transform from "..";
 
 export function getSourceValue(option) {
   const { $data, $field, $default } = option;
-
   const data = transform.call(this, [$data]);
 
   return (data[0] || $default || []).map((scope, index) => {

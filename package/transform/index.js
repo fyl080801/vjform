@@ -1,4 +1,5 @@
 import store from "./store";
+import { register } from "./register";
 import { cloneDeep, forEach } from "lodash-es";
 import "./providers/bind";
 import "./providers/func";
@@ -20,6 +21,8 @@ function processTransform(field, key, collection) {
     processTransform.bind(this)
   );
 }
+
+export { register };
 
 export default function(fields) {
   const cloned = cloneDeep(fields);

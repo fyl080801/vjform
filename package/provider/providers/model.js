@@ -25,23 +25,25 @@ function defaultHandler(field) {
 }
 
 function initFieldOptions(component, fieldOptions, currentValue) {
+  const { domProps = {}, attrs = {}, props = {} } = fieldOptions;
+
   if (domPropsValueElements.indexOf(component) >= 0) {
-    set(fieldOptions.domProps, "value", currentValue);
+    set(domProps, "value", currentValue);
   }
 
-  if (domPropsCheckedElements.indexOf(fieldOptions.domProps.type) >= 0) {
-    set(fieldOptions.domProps, "checked", currentValue);
+  if (domPropsCheckedElements.indexOf(domProps.type) >= 0) {
+    set(domProps, "checked", currentValue);
   }
 
   if (innerHTMLElements.indexOf(component) >= 0) {
-    set(fieldOptions.domProps, "innerHtml", currentValue);
+    set(domProps, "innerHtml", currentValue);
   }
 
   if (attrsValueElements.indexOf(component) >= 0) {
-    set(fieldOptions.attrs, "value", currentValue);
+    set(attrs, "value", currentValue);
   }
 
-  set(fieldOptions.props, "value", currentValue);
+  set(props, "value", currentValue);
 }
 
 function provider(field) {
@@ -50,12 +52,12 @@ function provider(field) {
   const onDefine = field.model[1] || {};
   const { on = "input", handler = defaultHandler.call(this, field) } = onDefine;
 
-  initFieldOptions(component, fieldOptions, get(this.model, propertyName));
+  initFieldOptions(component, fieldOptions, get(this.value, propertyName));
 
   if (typeof get(fieldOptions.on, on) !== "function") {
     Object.assign(fieldOptions.on, {
       [on]: value => {
-        set(this.model, propertyName, handler(value));
+        set(this.value, propertyName, handler(value));
       }
     });
   }
