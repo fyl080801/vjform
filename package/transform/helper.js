@@ -17,7 +17,9 @@ export const resolveSetter = (setterKey, setterValue) => {
   return function(key, owner) {
     const option = owner[key];
     if (key.toString().indexOf(`$${setterKey}:`) === 0) {
-      Object.defineProperty(owner, key.replace(`$${setterKey}:`, "").trim(), {
+      const reKey = key.replace(`$${setterKey}:`, "").trim();
+      owner[reKey] = undefined;
+      Object.defineProperty(owner, reKey, {
         get: () => setterValue(this, option)
       });
       delete owner[key];

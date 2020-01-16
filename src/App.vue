@@ -48,7 +48,7 @@ export default {
       watchs: {
         "model.text": {
           subtext: {
-            $type: "func",
+            $func: true,
             $arguments: {
               val: { $type: "bind", $source: "model.text" }
             },
@@ -62,7 +62,6 @@ export default {
       model: {
         text: "xxxxxx",
         subtext: "",
-        checked: true,
         select: null,
         selectcase: null,
         radiovalue: null,
@@ -88,8 +87,7 @@ export default {
           component: "p",
           fieldOptions: {
             domProps: {
-              innerText: {
-                $type: "bind",
+              "$bind:innerText": {
                 $source: "state.valid"
               }
             }
@@ -116,8 +114,10 @@ export default {
                           component: "el-input",
                           model: ["text"],
                           fieldOptions: {
+                            attrs: {
+                              placeholder: "input-text"
+                            },
                             props: {
-                              placeholder: "input-text",
                               clearable: true
                             }
                           }
@@ -244,10 +244,21 @@ export default {
                       fieldOptions: { props: { label: "选中3:" } },
                       children: [
                         {
+                          component: "input",
+                          model: ["sub[0].checked"],
+                          fieldOptions: { domProps: { type: "checkbox" } }
+                        }
+                      ]
+                    },
+                    {
+                      component: "el-form-item",
+                      fieldOptions: { props: { label: "选中3:" } },
+                      children: [
+                        {
                           component: "el-radio-group",
                           model: ["radiovalue"],
                           children: {
-                            $type: "array",
+                            $array: true,
                             $data: ["选项1", "选项2", "选项3"],
                             $field: {
                               component: "el-radio",
