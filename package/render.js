@@ -1,5 +1,6 @@
 import Vue from "vue";
 import provider from "./provider";
+import { isEmpty } from "lodash-es";
 
 export default Vue.component("renderer", {
   props: {
@@ -16,23 +17,12 @@ export default Vue.component("renderer", {
     }
   },
   methods: {
-    createFields(h) {
-      return this.fields
-        .map(item => this.createFieldComponent(h, item))
-        .filter(item => item);
-    },
     createFieldComponent(h, field) {
-      const { component } = field;
-
-      if (!component) {
-        return null;
-      }
-
       provider.call(this, field);
 
-      const { fieldOptions = {}, children = [] } = field;
+      const { component, fieldOptions = {}, children = [] } = field;
 
-      if (component) {
+      if (!isEmpty(component)) {
         return h(
           component,
           { ...fieldOptions },
@@ -44,6 +34,12 @@ export default Vue.component("renderer", {
     }
   },
   render(h) {
-    return h("div", { class: ["j-form"] }, this.createFields(h));
+    return h(
+      "div",
+      { class: ["j-form"] },
+      this.fields
+        .map(item => this.createFieldComponent(h, item))
+        .map(item => item)
+    );
   }
 });
