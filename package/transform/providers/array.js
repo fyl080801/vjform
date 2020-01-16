@@ -3,10 +3,10 @@ import { resolveGetter, resolveSetter } from "../helper";
 import transform from "..";
 
 export function getSourceValue(option) {
-  const { $data, $field, $default } = option;
-  const data = transform.call(this, [$data]);
+  const { $field, $default } = option;
+  const transed = transform.call(this, { ...option, ...{ $field: null } });
 
-  return (data[0] || $default || []).map((scope, index) => {
+  return (transed.$data || $default || []).map((scope, index) => {
     return transform.call(Object.assign({}, this, { scope, index }), $field);
   });
 }

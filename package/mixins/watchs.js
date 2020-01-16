@@ -28,30 +28,13 @@ export default {
         }
 
         const watcher = this.$watch(
+          () => get(this.data, key),
           () => {
-            // 兼容旧版本写法
-            if (
-              !key.startsWith("model.") &&
-              !key.startsWith("sourcedata.") &&
-              !key.startsWith("datasource.") &&
-              !key.startsWith("params.")
-            ) {
-              return get(this.data.model, key);
-            }
-
-            // 允许监控除了model以外的数据
-            return get(this.data, key);
-          },
-          () => {
-            Object.keys(this.watchs[key]).forEach(field => {
-              set(
-                this.data.model,
-                field,
-                transform.call(this.data, [this.watchs[key][field]])[0]
-              );
+            const transed = transform.call(this.data, this.watchs[key]);
+            Object.keys(transed).forEach(field => {
+              set(this.data.model, field, transed[field]);
             });
           },
-          // 不要深度监听
           { deep: false }
         );
 

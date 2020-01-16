@@ -139,7 +139,7 @@ export default {
                           },
                           children: {
                             $type: "array",
-                            $data: { $type: "bind", $source: "model.list" },
+                            $data: { $bind: true, $source: "model.list" },
                             $field: {
                               component: "el-option",
                               fieldOptions: {
