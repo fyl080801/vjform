@@ -3,6 +3,10 @@
   "description": "Vue JSON Form",
   "version": "0.1.1",
   "private": false,
+  "author": {
+    "name": "fyl080801"
+  },
+  "license": "MIT",
   "main": "dist/vjform.umd.js",
   "module": "dist/vjform.esm.js",
   "scripts": {

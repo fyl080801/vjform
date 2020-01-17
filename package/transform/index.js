@@ -3,6 +3,7 @@ import { register } from "./register";
 import { cloneDeep, forEach } from "lodash-es";
 import "./providers/bind";
 import "./providers/func";
+import "./providers/on";
 import "./providers/array";
 
 function processTransform(field, key, collection) {
