@@ -39,13 +39,6 @@ export default {
         }
       },
       datasource: {
-        testsource: {
-          type: "object",
-          data: [
-            { id: 1, text: "option-1" },
-            { id: 2, text: "option-2" }
-          ]
-        },
         requestsource: {
           type: "request",
           autoload: true,
