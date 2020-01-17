@@ -4,18 +4,34 @@
   "version": "0.2.1",
   "private": false,
   "author": {
-    "name": "fyl080801"
+    "name": "fyl080801",
+    "email": "fyl080801@hotmail.com"
+  },
+  "homepage": "https://github.com/fyl080801/vjform/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fyl080801/vjform.git"
   },
   "license": "MIT",
   "main": "dist/vjform.umd.js",
   "module": "dist/vjform.esm.js",
   "scripts": {
-    "start": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "dist": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "dev": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "prepublish": "npm run dist"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verify-commit-msg.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "ajv": "^6.10.2",
@@ -32,9 +48,11 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "chalk": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^5.0.0",
+    "lint-staged": "^9.5.0",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^1.19.1",
     "vue-template-compiler": "^2.6.10",
