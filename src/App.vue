@@ -165,7 +165,7 @@ export default {
                       children: [
                         {
                           component: "el-select",
-                          model: ["selectcase"],
+                          model: "selectcase",
                           fieldOptions: {
                             props: {
                               placeholder: "select-text"

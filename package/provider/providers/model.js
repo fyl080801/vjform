@@ -64,8 +64,9 @@ function deepSet(owner, property, currentValue) {
 
 function provider(field) {
   const { component, fieldOptions } = field;
-  const propertyName = field.model[0];
-  const onDefine = field.model[1] || {};
+  const modelDefine = Array.isArray(field.model) ? field.model : [field.model];
+  const propertyName = modelDefine[0];
+  const onDefine = modelDefine[1] || {};
   const { on = "input", handler = defaultHandler.call(this, field) } = onDefine;
 
   initFieldOptions.call(
@@ -91,10 +92,11 @@ function provider(field) {
 register("model", function(field) {
   const { model } = field;
 
-  return model &&
+  return (model &&
     Array.isArray(model) &&
     model.length >= 1 &&
-    typeof model[0] === "string"
+    typeof model[0] === "string") ||
+    typeof model === "string"
     ? provider
     : null;
 });
