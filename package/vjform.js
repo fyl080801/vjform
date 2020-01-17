@@ -54,8 +54,7 @@ export default {
     return h("render", {
       props: {
         fields: this.renderFields,
-        value: this.data.model,
-        params: this.data.params
+        value: this.data.model
       },
       on: {
         input: this.onInput

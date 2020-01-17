@@ -126,7 +126,7 @@ export default {
                       children: [
                         {
                           component: "el-col",
-                          fieldOptions: { props: { span: 6 } },
+                          fieldOptions: { props: { span: 7 } },
                           children: [
                             {
                               component: "el-select",
@@ -164,7 +164,7 @@ export default {
                         },
                         {
                           component: "el-col",
-                          fieldOptions: { props: { span: 6 } },
+                          fieldOptions: { props: { span: 7 } },
                           children: [
                             {
                               component: "el-select",
@@ -402,10 +402,83 @@ export default {
                               }
                             }
                           ]
+                        },
+                        {
+                          component: "el-button",
+                          model: [
+                            "dialogShow",
+                            {
+                              on: "click",
+                              handler: { $type: "on", $result: "true" }
+                            }
+                          ],
+                          fieldOptions: {
+                            props: {
+                              type: "warning"
+                            }
+                          },
+                          children: [
+                            {
+                              component: "span",
+                              fieldOptions: {
+                                domProps: {
+                                  innerText: "对话框"
+                                }
+                              }
+                            }
+                          ]
                         }
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          component: "el-dialog",
+          model: [
+            "dialogShow",
+            {
+              on: "close",
+              handler: { $type: "on", $result: "false" }
+            }
+          ],
+          fieldOptions: {
+            props: {
+              title: "提示",
+              visible: { $type: "bind", $source: "model.dialogShow" },
+              width: "30%"
+            }
+          },
+          children: [
+            {
+              component: "span",
+              fieldOptions: { domProps: { innerText: "文字......" } }
+            },
+            {
+              component: "span",
+              fieldOptions: { slot: "footer", class: "dialog-footer" },
+              children: [
+                {
+                  component: "el-button",
+                  model: [
+                    "dialogShow",
+                    { on: "click", handler: { $type: "on", $result: "false" } }
+                  ],
+                  fieldOptions: { domProps: { innerText: "取消" } }
+                },
+                {
+                  component: "el-button",
+                  model: [
+                    "dialogShow",
+                    { on: "click", handler: { $type: "on", $result: "false" } }
+                  ],
+                  fieldOptions: {
+                    props: { type: "primary" },
+                    domProps: { innerText: "确定" }
+                  }
                 }
               ]
             }

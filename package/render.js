@@ -6,8 +6,7 @@ import Ajv from "ajv";
 export default Vue.component("renderer", {
   props: {
     fields: Array,
-    value: [Object, Array],
-    params: [Object, Array]
+    value: [Object, Array]
   },
   data() {
     return {
@@ -34,7 +33,7 @@ export default Vue.component("renderer", {
           { ...fieldOptions },
           children
             .map(child => this.createFieldComponent(h, child))
-            .filter(item => item !== null)
+            .filter(item => item !== undefined && item !== null)
         );
       }
     }
@@ -45,7 +44,7 @@ export default Vue.component("renderer", {
       { class: ["j-form"] },
       this.fields
         .map(item => this.createFieldComponent(h, item))
-        .map(item => item)
+        .filter(item => item !== undefined && item !== null)
     );
   }
 });
