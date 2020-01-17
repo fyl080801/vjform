@@ -5,7 +5,7 @@ import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
 
 export default {
-  name: "j-form",
+  name: "vjform",
   components: {
     render
   },

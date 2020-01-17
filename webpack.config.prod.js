@@ -16,9 +16,9 @@ module.exports = [
   merge(common, production, {
     output: {
       path: path.resolve(__dirname, "./dist"),
-      filename: "jform.umd.js",
+      filename: "vjform.umd.js",
       libraryTarget: "umd",
-      library: "VueJsonSchema",
+      library: "VueJsonForm",
       umdNamedDefine: true
     }
   }),
@@ -26,9 +26,9 @@ module.exports = [
     externals: [nodeExternals()],
     output: {
       path: path.resolve(__dirname, "./dist"),
-      filename: "jform.esm.js",
+      filename: "vjform.esm.js",
       libraryTarget: "commonjs2",
-      library: "VueJsonSchema"
+      library: "VueJsonForm"
     }
   })
 ];

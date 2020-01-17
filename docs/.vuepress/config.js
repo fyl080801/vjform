@@ -1,6 +1,6 @@
 module.exports = {
-  lang: "zh-CN", // 将会被设置为 <html> 的 lang 属性
-  title: "JForm",
+  lang: "zh-CN",
+  title: "Vue JSON Form",
   description: "render ui by json expression",
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {

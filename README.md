@@ -1,4 +1,4 @@
-# JForm
+# Vue Json form
 
 > 通过 JSON 呈现任何组件
 
@@ -14,16 +14,16 @@
 
 ```js
 import Vue from "vue";
-import JForm from "jform";
+import vjform from "vjform";
 
-Vue.component("jform", JForm);
+Vue.component("vjform", vjform);
 ```
 
 ### 基础示例
 
 ```vue
 <template>
-  <jform v-model="model" :schema="schema" :fields="fields"></jform>
+  <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
 </template>
 
 <script>
@@ -65,7 +65,7 @@ export default {
 
 ```vue
 <template>
-  <jform v-model="model" :schema="schema" :fields="fields"></jform>
+  <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
 </template>
 
 <script>

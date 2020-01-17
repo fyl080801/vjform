@@ -1,7 +1,7 @@
 import { register } from "../register";
 import { get } from "lodash-es";
 import transform from "../../transform";
-import { loadSourceData } from "../../api/jform";
+import { loadSourceData } from "../../api/vjform";
 
 register("request", function(options, context) {
   const { watchs = [], autoload } = options;

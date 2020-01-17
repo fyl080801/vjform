@@ -1,9 +1,10 @@
 {
-  "name": "j-form",
+  "name": "vjform",
+  "description": "Vue JSON form",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/jform.umd.js",
-  "module": "dist/jform.esm.js",
+  "main": "dist/vjform.umd.js",
+  "module": "dist/vjform.esm.js",
   "scripts": {
     "start": "vuepress dev docs",
     "build": "vuepress build docs",

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <j-form
+    <vjform
       :fields="fields"
       :value="model"
       :datasource="datasource"
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import JForm from "../package/index";
+import vjform from "../package/index";
 
 export default {
   name: "app",
   components: {
-    JForm
+    vjform
   },
   data() {
     return {

@@ -1,12 +1,12 @@
-import JForm from "./JForm";
+import vjform from "./vjform";
 import * as provider from "./provider";
 import * as transform from "./transform";
 
-JForm.install = function(Vue) {
-  Vue.component(JForm.name, JForm);
+vjform.install = function(Vue) {
+  Vue.component(vjform.name, vjform);
 };
 
-JForm.provider = provider.register;
-JForm.transform = transform.register;
+vjform.provider = provider.register;
+vjform.transform = transform.register;
 
-export default JForm;
+export default vjform;
