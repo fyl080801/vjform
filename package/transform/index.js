@@ -24,8 +24,13 @@ function processTransform(field, key, collection) {
 
 export { register };
 
-export default function(fields) {
-  const cloned = cloneDeep(fields);
-  forEach(cloned, processTransform.bind(this));
-  return cloned;
+export default function(fields, clone = true) {
+  if (clone) {
+    const cloned = cloneDeep(fields);
+    forEach(cloned, processTransform.bind(this));
+    return cloned;
+  } else {
+    forEach(fields, processTransform.bind(this));
+    return fields;
+  }
 }

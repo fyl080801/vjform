@@ -9,7 +9,8 @@
     "build": "vuepress build docs",
     "dist": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "dev": "vue-cli-service serve",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prepublish": "npm run dist"
   },
   "dependencies": {
     "ajv": "^6.10.2",

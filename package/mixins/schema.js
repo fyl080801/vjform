@@ -13,7 +13,7 @@ export default {
       if (!isEqual(this.data.state.errors, this.ajv.errors)) {
         this.data.state = {
           valid: this.ajv.errors === null,
-          fields: {},
+          // fields: {},
           errors: this.ajv.errors
         };
       }

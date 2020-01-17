@@ -19,6 +19,12 @@ export default {
   },
 
   methods: {
+    processWatchs(key) {
+      const transed = transform.call(this.data, this.watchs[key]);
+      Object.keys(transed).forEach(field => {
+        set(this.data.model, field, transed[field]);
+      });
+    },
     registWatchs() {
       const watchKeys = Object.keys(this.watchs);
 
@@ -27,18 +33,15 @@ export default {
           return;
         }
 
-        const watcher = this.$watch(
-          () => get(this.data, key),
-          () => {
-            const transed = transform.call(this.data, this.watchs[key]);
-            Object.keys(transed).forEach(field => {
-              set(this.data.model, field, transed[field]);
-            });
-          },
-          { deep: false }
-        );
+        this.processWatchs(key);
 
-        this.watchstore.push(watcher);
+        this.watchstore.push(
+          this.$watch(
+            () => get(this.data, key),
+            () => this.processWatchs(key),
+            { deep: false }
+          )
+        );
       });
     },
     releaseWatchs() {

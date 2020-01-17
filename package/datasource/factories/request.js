@@ -45,18 +45,7 @@ register("request", function(options, context) {
     watchs.forEach(watch => {
       instance.watchs.push(
         this.$watch(
-          () => {
-            // 兼容旧的写法
-            if (
-              !watch.startsWith("model.") &&
-              !watch.startsWith("sourcedata.") &&
-              !watch.startsWith("datasource.") &&
-              !watch.startsWith("params.")
-            ) {
-              return get(context.model, watch);
-            }
-            return get(context, watch);
-          },
+          () => get(context, watch),
           () => load()
         )
       );
