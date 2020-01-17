@@ -57,7 +57,7 @@ export default {
             $result: "val ? val.length : 0"
           }
         },
-        "model.select": {
+        "model.select.key": {
           selectcase: null
         }
       },
