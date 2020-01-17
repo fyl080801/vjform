@@ -1,6 +1,5 @@
 import { register } from "../register";
 import { get, isEmpty } from "lodash-es";
-import Ajv from "ajv";
 
 function provider(field) {
   if (!field.displayOptions) {
@@ -17,7 +16,7 @@ function provider(field) {
     field.displayComponent = field.component;
   }
 
-  field.component = new Ajv().validate(schema, get(this.value, model))
+  field.component = this.ajv.validate(schema, get(this.value, model))
     ? field.displayComponent
     : null;
 }

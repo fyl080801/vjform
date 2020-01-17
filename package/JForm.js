@@ -22,7 +22,7 @@ export default {
   watch: {
     fields: {
       handler(value) {
-        this.fieldsTransform(value);
+        this.transform(value);
       },
       deep: true
     }
@@ -43,12 +43,12 @@ export default {
     onInput(value) {
       this.$emit("input", value);
     },
-    fieldsTransform(value) {
+    transform(value) {
       this.renderFields = transform.call(this.data, value);
     }
   },
   created() {
-    this.fieldsTransform(this.fields);
+    this.transform(this.fields);
   },
   render(h) {
     return h("render", {

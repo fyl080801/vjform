@@ -1,12 +1,18 @@
 import Vue from "vue";
 import provider from "./provider";
 import { isEmpty } from "lodash-es";
+import Ajv from "ajv";
 
 export default Vue.component("renderer", {
   props: {
     fields: Array,
     value: [Object, Array],
     params: [Object, Array]
+  },
+  data() {
+    return {
+      ajv: new Ajv()
+    };
   },
   watch: {
     value: {
