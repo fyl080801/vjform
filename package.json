@@ -1,8 +1,8 @@
 {
   "name": "vjform",
-  "description": "Vue JSON form",
-  "version": "0.1.0",
-  "private": true,
+  "description": "Vue JSON Form",
+  "version": "0.1.1",
+  "private": false,
   "main": "dist/vjform.umd.js",
   "module": "dist/vjform.esm.js",
   "scripts": {
