@@ -65,6 +65,8 @@ export default {
 
 ### 表达式示例
 
+支持 `bind` `func` `array` `on` 转换，具体先看 `App.vue` 里的示例
+
 ```vue
 <template>
   <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
