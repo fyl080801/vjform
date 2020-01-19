@@ -3,13 +3,14 @@ import transform from "./transform";
 import datasource from "./mixins/datasource";
 import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
+import helper from "./mixins/helper";
 
 export default {
   name: "vjform",
   components: {
     render
   },
-  mixins: [datasource, schema, watchs],
+  mixins: [datasource, schema, watchs, helper],
   props: {
     value: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },
@@ -44,7 +45,11 @@ export default {
       this.$emit("input", value);
     },
     transform(value) {
-      this.renderFields = transform.call(this.data, value);
+      this.renderFields = transform.call(
+        { ...this.data, $context: this },
+        value,
+        { context: this }
+      );
     }
   },
   created() {

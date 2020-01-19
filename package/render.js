@@ -1,5 +1,6 @@
 import Vue from "vue";
 import provider from "./provider";
+import helper from "./mixins/helper";
 import { isEmpty } from "lodash-es";
 import Ajv from "ajv";
 
@@ -8,6 +9,7 @@ export default Vue.component("renderer", {
     fields: Array,
     value: [Object, Array]
   },
+  mixins: [helper],
   data() {
     return {
       ajv: new Ajv()

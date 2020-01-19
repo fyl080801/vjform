@@ -1,5 +1,5 @@
 import { register } from "../register";
-import { set, get, toPath } from "lodash-es";
+import { set, get } from "lodash-es";
 
 const attrsValueElements = ["input", "option", "textarea"];
 const domPropsValueElements = ["input", "textarea"];
@@ -46,22 +46,6 @@ function initFieldOptions(component, fieldOptions, currentValue) {
   set(props, "value", currentValue);
 }
 
-function deepSet(owner, property, currentValue) {
-  const paths = toPath(property);
-  let ownerCache = owner;
-  let valueCache = null;
-
-  paths.forEach((path, index) => {
-    valueCache = get(ownerCache, path) || (isNaN(path) ? [] : {});
-    if (index !== paths.length - 1) {
-      this.$set(ownerCache, path, valueCache);
-      ownerCache = valueCache;
-    } else {
-      this.$set(ownerCache, path, currentValue);
-    }
-  });
-}
-
 function provider(field) {
   const { component, fieldOptions } = field;
   const modelDefine = Array.isArray(field.model) ? field.model : [field.model];
@@ -80,7 +64,7 @@ function provider(field) {
     Object.assign(fieldOptions.on, {
       [on]: value => {
         if (get(this.model, propertyName) === undefined) {
-          deepSet.call(this, this.model, propertyName, handler(value));
+          this.$deepSet(this.model, propertyName, handler(value));
         } else {
           set(this.model, propertyName, handler(value));
         }
