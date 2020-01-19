@@ -3,6 +3,7 @@ import { register } from "./register";
 import "./providers/fieldOptions";
 import "./providers/displayOptions";
 import "./providers/model";
+import "./providers/text";
 
 export { register };
 

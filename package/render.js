@@ -41,7 +41,7 @@ export default Vue.component("renderer", {
   render(h) {
     return h(
       "div",
-      { class: ["j-form"] },
+      { class: ["v-jform"] },
       this.fields
         .map(item => this.createFieldComponent(h, item))
         .filter(item => item !== undefined && item !== null)

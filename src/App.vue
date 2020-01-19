@@ -103,19 +103,15 @@ export default {
                         },
                         {
                           component: "p",
-                          fieldOptions: {
-                            domProps: {
-                              innerText: {
-                                $type: "func",
-                                $arguments: {
-                                  value: {
-                                    $type: "bind",
-                                    $source: "model.subtext"
-                                  }
-                                },
-                                $result: "'输入了：' + value + ' 个字'"
+                          text: {
+                            $type: "func",
+                            $arguments: {
+                              value: {
+                                $type: "bind",
+                                $source: "model.subtext"
                               }
-                            }
+                            },
+                            $result: "'输入了：' + value + ' 个字'"
                           }
                         }
                       ]
@@ -339,9 +335,7 @@ export default {
                           children: [
                             {
                               component: "span",
-                              fieldOptions: {
-                                domProps: { innerText: "点击触发一个事件" }
-                              }
+                              text: "点击触发一个事件"
                             }
                           ]
                         },
@@ -380,25 +374,19 @@ export default {
                           children: [
                             {
                               component: "span",
-                              fieldOptions: {
-                                domProps: { innerText: "点击后改变值和样式：" }
-                              }
+                              text: "点击后改变值和样式："
                             },
                             {
                               component: "span",
-                              fieldOptions: {
-                                domProps: {
-                                  innerText: {
-                                    $type: "func",
-                                    $arguments: {
-                                      value: {
-                                        $type: "bind",
-                                        $source: "model.triggerChecked"
-                                      }
-                                    },
-                                    $result: "value ? '是' : '否'"
+                              text: {
+                                $type: "func",
+                                $arguments: {
+                                  value: {
+                                    $type: "bind",
+                                    $source: "model.triggerChecked"
                                   }
-                                }
+                                },
+                                $result: "value ? '是' : '否'"
                               }
                             }
                           ]
@@ -417,16 +405,7 @@ export default {
                               type: "warning"
                             }
                           },
-                          children: [
-                            {
-                              component: "span",
-                              fieldOptions: {
-                                domProps: {
-                                  innerText: "对话框"
-                                }
-                              }
-                            }
-                          ]
+                          children: [{ component: "span", text: "对话框" }]
                         }
                       ]
                     }
@@ -455,7 +434,7 @@ export default {
           children: [
             {
               component: "span",
-              fieldOptions: { domProps: { innerText: "文字......" } }
+              text: "文字......"
             },
             {
               component: "span",
@@ -467,7 +446,7 @@ export default {
                     "dialogShow",
                     { on: "click", handler: { $type: "on", $result: "false" } }
                   ],
-                  fieldOptions: { domProps: { innerText: "取消" } }
+                  text: "取消"
                 },
                 {
                   component: "el-button",
@@ -475,9 +454,9 @@ export default {
                     "dialogShow",
                     { on: "click", handler: { $type: "on", $result: "false" } }
                   ],
+                  text: "确定",
                   fieldOptions: {
-                    props: { type: "primary" },
-                    domProps: { innerText: "确定" }
+                    props: { type: "primary" }
                   }
                 }
               ]

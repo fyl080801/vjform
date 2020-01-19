@@ -2,22 +2,24 @@ import { register } from "../register";
 import { get, isEmpty } from "lodash-es";
 
 function provider(field) {
-  if (!field.displayOptions) {
+  const { displayOptions } = field;
+
+  if (displayOptions === undefined) {
     return;
   }
 
-  const { schema, model } = field.displayOptions;
+  const { schema, model } = displayOptions;
 
   if (!schema || !model) {
     return;
   }
 
-  if (isEmpty(field.displayComponent) && !isEmpty(field.component)) {
-    field.displayComponent = field.component;
+  if (isEmpty(displayOptions.$component) && !isEmpty(field.component)) {
+    displayOptions.$component = field.component;
   }
 
   field.component = this.ajv.validate(schema, get(this.value, model))
-    ? field.displayComponent
+    ? displayOptions.$component
     : null;
 }
 
