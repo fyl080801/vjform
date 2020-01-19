@@ -99,6 +99,15 @@ export default {
                             }
                           },
                           fieldOptions: {
+                            on: {
+                              blur: {
+                                $type: "on",
+                                $arguments: {
+                                  val: { $type: "bind", $source: "arguments" }
+                                },
+                                $result: "console.log('绑定了输入参数：', val)"
+                              }
+                            },
                             attrs: {
                               placeholder: "input-text"
                             },

@@ -17,6 +17,10 @@ function processTransform(field, key, collection) {
     trans.deal.call(this, key, collection);
   }
 
+  // if (field.convert) {
+  //   console.log(field);
+  // }
+
   forEach(
     trans && trans.convert ? collection[key] : field,
     processTransform.bind(this)

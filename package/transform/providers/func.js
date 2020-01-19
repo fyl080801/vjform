@@ -14,6 +14,7 @@ export function getFunctionResult(option) {
     funcArgs.map(a => a.key),
     "return " + $result
   );
+
   try {
     const result = func.apply(
       this,
