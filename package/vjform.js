@@ -1,4 +1,4 @@
-import render from "./render";
+import renderer from "./renderer";
 import transform from "./transform";
 import datasource from "./mixins/datasource";
 import schema from "./mixins/schema";
@@ -8,7 +8,7 @@ import helper from "./mixins/helper";
 export default {
   name: "vjform",
   components: {
-    render
+    renderer
   },
   mixins: [datasource, schema, watchs, helper],
   props: {
@@ -56,7 +56,7 @@ export default {
     this.transform(this.fields);
   },
   render(h) {
-    return h("render", {
+    return h("renderer", {
       props: {
         fields: this.renderFields,
         value: this.data

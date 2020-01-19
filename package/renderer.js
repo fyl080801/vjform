@@ -1,10 +1,10 @@
-import Vue from "vue";
 import provider from "./provider";
 import helper from "./mixins/helper";
 import { isEmpty } from "lodash-es";
 import Ajv from "ajv";
 
-export default Vue.component("renderer", {
+export default {
+  name: "renderer",
   props: {
     fields: Array,
     value: [Object, Array]
@@ -57,4 +57,4 @@ export default Vue.component("renderer", {
         .filter(item => item !== undefined && item !== null)
     );
   }
-});
+};

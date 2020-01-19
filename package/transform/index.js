@@ -17,10 +17,6 @@ function processTransform(field, key, collection) {
     trans.deal.call(this, key, collection);
   }
 
-  // if (field.convert) {
-  //   console.log(field);
-  // }
-
   forEach(
     trans && trans.convert ? collection[key] : field,
     processTransform.bind(this)
@@ -30,12 +26,7 @@ function processTransform(field, key, collection) {
 export { register };
 
 export default function(fields, clone = true) {
-  if (clone) {
-    const cloned = cloneDeep(fields);
-    forEach(cloned, processTransform.bind(this));
-    return cloned;
-  } else {
-    forEach(fields, processTransform.bind(this));
-    return fields;
-  }
+  const ref = clone ? cloneDeep(fields) : fields;
+  forEach(ref, processTransform.bind(this));
+  return ref;
 }

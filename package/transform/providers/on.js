@@ -25,7 +25,7 @@ export function getOnFunction(option) {
       context,
       transform.call(context, { ...option, ...{ $setters: undefined } })
     );
-  }.bind(this);
+  };
 }
 
 register(

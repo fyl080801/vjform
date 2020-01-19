@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <vjform
       :fields="fields"
       :value="model"
@@ -9,20 +9,17 @@
       :schema="schema"
       @input="changed"
       @state-changed="stateChanged"
-    />
+    ></vjform>
     <div>{{ JSON.stringify(model) }}</div>
     <div>{{ JSON.stringify(formState) }}</div>
   </div>
 </template>
 
 <script>
-import vjform from "../package/index";
+import vjform from "../../package/vjform";
 
 export default {
-  name: "app",
-  components: {
-    vjform
-  },
+  components: { vjform },
   data() {
     return {
       formState: {},
@@ -43,6 +40,13 @@ export default {
           type: "request",
           autoload: true,
           url: "/data/testdata.json",
+          method: "GET",
+          defaultData: []
+        },
+        tabledata: {
+          type: "request",
+          autoload: true,
+          url: "/data/tabledata.json",
           method: "GET",
           defaultData: []
         }
@@ -429,6 +433,62 @@ export default {
                             }
                           },
                           children: [{ component: "span", text: "对话框" }]
+                        }
+                      ]
+                    },
+                    {
+                      component: "el-form-item",
+                      fieldOptions: { props: { label: "表格数据:" } },
+                      children: [
+                        {
+                          component: "el-table",
+                          model: [
+                            "Standard.vmInstanceType",
+                            {
+                              on: "current-change",
+                              handler: {
+                                $type: "on",
+                                $arguments: {
+                                  args: { $type: "bind", $source: "arguments" }
+                                },
+                                $result: "args[0]"
+                              }
+                            }
+                          ],
+                          fieldOptions: {
+                            props: {
+                              border: true,
+                              stripe: true,
+                              data: {
+                                $type: "bind",
+                                $source: "sourcedata.tabledata"
+                              }
+                            }
+                          },
+                          children: [
+                            {
+                              component: "el-table-column",
+                              fieldOptions: { props: { type: "index" } }
+                            },
+                            {
+                              component: "el-table-column",
+                              fieldOptions: {
+                                props: { property: "name", label: "姓名" }
+                              }
+                            },
+                            {
+                              component: "el-table-column",
+                              fieldOptions: {
+                                props: { property: "address", label: "地址" }
+                              }
+                            },
+                            {
+                              component: "el-table-column",
+                              fieldOptions: {
+                                props: { property: "date", label: "日期" }
+                              }
+                            }
+                          ]
                         }
                       ]
                     }
