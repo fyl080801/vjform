@@ -73,16 +73,16 @@ function provider(field) {
     this,
     component,
     fieldOptions,
-    get(this.value, propertyName)
+    get(this.model, propertyName)
   );
 
   if (typeof get(fieldOptions.on, on) !== "function") {
     Object.assign(fieldOptions.on, {
       [on]: value => {
-        if (get(this.value, propertyName) === undefined) {
-          deepSet.call(this, this.value, propertyName, handler(value));
+        if (get(this.model, propertyName) === undefined) {
+          deepSet.call(this, this.model, propertyName, handler(value));
         } else {
-          set(this.value, propertyName, handler(value));
+          set(this.model, propertyName, handler(value));
         }
       }
     });

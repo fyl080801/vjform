@@ -92,6 +92,12 @@ export default {
                         {
                           component: "el-input",
                           model: ["text"],
+                          errorOptions: {
+                            class: "has-error",
+                            attrs: {
+                              placeholder: "input-text"
+                            }
+                          },
                           fieldOptions: {
                             attrs: {
                               placeholder: "input-text"

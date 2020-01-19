@@ -1,6 +1,6 @@
-import { register } from "../register";
+import { registerProvider } from "../register";
 
-function provider(field) {
+registerProvider("fieldOptions", function(field) {
   field.fieldOptions = field.fieldOptions || {};
 
   const { fieldOptions } = field;
@@ -9,8 +9,4 @@ function provider(field) {
   fieldOptions.props = fieldOptions.props || {};
   fieldOptions.domProps = fieldOptions.domProps || {};
   fieldOptions.on = fieldOptions.on || {};
-}
-
-register("fieldOptions", function() {
-  return provider;
 });

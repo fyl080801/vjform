@@ -13,8 +13,16 @@ export default Vue.component("renderer", {
       ajv: new Ajv()
     };
   },
+  computed: {
+    model() {
+      return this.value.model;
+    },
+    state() {
+      return this.value.state;
+    }
+  },
   watch: {
-    value: {
+    "value.model": {
       handler(value) {
         this.$emit("input", value);
       },

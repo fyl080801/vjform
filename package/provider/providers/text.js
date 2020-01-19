@@ -1,6 +1,6 @@
-import { register } from "../register";
+import { registerProvider } from "../register";
 
-function provider(field) {
+registerProvider("text", function(field) {
   const { text } = field;
 
   if (text === undefined) {
@@ -13,8 +13,4 @@ function provider(field) {
       innerText: text
     }
   };
-}
-
-register("text", function() {
-  return provider;
 });
