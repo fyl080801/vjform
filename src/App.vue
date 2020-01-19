@@ -227,7 +227,7 @@ export default {
                       children: [
                         {
                           component: "el-select",
-                          model: ["remoteselected"],
+                          model: ["Standard.remoteselected"],
                           fieldOptions: {
                             props: {
                               placeholder: "select-text",

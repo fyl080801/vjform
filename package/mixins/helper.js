@@ -8,8 +8,9 @@ export default {
       let valueCache = null;
 
       paths.forEach((path, index) => {
-        valueCache = get(ownerCache, path) || (isNaN(path) ? [] : {});
         if (index !== paths.length - 1) {
+          const isNumber = /^[0-9]*$/g.test(paths[index + 1]);
+          valueCache = get(ownerCache, path) || (isNumber ? [] : {});
           this.$set(ownerCache, path, valueCache);
           ownerCache = valueCache;
         } else {
