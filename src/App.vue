@@ -109,6 +109,8 @@ export default {
                         },
                         {
                           component: "p",
+                          model: "text",
+                          errorOptions: { style: "color: red" },
                           text: {
                             $type: "func",
                             $arguments: {
