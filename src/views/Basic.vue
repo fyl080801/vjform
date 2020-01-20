@@ -31,8 +31,11 @@ export default {
       },
       schema: {
         type: "object",
+        required: ["checked"],
         properties: {
-          text: { type: "string", minLength: 1 }
+          text: { type: "string", minLength: 1 },
+          radiovalue: { type: "string", minLength: 1 },
+          checked: { type: "boolean", const: true }
         }
       },
       datasource: {
