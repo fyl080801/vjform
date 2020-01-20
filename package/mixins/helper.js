@@ -10,7 +10,13 @@ export default {
       paths.forEach((path, index) => {
         if (index !== paths.length - 1) {
           const isNumber = /^[0-9]*$/g.test(paths[index + 1]);
-          valueCache = get(ownerCache, path) || (isNumber ? [] : {});
+          const currentValue = get(ownerCache, path);
+          valueCache =
+            currentValue === undefined || currentValue === null
+              ? isNumber
+                ? []
+                : {}
+              : currentValue;
           this.$set(ownerCache, path, valueCache);
           ownerCache = valueCache;
         } else {

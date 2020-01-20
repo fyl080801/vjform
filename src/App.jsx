@@ -1,17 +1,3 @@
-{
-  /* <template>
-  <div id="app">
-    <router-view />
-  </div>
-</template>
-
-<script>
-export default {
-  name: "app"
-};
-</script> */
-}
-
 import { withHooks } from "vue-hooks";
 
 // eslint-disable-next-line no-unused-vars
