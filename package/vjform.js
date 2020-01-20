@@ -26,6 +26,12 @@ export default {
         this.transform(value);
       },
       deep: true
+    },
+    params: {
+      handler(value) {
+        this.data.params = value;
+      },
+      deep: true
     }
   },
   data() {

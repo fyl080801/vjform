@@ -5,7 +5,9 @@ import vjform from "../../package/vjform";
 const component = withHooks(h => {
   const data = useData({
     formState: {},
-    params: {},
+    params: {
+      times: { timeSpans: "", timeUnits: "" }
+    },
     schema: {},
     datasource: {
       regions: {
@@ -47,6 +49,7 @@ const component = withHooks(h => {
       tabledata: {
         type: "request",
         autoload: true,
+        watchs: ["params.times"],
         url: "/data/tabledata.json",
         method: "GET",
         defaultData: []
@@ -114,6 +117,7 @@ const component = withHooks(h => {
                   props: {
                     border: true,
                     stripe: true,
+                    highlightCurrentRow: true,
                     data: {
                       $type: "bind",
                       $source: "model.Region.properties.Standard"
@@ -148,6 +152,7 @@ const component = withHooks(h => {
               {
                 component: "el-select",
                 model: ["Standard.diskInstanceType"],
+                fieldOptions: { props: { valueKey: "instanceType" } },
                 children: {
                   $type: "array",
                   $data: {
@@ -170,6 +175,13 @@ const component = withHooks(h => {
                     }
                   }
                 }
+              },
+              {
+                component: "span",
+                text: {
+                  $type: "bind",
+                  $source: "model.Standard.diskInstanceType.instanceType"
+                }
               }
             ]
           }
@@ -184,6 +196,14 @@ const component = withHooks(h => {
 
   const stateChanged = () => {};
 
+  const changeValue = () => {
+    data.model.Standard.diskInstanceType = { instanceType: "local", size: 40 };
+  };
+
+  const changeParams = () => {
+    data.params.times = { timeSpans: "1", timeUnits: "1" };
+  };
+
   return (
     <div>
       <vjform
@@ -197,6 +217,9 @@ const component = withHooks(h => {
         on-state-changed={stateChanged}
       ></vjform>
       <div>{JSON.stringify(data.model)}</div>
+      <hr></hr>
+      <el-button onClick={changeValue}>change</el-button>
+      <el-button onClick={changeParams}>change params</el-button>
     </div>
   );
 });

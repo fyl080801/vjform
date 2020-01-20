@@ -109,12 +109,6 @@ export default {
                                 $arguments: {
                                   val: { $type: "bind", $source: "arguments" }
                                 },
-                                $setters: {
-                                  setterObj: {
-                                    $type: "bind",
-                                    $source: "model.text"
-                                  }
-                                },
                                 $result: "console.log('绑定了输入参数：', val)"
                               }
                             },
