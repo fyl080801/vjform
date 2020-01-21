@@ -1,5 +1,5 @@
 import { register } from "../register";
-import { set, get } from "lodash-es";
+import { set, get, isEmpty } from "lodash-es";
 
 const attrsValueElements = ["input", "option", "textarea"];
 const domPropsValueElements = ["input", "textarea"];
@@ -51,7 +51,11 @@ function provider(field) {
   const modelDefine = Array.isArray(field.model) ? field.model : [field.model];
   const propertyName = modelDefine[0];
   const onDefine = modelDefine[1] || {};
-  const { on = "input", handler = defaultHandler.call(this, field) } = onDefine;
+  const {
+    on = "input",
+    nativeOn,
+    handler = defaultHandler.call(this, field)
+  } = onDefine;
 
   initFieldOptions.call(
     this,
@@ -60,9 +64,13 @@ function provider(field) {
     get(this.model, propertyName)
   );
 
-  if (typeof get(fieldOptions.on, on) !== "function") {
-    Object.assign(fieldOptions.on, {
-      [on]: value => {
+  const tirgger = isEmpty(nativeOn) ? "on" : "nativeOn";
+
+  fieldOptions[tirgger] = fieldOptions[tirgger] || {};
+
+  if (typeof get(fieldOptions[tirgger], nativeOn || on) !== "function") {
+    Object.assign(fieldOptions[tirgger], {
+      [nativeOn || on]: value => {
         if (get(this.model, propertyName) === undefined) {
           this.$deepSet(this.model, propertyName, handler(value));
         } else {

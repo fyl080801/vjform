@@ -8,5 +8,4 @@ registerProvider("fieldOptions", function(field) {
   fieldOptions.attrs = fieldOptions.attrs || {};
   fieldOptions.props = fieldOptions.props || {};
   fieldOptions.domProps = fieldOptions.domProps || {};
-  fieldOptions.on = fieldOptions.on || {};
 });

@@ -82,6 +82,10 @@ export default {
           children: [
             {
               component: "el-col",
+              model: [
+                "ontest",
+                { nativeOn: "click", handler: { $type: "on", $result: "true" } }
+              ],
               fieldOptions: {
                 props: { span: 12 }
               },
