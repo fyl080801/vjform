@@ -1,4 +1,5 @@
 import Ajv from "ajv";
+import { isEqual } from "lodash-es";
 
 export default {
   data() {
@@ -9,8 +10,11 @@ export default {
   methods: {
     validate(value) {
       this.ajv.validate(this.schema, value);
-      this.data.state.valid = this.ajv.errors === null;
-      this.data.state.errors = this.ajv.errors;
+
+      if (!isEqual(this.data.state.errors, this.ajv.errors)) {
+        this.data.state.valid = this.ajv.errors === null;
+        this.data.state.errors = this.ajv.errors || [];
+      }
     }
   },
   watch: {
@@ -20,8 +24,11 @@ export default {
       },
       deep: true
     },
-    ["data.state"](value) {
-      this.$emit("state-changed", value);
+    "data.state": {
+      handler(value) {
+        this.$emit("state-changed", value);
+      },
+      deep: true
     }
   },
   mounted() {
