@@ -1,8 +1,32 @@
-# Vue Json form
+# Vue JSON form
 
-> 通过 JSON 呈现任何组件
+> 通过 JSON 呈现任何组件与定义脚本的实现
 
-**使用任何 Vue 组件或 html 元素**
+__使用任何 Vue 组件或 html 元素构建视图__
+
+开发 vue 项目时，可能会遇到以下需求场景
+
+1. 界面以及功能需要通过加载配置动态呈现
+2. 定义的配置需要进行存储
+3. 需要通过可视化界面编辑配置
+
+普通 JSON 数据虽然可以描述对象的属性与结构，但是对象方法的定义、程序逻辑的实现以及对象属性与数据的关联关系在序列化成 JSON 数据后无法保存，即使将这些定义可以单独序列化成二进制或 base64 格式的数据，但是如果需要使用编辑器编辑配置时，这些定义也不好描述。
+
+使用 Vue JSON form 组件可以解决 JSON 格式的这些弊端，组件支持用特定 JSON 表示属性值，最终在运行时解析属性转换成真正的值或方法。
+
+## 特性
+
+- 支持呈现 Vue 组件和 html 元素
+- 支持将固定参数（params）、表单对象（model）、数据源（datasource）、数组元素（scope）、函数参数（arguments）这些数据关联到组件元素属性上实现值的联动
+- 支持绑定值、计算属性、数组、事件定义，将以上数据关联到对象属性上
+- 基于 JSON schema 对 model 数据进行验证
+- 数据源数据支持远程数据获取、刷新和进行表单提交行为
+- 通过监听（watchs）实现数据变化时更新关联数据，实现联动
+- 除了绑定、计算属性、数组、事件定义故有功能，本组件支持二次开发，实现特殊的属性值处理方法
+
+## 文档
+
+待更新...
 
 ## 指南
 
@@ -23,12 +47,19 @@ Vue.component("vjform", vjform);
 
 ### 基础示例
 
+呈现一个简单的表单
+
+template
+
 ```vue
 <template>
   <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
 </template>
+```
 
-<script>
+script
+
+```js
 export default {
   data() {
     return {
@@ -47,6 +78,7 @@ export default {
       fields: [
         {
           component: "input",
+          // 通过定义 model，显示并响应输入的结果
           model: ["firstName"],
           // 参考 Vue 关于 render 的 API [Vue's render functions](https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth)
           fieldOptions: {
@@ -60,10 +92,11 @@ export default {
     };
   }
 };
-</script>
 ```
 
 ### 表达式示例
+
+通过 `bind` 转换实现将某个值绑定到某个对象的属性上，在值变化时属性值也会保持一致
 
 支持 `bind` `func` `array` `on` 转换，具体先看 `App.vue` 里的示例
 
@@ -71,8 +104,11 @@ export default {
 <template>
   <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
 </template>
+```
 
-<script>
+script
+
+```js
 export default {
   data() {
     return {
@@ -111,25 +147,20 @@ export default {
               }
             }
           }
+        },
+        {
+          component: 'p',
+          // 支持特定属性的简易定义，这里同定义 innerText 效果一样
+          text: {
+            $type: 'bind',
+            $source: 'model.firstName'
+          }
         }
       ]
     };
   }
 };
-</script>
 ```
-
-## 特性
-
-- 支持 Vue 组件和 html 元素
-- 基于 JSON schema 验证 model 数据
-- 定义数据源, 实现更新远程数据和表单提交行为
-- 定义转换, 实现数值绑定和数据监听行为
-- 支持扩展
-
-## 文档
-
-待更新...
 
 ## 依赖
 
