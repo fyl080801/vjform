@@ -196,10 +196,6 @@ const component = withHooks(h => {
 
   const stateChanged = () => {};
 
-  const changeValue = () => {
-    data.model.Standard.diskInstanceType = { instanceType: "local", size: 40 };
-  };
-
   const changeParams = () => {
     data.params.times = { timeSpans: "1", timeUnits: "1" };
   };
@@ -218,8 +214,7 @@ const component = withHooks(h => {
       ></vjform>
       <div>{JSON.stringify(data.model)}</div>
       <hr></hr>
-      <el-button onClick={changeValue}>change</el-button>
-      <el-button onClick={changeParams}>change params</el-button>
+      <el-button onClick={changeParams}>change params to do request</el-button>
     </div>
   );
 });
