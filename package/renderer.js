@@ -7,7 +7,8 @@ export default {
   name: "renderer",
   props: {
     fields: Array,
-    value: [Object, Array]
+    value: [Object, Array],
+    components: Object
   },
   mixins: [helper],
   data() {
@@ -39,7 +40,7 @@ export default {
 
       if (!isEmpty(component)) {
         return h(
-          component,
+          this.components[component] || component,
           { ...fieldOptions },
           children
             .map(child => this.createFieldComponent(h, child))

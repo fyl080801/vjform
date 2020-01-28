@@ -18,6 +18,7 @@ export default {
     schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
     watchs: { type: Object, default: () => ({}) },
+    components: { type: Object, default: () => ({}) },
     options: { type: Object, default: () => ({}) }
   },
   watch: {
@@ -65,7 +66,8 @@ export default {
     return h("renderer", {
       props: {
         fields: this.renderFields,
-        value: this.data
+        value: this.data,
+        components: this.components
       },
       on: {
         input: this.onInput

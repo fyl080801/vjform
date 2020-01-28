@@ -6,6 +6,7 @@
       :params="params"
       :datasource="datasource"
       :watchs="watchs"
+      :components="components"
       :schema="schema"
       @input="changed"
       @state-changed="stateChanged"
@@ -17,6 +18,7 @@
 
 <script>
 import vjform from "../../package/vjform";
+import Text from "../components/Text";
 
 export default {
   components: { vjform },
@@ -38,6 +40,7 @@ export default {
           checked: { type: "boolean", const: true }
         }
       },
+      components: { text: Text },
       datasource: {
         requestsource: {
           type: "request",
@@ -490,6 +493,15 @@ export default {
                               }
                             }
                           ]
+                        }
+                      ]
+                    },
+                    {
+                      component: "el-form-item",
+                      children: [
+                        {
+                          component: "text",
+                          fieldOptions: { props: { value: "哈哈哈!!!" } }
                         }
                       ]
                     }
