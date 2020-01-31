@@ -14,8 +14,8 @@ const component = withHooks(h => {
         type: "object",
         data: [
           {
-            value: "cn-north-1",
-            description: "华北-北京",
+            value: 1,
+            description: "选项 1",
             properties: {
               Standard: [
                 { key: 1, name: "选项1", address: "sssss", date: "2020-01-01" },
@@ -31,8 +31,8 @@ const component = withHooks(h => {
             }
           },
           {
-            value: "cn-south-1",
-            description: "华南-上海",
+            value: 2,
+            description: "选项 2",
             properties: {
               Standard: [
                 { key: 1, name: "选项x", address: "sssss", date: "2020-01-01" },

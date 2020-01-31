@@ -2,7 +2,7 @@ import { register } from "../register";
 import { set, get, isEmpty } from "lodash-es";
 
 const attrsValueElements = ["input", "option", "textarea"];
-const domPropsValueElements = ["input", "textarea"];
+const domPropsValueElements = ["input", "textarea", "select"];
 const domPropsCheckedElements = ["checkbox", "radio"];
 const innerHTMLElements = ["textarea"];
 // const requiredElements = ["input", "select", "textarea"];
@@ -14,14 +14,20 @@ function defaultHandler(field) {
     domPropsValueElements.indexOf(component) >= 0 &&
     domPropsCheckedElements.indexOf(fieldOptions.domProps.type) >= 0
   ) {
-    return value => value.target.checked;
+    return value => {
+      return value.target.checked;
+    };
   }
 
   if (domPropsValueElements.indexOf(component) >= 0) {
-    return value => value.target.value;
+    return value => {
+      return value.target.value;
+    };
   }
 
-  return value => value;
+  return value => {
+    return value;
+  };
 }
 
 function initFieldOptions(component, fieldOptions, currentValue) {

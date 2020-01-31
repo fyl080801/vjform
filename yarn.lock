@@ -9212,12 +9212,7 @@ vue-loader@^15.7.1, vue-loader@^15.7.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-router@^3.1.3:
-  version "3.1.5"
-  resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.1.5.tgz#ff29b8a1e1306c526b52d4dc0532109f16c41231"
-  integrity sha1-/ym4oeEwbFJrUtTcBTIQnxbEEjE=
-
-vue-router@^3.1.5:
+vue-router@^3.1.3, vue-router@^3.1.5:
   version "3.1.5"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.1.5.tgz?cache=0&sync_timestamp=1579092528417&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-router%2Fdownload%2Fvue-router-3.1.5.tgz#ff29b8a1e1306c526b52d4dc0532109f16c41231"
   integrity sha1-/ym4oeEwbFJrUtTcBTIQnxbEEjE=
@@ -9281,6 +9276,11 @@ vuepress-plugin-container@^2.0.2, vuepress-plugin-container@^2.1.2:
   integrity sha1-aIweWpcJobhlhgW8ruWAs6uxnRY=
   dependencies:
     markdown-it-container "^2.0.0"
+
+vuepress-plugin-demo-block@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.npm.taobao.org/vuepress-plugin-demo-block/download/vuepress-plugin-demo-block-0.7.2.tgz#02fc4f0ef764052981accf41f1403fdb9f794c0d"
+  integrity sha1-AvxPDvdkBSmBrM9B8UA/2595TA0=
 
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
