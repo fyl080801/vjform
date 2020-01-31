@@ -34,9 +34,11 @@ export default {
   },
   methods: {
     createFieldComponent(h, field) {
-      provider.call(this, field);
+      const $field = { ...field };
 
-      const { component, fieldOptions = {}, children = [] } = field;
+      provider.call(this, $field);
+
+      const { component, fieldOptions = {}, children = [] } = $field;
 
       if (!isEmpty(component)) {
         return h(

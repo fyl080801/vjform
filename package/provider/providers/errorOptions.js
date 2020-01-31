@@ -1,15 +1,16 @@
 import { register } from "../register";
-import { isEmpty } from "lodash-es";
+import { isEmpty, merge } from "lodash-es";
 
 function provider(field) {
-  const { model, $fieldOptions, fieldOptions, errorOptions } = field;
+  const { model, fieldOptions, errorOptions } = field;
+
+  const $fieldOptions = fieldOptions;
+
   const modelPath = Array.isArray(model)
     ? model[0]
     : typeof model === "string"
     ? model
     : "";
-
-  field.$fieldOptions = field.$fieldOptions || fieldOptions;
 
   if (isEmpty(modelPath)) {
     return;
@@ -19,7 +20,9 @@ function provider(field) {
     item => item.dataPath === `.${modelPath}`
   );
 
-  field.fieldOptions = error ? errorOptions : $fieldOptions;
+  field.fieldOptions = error
+    ? merge({}, $fieldOptions, errorOptions)
+    : $fieldOptions;
 }
 
 register("errorOptions", function(field) {

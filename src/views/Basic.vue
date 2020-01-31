@@ -107,10 +107,7 @@ export default {
                           component: "el-input",
                           model: ["text"],
                           errorOptions: {
-                            class: "has-error",
-                            attrs: {
-                              placeholder: "input-text"
-                            }
+                            class: "has-error"
                           },
                           fieldOptions: {
                             on: {
