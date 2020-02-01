@@ -1,6 +1,7 @@
 # 基础示例
 
 ::: demo
+
 ```html
 <template>
   <div>
@@ -57,4 +58,5 @@ export default {
 };
 </script>
 ```
+
 :::
