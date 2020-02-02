@@ -560,16 +560,6 @@ export default {
     };
   },
   methods: {
-    // setModel() {
-    //   this.model.list.push({
-    //     key: this.model.list.length + 1,
-    //     value: "222",
-    //     children: [4, 5, 6]
-    //   });
-    //   this.model.list[0].children.splice(0, 1);
-    //   this.model.list[0].value = "ccccccc"; // 不变化
-    //   this.model.list = JSON.parse(JSON.stringify(this.model.list));
-    // },
     changed() {},
     stateChanged(state) {
       this.formState = state;

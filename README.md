@@ -1,8 +1,22 @@
 # Vue JSON form
 
+[![NPM version][npm-image]][npm-url]
+[![David deps][david-image]][david-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/vjform.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/vjform
+[david-image]: https://img.shields.io/david/fyl080801/vjform.svg?style=flat-square
+[david-url]: https://david-dm.org/fyl080801/vjform
+[snyk-image]: https://snyk.io/test/npm/vjform/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/vjform
+[download-image]: https://img.shields.io/npm/dm/vjform.svg?style=flat-square
+[download-url]: https://npmjs.org/package/vjform
+
 > 通过 JSON 呈现任何组件与定义脚本的实现
 
-__使用任何 Vue 组件或 html 元素构建视图__
+**使用任何 Vue 组件或 html 元素构建视图**
 
 开发 vue 项目时，可能会遇到以下需求场景
 
