@@ -77,11 +77,7 @@ function provider(field) {
   if (typeof get(fieldOptions[tirgger], nativeOn || on) !== "function") {
     Object.assign(fieldOptions[tirgger], {
       [nativeOn || on]: value => {
-        if (get(this.model, propertyName) === undefined) {
-          this.$deepSet(this.model, propertyName, handler(value));
-        } else {
-          set(this.model, propertyName, handler(value));
-        }
+        this.$deepSet(this.model, propertyName, handler(value));
       }
     });
   }
