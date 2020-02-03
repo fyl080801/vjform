@@ -45,6 +45,7 @@ register("submit", function(options, context) {
   };
 
   const doSubmit = () => {
+    console.log("xxxx");
     if (dev) {
       return;
     }
@@ -89,7 +90,7 @@ register("submit", function(options, context) {
     watchs.forEach(watch => {
       instance.watchs.push(
         this.$watch(
-          () => get(context.model, watch),
+          () => get(context, watch),
           () => doSubmit()
         )
       );
