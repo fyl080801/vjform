@@ -33,8 +33,6 @@ export default {
           return;
         }
 
-        this.processWatchs(key);
-
         this.watchstore.push(
           this.$watch(
             () => get(this.data, key),
