@@ -6,6 +6,7 @@
       :params="params"
       :datasource="datasource"
       :watchs="watchs"
+      :inits="inits"
       :components="components"
       :schema="schema"
       @input="changed"
@@ -55,6 +56,15 @@ export default {
           url: "/data/tabledata.json",
           method: "GET",
           defaultData: []
+        }
+      },
+      inits: {
+        subtext: {
+          $func: true,
+          $arguments: {
+            val: { $type: "bind", $source: "model.text" }
+          },
+          $result: "val ? val.length : 0"
         }
       },
       watchs: {
@@ -137,20 +147,9 @@ export default {
                               value: {
                                 $type: "bind",
                                 $source: "model.subtext"
-                              },
-                              current: {
-                                $type: "func",
-                                $arguments: {
-                                  textl: {
-                                    $type: "bind",
-                                    $source: "model.text"
-                                  }
-                                },
-                                $result: "textl.length",
-                                $default: 0
                               }
                             },
-                            $result: "'输入了：' + (value||current) + ' 个字'"
+                            $result: "'输入了：' + value + ' 个字'"
                           }
                         }
                       ]
