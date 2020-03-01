@@ -23,8 +23,8 @@
   "main": "dist/vjform.umd.js",
   "module": "dist/vjform.esm.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs",
     "dist": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "dev": "vue-cli-service serve",
     "lint": "vue-cli-service lint",

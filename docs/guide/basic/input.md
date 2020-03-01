@@ -42,7 +42,7 @@ html input
 
 ## 下拉选择
 
-html select 三四三
+html select
 
 ::: demo
 
