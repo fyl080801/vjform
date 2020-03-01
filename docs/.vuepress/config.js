@@ -51,7 +51,7 @@ guides.forEach(item => {
 module.exports = {
   lang: "zh-CN",
   title: "Vue JSON Form",
-  description: "render ui by json expression",
+  description: "render ui by json",
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
     ["script", { src: "https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js" }],
