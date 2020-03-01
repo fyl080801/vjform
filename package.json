@@ -1,12 +1,19 @@
 {
   "name": "vjform",
   "description": "Vue JSON Form",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": false,
   "author": {
     "name": "fyl080801",
     "email": "fyl080801@hotmail.com"
   },
+  "keywords": [
+    "vue",
+    "form",
+    "dynamic-form",
+    "json",
+    "json-schema"
+  ],
   "homepage": "https://github.com/fyl080801/vjform/blob/master/README.md",
   "repository": {
     "type": "git",
