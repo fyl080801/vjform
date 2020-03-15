@@ -69,7 +69,8 @@ export default {
       props: {
         fields: this.renderFields,
         value: this.data,
-        components: this.components
+        components: this.components,
+        options: this.options
       },
       on: {
         input: this.onInput

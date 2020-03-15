@@ -8,6 +8,7 @@ export default {
   props: {
     fields: Array,
     value: [Object, Array],
+    options: Object,
     components: Object
   },
   mixins: [helper],
@@ -36,7 +37,7 @@ export default {
     createFieldComponent(h, field) {
       const $field = { ...field };
 
-      provider.call(this, $field);
+      provider.call(this, $field, this.options);
 
       const { component, fieldOptions = {}, children = [] } = $field;
 
