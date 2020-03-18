@@ -8,8 +8,8 @@ import "./providers/errorOptions";
 
 export { register };
 
-export default function(field) {
+export default function(field, options) {
   store.forEach(factory => {
-    (factory.call(this, field) || function() {}).call(this, field);
+    (factory.call(this, field) || function() {}).call(this, field, options);
   });
 }
