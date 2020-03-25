@@ -31,7 +31,7 @@ export default {
         }
       });
 
-      // // 第一次先赋值一次
+      // 第一次先赋值一次
       Object.keys(this.datasourcestore).forEach(key => {
         this.$set(this.data.sourcedata, key, this.datasourcestore[key].data);
         this.$set(this.data.datasource, key, this.datasourcestore[key]);

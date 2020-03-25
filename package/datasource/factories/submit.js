@@ -45,7 +45,6 @@ register("submit", function(options, context) {
   };
 
   const doSubmit = () => {
-    console.log("xxxx");
     if (dev) {
       return;
     }
