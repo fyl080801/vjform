@@ -56,5 +56,7 @@ register("request", function(options, context) {
     }
   });
 
+  instance.load = load;
+
   return instance;
 });
