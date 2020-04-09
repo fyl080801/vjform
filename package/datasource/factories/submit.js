@@ -96,5 +96,7 @@ register("submit", function(options, context) {
     });
   });
 
+  instance.submit = doSubmit;
+
   return instance;
 });
