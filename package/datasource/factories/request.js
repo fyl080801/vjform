@@ -1,9 +1,9 @@
 import { register } from "../register";
 import { get } from "lodash-es";
-import transform from "../../transform";
 import { loadSourceData } from "../../api/vjform";
 
-register("request", function(options, context) {
+register("request", function(getOptions, context) {
+  const options = getOptions();
   const { watchs = [], autoload } = options;
 
   const instance = {
@@ -13,32 +13,29 @@ register("request", function(options, context) {
   };
 
   const load = () => {
-    const clonedOptions = transform.call(context, options);
-
     if (options.dev) {
       return;
     }
 
     instance.loading = true;
 
-    return loadSourceData(clonedOptions)
+    return loadSourceData(options)
       .then(res => {
         instance.loading = false;
         instance.data =
-          get(res, clonedOptions.dataPath || "data") ||
-          clonedOptions.defaultData;
+          get(res, options.dataPath || "data") || options.defaultData;
       })
       .catch(() => {
         instance.loading = false;
-        if (clonedOptions.errorData !== undefined) {
-          instance.data = clonedOptions.errorData;
+        if (options.errorData !== undefined) {
+          instance.data = options.errorData;
         }
         // TODO: should emit 'error' event to component
       });
   };
 
   this.$nextTick(() => {
-    const clonedOptions = transform.call(context, options);
+    const clonedOptions = getOptions();
 
     instance.data = clonedOptions.defaultData || null;
 

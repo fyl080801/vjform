@@ -35,6 +35,12 @@ export default {
         this.data.params = value;
       },
       deep: true
+    },
+    value: {
+      handler(value) {
+        this.data.model = value;
+      },
+      deep: false // 如果从外部改变值，这里才需要更新
     }
   },
   data() {

@@ -2,6 +2,10 @@ import "./factories/object";
 import "./factories/request";
 import "./factories/submit";
 import store from "./store";
+import transform from "../transform";
+import { register } from "./register";
+
+export { register };
 
 // model先赋个初值，不然如果数据源autoload可能取不到数据
 // 也把props赋过去，从服务端或固定的数据从服务端返回也可用作参数
@@ -13,7 +17,7 @@ export default function(context) {
 
     const instance = (store.get(options.type) || fakesource).call(
       this,
-      options,
+      () => transform.call(context, options),
       context
     );
 

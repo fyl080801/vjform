@@ -8,7 +8,7 @@ import {
 } from "lodash-es";
 import qs from "querystring";
 import parse from "url-parse";
-import transform from "../../transform";
+// import transform from "../../transform";
 import { register } from "../register";
 
 const pathTraversal = owner => {
@@ -35,7 +35,8 @@ const pathTraversal = owner => {
   return result;
 };
 
-register("submit", function(options, context) {
+register("submit", function(getOptions, context) {
+  const options = getOptions();
   const { watchs = [], dev } = options;
 
   const instance = {
@@ -51,7 +52,7 @@ register("submit", function(options, context) {
 
     instance.loading = true;
 
-    const clonedOptions = transform.call(context, options);
+    const clonedOptions = getOptions(); // transform.call(context, options);
 
     const parsedUrl = parse(clonedOptions.url);
     const orgquery =

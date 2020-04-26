@@ -1,9 +1,7 @@
 import { register } from "../register";
-import transform from "../../transform";
 
-register("object", function(options, context) {
-  const { data } = options;
-  const clonedData = transform.call(context, { data: data });
+register("object", function(getOptions) {
+  const clonedData = getOptions();
 
   const instance = {
     watchs: [],
