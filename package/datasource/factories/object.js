@@ -1,16 +1,16 @@
 import { register } from "../register";
 
 register("object", function(getOptions) {
-  const clonedData = getOptions();
+  const { data } = getOptions();
 
   const instance = {
     watchs: [],
-    data: clonedData.data
+    data
   };
 
   instance.watchs.push(
     this.$watch(
-      () => clonedData.data,
+      () => data,
       value => {
         instance.data = value;
       },

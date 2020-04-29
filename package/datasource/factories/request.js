@@ -4,7 +4,14 @@ import { loadSourceData } from "../../api/vjform";
 
 register("request", function(getOptions, context) {
   const options = getOptions();
-  const { watchs = [], autoload } = options;
+  const {
+    watchs = [],
+    autoload,
+    dev, // 开发模式
+    dataPath, // 数据路径
+    defaultData, // 默认数据
+    errorData // 异常数据
+  } = options;
 
   const instance = {
     loading: false,
@@ -12,32 +19,29 @@ register("request", function(getOptions, context) {
     watchs: []
   };
 
-  const load = () => {
-    if (options.dev) {
+  const load = async () => {
+    if (dev) {
       return;
     }
 
     instance.loading = true;
 
-    return loadSourceData(options)
-      .then(res => {
-        instance.loading = false;
-        instance.data =
-          get(res, options.dataPath || "data") || options.defaultData;
-      })
-      .catch(() => {
-        instance.loading = false;
-        if (options.errorData !== undefined) {
-          instance.data = options.errorData;
-        }
-        // TODO: should emit 'error' event to component
-      });
+    try {
+      const res = await loadSourceData(options);
+      instance.loading = false;
+      instance.data = get(res, dataPath || "data") || defaultData;
+    } catch (e) {
+      instance.loading = false;
+      if (errorData !== undefined) {
+        instance.data = errorData;
+      }
+    }
   };
 
   this.$nextTick(() => {
-    const clonedOptions = getOptions();
+    const { defaultData } = getOptions();
 
-    instance.data = clonedOptions.defaultData || null;
+    instance.data = defaultData || null;
 
     watchs.forEach(watch => {
       instance.watchs.push(
