@@ -38,7 +38,7 @@ export default {
     },
     value: {
       handler(value) {
-        this.data.model = value;
+        Object.assign(this.data.model, value);
       },
       deep: false // 如果从外部改变值，这里才需要更新
     }
