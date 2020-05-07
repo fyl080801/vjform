@@ -1,16 +1,16 @@
 import { register } from "../register";
 
 register("object", function(getOptions) {
-  const { data } = getOptions();
+  const options = getOptions();
 
   const instance = {
     watchs: [],
-    data
+    data: options.data // 这里只能关联options的data，因为data的转换表达式最终转换到options的对象里
   };
 
   instance.watchs.push(
     this.$watch(
-      () => data,
+      () => options.data,
       value => {
         instance.data = value;
       },

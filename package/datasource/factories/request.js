@@ -3,7 +3,6 @@ import { get } from "lodash-es";
 import { loadSourceData } from "../../api/vjform";
 
 register("request", function(getOptions, context) {
-  const options = getOptions();
   const {
     watchs = [],
     autoload,
@@ -11,7 +10,7 @@ register("request", function(getOptions, context) {
     dataPath, // 数据路径
     defaultData, // 默认数据
     errorData // 异常数据
-  } = options;
+  } = getOptions();
 
   const instance = {
     loading: false,
@@ -23,6 +22,8 @@ register("request", function(getOptions, context) {
     if (dev) {
       return;
     }
+
+    const options = getOptions();
 
     instance.loading = true;
 
@@ -39,8 +40,6 @@ register("request", function(getOptions, context) {
   };
 
   this.$nextTick(() => {
-    const { defaultData } = getOptions();
-
     instance.data = defaultData || null;
 
     watchs.forEach(watch => {
