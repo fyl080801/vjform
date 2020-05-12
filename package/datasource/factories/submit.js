@@ -8,7 +8,6 @@ import {
 } from "lodash-es";
 import qs from "querystring";
 import parse from "url-parse";
-import transform from "../../transform";
 import { register } from "../register";
 
 const pathTraversal = owner => {
@@ -35,8 +34,8 @@ const pathTraversal = owner => {
   return result;
 };
 
-register("submit", function(options, context) {
-  const { watchs = [], dev } = options;
+register("submit", function(getOptions, context) {
+  const { watchs = [], dev } = getOptions();
 
   const instance = {
     loading: true,
@@ -51,38 +50,38 @@ register("submit", function(options, context) {
 
     instance.loading = true;
 
-    const clonedOptions = transform.call(context, options);
+    const options = getOptions();
 
-    const parsedUrl = parse(clonedOptions.url);
+    const parsedUrl = parse(options.url);
     const orgquery =
       parsedUrl.query.indexOf("?") === 0 ? parsedUrl.query.substring(1) : "";
 
     parsedUrl.set(
       "query",
-      qs.stringify(Object.assign({}, qs.parse(orgquery), clonedOptions.params))
+      qs.stringify(Object.assign({}, qs.parse(orgquery), options.params))
     );
 
     const dlform = document.createElement("form");
     dlform.style = "display:none;";
-    dlform.method = clonedOptions.method || "POST";
+    dlform.method = options.method || "POST";
     dlform.action = parsedUrl.href;
-    dlform.target = clonedOptions.target;
+    dlform.target = options.target;
 
-    const pathObject = pathTraversal(clonedOptions.data);
+    const pathObject = pathTraversal(options.data);
 
     Object.keys(pathObject).forEach(key => {
       const hdnFilePath = document.createElement("input");
       hdnFilePath.type = "hidden";
       hdnFilePath.name = key;
-      hdnFilePath.value = get(clonedOptions.data, key);
+      hdnFilePath.value = get(options.data, key);
       dlform.appendChild(hdnFilePath);
     });
 
-    const container =
-      document.getElementById(clonedOptions.container) || document.body;
-    container.appendChild(dlform);
+    const attachElement =
+      document.getElementById(options.container) || document.body;
+    attachElement.appendChild(dlform);
     dlform.submit();
-    container.removeChild(dlform);
+    attachElement.removeChild(dlform);
   };
 
   this.$nextTick(() => {

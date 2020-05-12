@@ -1,10 +1,16 @@
 import { register } from "../register";
 import { get } from "lodash-es";
-import transform from "../../transform";
 import { loadSourceData } from "../../api/vjform";
 
-register("request", function(options, context) {
-  const { watchs = [], autoload } = options;
+register("request", function(getOptions, context) {
+  const {
+    watchs = [],
+    autoload,
+    dev, // 开发模式
+    dataPath, // 数据路径
+    defaultData, // 默认数据
+    errorData // 异常数据
+  } = getOptions();
 
   const instance = {
     loading: false,
@@ -12,35 +18,29 @@ register("request", function(options, context) {
     watchs: []
   };
 
-  const load = () => {
-    const clonedOptions = transform.call(context, options);
-
-    if (options.dev) {
+  const load = async () => {
+    if (dev) {
       return;
     }
 
+    const options = getOptions();
+
     instance.loading = true;
 
-    return loadSourceData(clonedOptions)
-      .then(res => {
-        instance.loading = false;
-        instance.data =
-          get(res, clonedOptions.dataPath || "data") ||
-          clonedOptions.defaultData;
-      })
-      .catch(() => {
-        instance.loading = false;
-        if (clonedOptions.errorData !== undefined) {
-          instance.data = clonedOptions.errorData;
-        }
-        // TODO: should emit 'error' event to component
-      });
+    try {
+      const res = await loadSourceData(options);
+      instance.loading = false;
+      instance.data = get(res, dataPath || "data") || defaultData;
+    } catch (e) {
+      instance.loading = false;
+      if (errorData !== undefined) {
+        instance.data = errorData;
+      }
+    }
   };
 
   this.$nextTick(() => {
-    const clonedOptions = transform.call(context, options);
-
-    instance.data = clonedOptions.defaultData || null;
+    instance.data = defaultData || null;
 
     watchs.forEach(watch => {
       instance.watchs.push(

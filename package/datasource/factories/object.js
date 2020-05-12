@@ -1,18 +1,16 @@
 import { register } from "../register";
-import transform from "../../transform";
 
-register("object", function(options, context) {
-  const { data } = options;
-  const clonedData = transform.call(context, { data: data });
+register("object", function(getOptions) {
+  const options = getOptions();
 
   const instance = {
     watchs: [],
-    data: clonedData.data
+    data: options.data // 这里只能关联options的data，因为data的转换表达式最终转换到options的对象里
   };
 
   instance.watchs.push(
     this.$watch(
-      () => clonedData.data,
+      () => options.data,
       value => {
         instance.data = value;
       },
