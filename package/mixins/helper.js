@@ -1,4 +1,4 @@
-import { get, toPath } from "lodash-es";
+import { get, toPath, isArray } from "lodash-es";
 
 export default {
   methods: {
@@ -17,7 +17,11 @@ export default {
                 ? []
                 : {}
               : currentValue;
-          this.$set(ownerCache, path, valueCache);
+          this.$set(
+            ownerCache,
+            isArray(ownerCache) ? parseInt(path) : path,
+            valueCache
+          );
           ownerCache = valueCache;
         } else {
           this.$set(ownerCache, path, value);
