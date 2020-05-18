@@ -1,7 +1,7 @@
 {
   "name": "vjform",
   "description": "Vue JSON Form",
-  "version": "0.4.1",
+  "version": "0.4.2-beta.1",
   "private": false,
   "author": {
     "name": "fyl080801",
