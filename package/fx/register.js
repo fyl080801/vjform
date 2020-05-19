@@ -11,7 +11,7 @@ export const register = (name, fx) => {
     return assembly;
   };
   assembly.withGroup = group => {
-    this.group = group;
+    instance.group = group;
     return assembly;
   };
 

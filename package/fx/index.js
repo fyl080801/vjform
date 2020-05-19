@@ -11,7 +11,9 @@ const listFx = () => {
     acc[cur.name] = cur;
     return acc;
   }, {});
-  return Object.values(cloned);
+  return Object.values(cloned).map(item =>
+    Object.assign(item, { description: item.description || item.name })
+  );
 };
 
 export { register, listFx };
