@@ -4,9 +4,9 @@ import { cloneDeep } from "lodash-es";
 import "./functions/IF";
 import "./functions/MAP";
 import "./functions/TEXT";
+import "./functions/REDUCE";
 
 const listFx = () => {
-  console.log(store);
   const cloned = cloneDeep(store).reduce((acc, cur) => {
     acc[cur.name] = cur;
     return acc;

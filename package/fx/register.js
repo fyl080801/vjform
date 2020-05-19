@@ -1,7 +1,7 @@
 import store from "./store";
 
 export const register = (name, fx) => {
-  const instance = { name, fx, group: "" };
+  const instance = { name: name.toUpperCase(), fx, group: "" };
 
   const assembly = () => {
     store.push(instance);
