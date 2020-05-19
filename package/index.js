@@ -2,6 +2,7 @@ import vjform from "./vjform";
 import * as provider from "./provider";
 import * as transform from "./transform";
 import * as datasource from "./datasource";
+import * as fx from "./fx";
 
 const install = function(Vue) {
   Vue.component(vjform.name, vjform);
@@ -15,5 +16,7 @@ export default {
   install,
   provider: provider.register,
   transform: transform.register,
-  datasource: datasource.register
+  datasource: datasource.register,
+  addFx: fx.register,
+  getFxList: fx.listFx
 };
