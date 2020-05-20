@@ -1,10 +1,10 @@
 import { register } from "./register";
 import store from "./store";
 import { cloneDeep } from "lodash-es";
-import "./functions/IF";
-import "./functions/MAP";
-import "./functions/TEXT";
-import "./functions/REDUCE";
+import "./functions/if";
+import "./functions/map";
+import "./functions/text";
+import "./functions/reduce";
 
 const listFx = () => {
   const cloned = cloneDeep(store).reduce((acc, cur) => {
