@@ -5,6 +5,8 @@ import "./functions/map";
 import "./functions/text";
 import "./functions/reduce";
 import "./functions/equal";
+import "./functions/filter";
+import "./functions/get";
 
 export { register };
 
