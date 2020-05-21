@@ -1,10 +1,10 @@
 import store from "./store";
 
 export const register = (name, fx) => {
-  const instance = { name: name.toUpperCase(), fx, group: "" };
+  const instance = { fx, group: "" };
 
   const assembly = () => {
-    store.push(instance);
+    store.set(name.toUpperCase(), instance);
   };
   assembly.withDescription = description => {
     instance.description = description;

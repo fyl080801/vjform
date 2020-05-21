@@ -1,23 +1,22 @@
 import { register } from "./register";
 import store from "./store";
-import { cloneDeep } from "lodash-es";
 import "./functions/if";
 import "./functions/map";
 import "./functions/text";
 import "./functions/reduce";
+import "./functions/equal";
 
-const listFx = () => {
-  const cloned = cloneDeep(store).reduce((acc, cur) => {
-    acc[cur.name] = cur;
-    return acc;
-  }, {});
-  return Object.values(cloned).map(item =>
-    Object.assign(item, { description: item.description || item.name })
-  );
-};
+export { register };
 
-export { register, listFx };
+export default () => {
+  const stored = [];
+  store.forEach((value, key) => {
+    stored.push({
+      ...value,
+      name: key,
+      description: value.description || key
+    });
+  });
 
-export default name => {
-  return store.find(item => item.name === name).fx;
+  return stored;
 };

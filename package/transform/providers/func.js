@@ -1,6 +1,6 @@
 import { register } from "../register";
 import { resolveGetter, resolveSetter } from "../helper";
-import { listFx } from "../../fx";
+import fx from "../../fx";
 
 export function getFunctionResult(option) {
   const { $arguments = {}, $result, $default, $debug = false } = option;
@@ -10,10 +10,9 @@ export function getFunctionResult(option) {
     args.push({ key, value: $arguments[key] });
   });
 
-  const fxs = listFx();
   const funcArgs = args
     .sort((a, b) => a.key.charCodeAt() - b.key.charCodeAt())
-    .concat(fxs.map(fx => ({ key: fx.name, value: fx.fx })));
+    .concat(fx().map(fx => ({ key: fx.name, value: fx.fx })));
   // 加上函数引用
 
   try {

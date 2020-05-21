@@ -11,12 +11,18 @@ const install = function(Vue) {
 if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
+
 export default {
   ...vjform,
   install,
   provider: provider.register,
   transform: transform.register,
   datasource: datasource.register,
-  addFx: fx.register,
-  getFxList: fx.listFx
+  fx: (name, fn) => {
+    if (name && fn && typeof fn === "function") {
+      return fx.register(name, fn);
+    } else {
+      return fx.default();
+    }
+  }
 };
