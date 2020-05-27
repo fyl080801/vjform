@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get, isObject } from "lodash-es";
 import transform from "../transform";
 
 export default {
@@ -22,7 +22,18 @@ export default {
     processWatchs(key) {
       const transed = transform.call(this.data, this.watchs[key]);
       Object.keys(transed).forEach(field => {
-        this.$deepSet(this.data.model, field, transed[field]);
+        const transedValue = transed[field];
+        if (field === "" && isObject(transedValue)) {
+          Object.keys(transedValue).forEach(transedKey => {
+            this.$deepSet(
+              this.data.model,
+              transedKey,
+              transedValue[transedKey]
+            );
+          });
+        } else {
+          this.$deepSet(this.data.model, field, transedValue);
+        }
       });
     },
     registWatchs() {

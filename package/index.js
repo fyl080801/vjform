@@ -2,6 +2,7 @@ import vjform from "./vjform";
 import * as provider from "./provider";
 import * as transform from "./transform";
 import * as datasource from "./datasource";
+import * as fx from "./fx";
 
 const install = function(Vue) {
   Vue.component(vjform.name, vjform);
@@ -10,10 +11,18 @@ const install = function(Vue) {
 if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
+
 export default {
   ...vjform,
   install,
   provider: provider.register,
   transform: transform.register,
-  datasource: datasource.register
+  datasource: datasource.register,
+  fx: (name, fn) => {
+    if (name && fn && typeof fn === "function") {
+      return fx.register(name, fn);
+    } else {
+      return fx.default();
+    }
+  }
 };

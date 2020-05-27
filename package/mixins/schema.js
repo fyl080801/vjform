@@ -12,7 +12,10 @@ export default {
       this.ajv.validate(this.schema, value);
 
       if (!isEqual(this.data.state.errors, this.ajv.errors)) {
-        this.data.state.valid = this.ajv.errors === null;
+        this.data.state.valid =
+          this.ajv.errors === null || this.ajv.errors.length <= 0;
+        this.data.state.invalid =
+          this.ajv.errors !== null && this.ajv.errors.length > 0;
         this.data.state.errors = this.ajv.errors || [];
       }
     }
