@@ -1,4 +1,4 @@
-import ds from "../datasource";
+import ds from "../features/datasource";
 
 export default {
   data() {
