@@ -60,4 +60,6 @@ feature("datasource")("request", function(getOptions, context) {
   instance.load = load;
 
   return instance;
-});
+})
+  .withName("HTTP请求")
+  .withDescription("发起HTTP请求");

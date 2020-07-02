@@ -19,4 +19,4 @@ feature("datasource")("object", function(getOptions) {
   );
 
   return instance;
-});
+}).withName("对象");

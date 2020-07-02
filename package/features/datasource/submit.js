@@ -98,4 +98,6 @@ feature("datasource")("submit", function(getOptions, context) {
   instance.submit = doSubmit;
 
   return instance;
-});
+})
+  .withName("表单提交")
+  .withDescription("数据以html表单形式提交");
