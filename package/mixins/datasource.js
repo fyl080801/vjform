@@ -1,4 +1,4 @@
-import ds from "../datasource";
+import { createInstance } from "../features/datasource";
 
 export default {
   data() {
@@ -22,7 +22,7 @@ export default {
     registDatasource() {
       Object.keys(this.datasource).forEach(key => {
         const instance =
-          ds(this.data).call(this, {
+          createInstance(this.data).call(this, {
             ...this.datasource[key],
             dev: this.options.mode === "design"
           }) || undefined;

@@ -1,5 +1,5 @@
 import renderer from "./renderer";
-import transform from "./transform";
+import transform from "./features/transform";
 import datasource from "./mixins/datasource";
 import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";

@@ -1,4 +1,4 @@
-import provider from "./provider";
+import provider from "./features/provider";
 import helper from "./mixins/helper";
 import { isEmpty } from "lodash-es";
 import Ajv from "ajv";
@@ -14,7 +14,8 @@ export default {
   mixins: [helper],
   data() {
     return {
-      ajv: new Ajv()
+      ajv: new Ajv(),
+      providers: null
     };
   },
   computed: {
@@ -37,7 +38,15 @@ export default {
     createFieldComponent(h, field) {
       const $field = { ...field };
 
-      provider.call(this, $field, this.options);
+      this.providers = this.providers || provider.call(this) || [];
+
+      this.providers.forEach(({ factory }) => {
+        (factory.call(this, $field) || function() {}).call(
+          this,
+          $field,
+          this.options
+        );
+      });
 
       const { component, fieldOptions = {}, children = [] } = $field;
 
