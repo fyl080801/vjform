@@ -1,4 +1,4 @@
-import { getMapDeault } from "../utils";
+import { getMapDeault } from "../utils/helpers";
 
 const store = new Map();
 

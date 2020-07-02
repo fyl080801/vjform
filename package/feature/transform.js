@@ -1,4 +1,4 @@
-import { getMapDeault } from "../utils";
+import { getMapDeault } from "../utils/helpers";
 
 export default store => {
   return (getter, deal) => {
