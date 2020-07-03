@@ -12,5 +12,5 @@ const registers = {
 };
 
 export default type => {
-  return registers[type](getFeature(type));
+  return (registers[type] || function() {})(getFeature(type));
 };
