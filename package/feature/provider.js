@@ -1,8 +1,8 @@
-import { getMapDeault } from "../utils/helpers";
+import { getMapDefault } from "../utils/helpers";
 
 export default store => {
   return factory => {
-    const providers = getMapDeault(store, "providers", []);
+    const providers = getMapDefault(store, "providers", []);
 
     const instance = {
       factory,
