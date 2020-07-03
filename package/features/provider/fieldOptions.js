@@ -1,6 +1,6 @@
 import feature from "../../feature";
 
-feature("provider")("fieldOptions", function() {
+feature("provider")(function() {
   return function(field) {
     field.fieldOptions = field.fieldOptions || {};
 

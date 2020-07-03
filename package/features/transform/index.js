@@ -1,5 +1,5 @@
 import { cloneDeep, forEach } from "lodash-es";
-import { getMapDeault } from "../../utils";
+import { getMapDeault } from "../../utils/helpers";
 import { getFeature } from "../../feature/map";
 import "./bind";
 import "./func";

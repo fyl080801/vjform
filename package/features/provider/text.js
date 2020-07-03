@@ -1,6 +1,6 @@
 import feature from "../../feature";
 
-feature("provider")("text", function() {
+feature("provider")(function() {
   return function(field) {
     const { text } = field;
 
