@@ -5,6 +5,7 @@ import "./displayOptions";
 import "./model";
 import "./text";
 import "./errorOptions";
+import "./condition";
 
 const getProviders = () => {
   const stored = getFeature("provider");

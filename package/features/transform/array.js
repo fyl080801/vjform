@@ -11,9 +11,11 @@ export function getSourceValue(option) {
   });
 }
 
-feature("transform")(
-  resolveGetter("array"),
-  resolveSetter("array", (context, option) =>
-    getSourceValue.call(context, option)
+feature
+  .transform(
+    resolveGetter("array"),
+    resolveSetter("array", (context, option) =>
+      getSourceValue.call(context, option)
+    )
   )
-).isConvert();
+  .isConvert();

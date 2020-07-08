@@ -292,10 +292,11 @@ export default {
                     },
                     {
                       component: "el-form-item",
-                      displayOptions: {
-                        model: "checked",
-                        schema: { type: "boolean", const: true }
-                      },
+                      condition: { $type: "bind", $source: "model.checked" },
+                      // displayOptions: {
+                      //   model: "checked",
+                      //   schema: { type: "boolean", const: true }
+                      // },
                       fieldOptions: { props: { label: "选项组:" } },
                       children: [
                         {

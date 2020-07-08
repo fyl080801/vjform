@@ -83,7 +83,7 @@ function provider(field) {
   }
 }
 
-feature("provider")(function(field) {
+feature.provider(function(field) {
   const { model } = field;
 
   return (model &&

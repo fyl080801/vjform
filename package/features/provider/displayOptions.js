@@ -14,7 +14,7 @@ function provider(field) {
     : null;
 }
 
-feature("provider")(function(field) {
+feature.provider(function(field) {
   const { displayOptions } = field;
 
   if (displayOptions === undefined) {
