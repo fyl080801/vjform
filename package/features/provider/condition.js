@@ -7,7 +7,7 @@ feature.provider(function() {
 
     const defined = Object.getOwnPropertyDescriptor(field, "condition");
 
-    if (defined === undefined) {
+    if (defined === undefined || condition === undefined) {
       return;
     }
 

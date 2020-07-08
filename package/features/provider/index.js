@@ -19,7 +19,5 @@ export default function() {
     providers.push(instance);
   });
 
-  return providers.sort((a, b) => {
-    a.index - b.index;
-  });
+  return providers.sort((a, b) => a.index - b.index);
 }
