@@ -10,7 +10,11 @@ export function getOnFunction(option) {
   }.bind(this);
 }
 
-feature("transform")(
-  resolveGetter("on"),
-  resolveSetter("on", (context, option) => getOnFunction.call(context, option))
-).isConvert();
+feature
+  .transform(
+    resolveGetter("on"),
+    resolveSetter("on", (context, option) =>
+      getOnFunction.call(context, option)
+    )
+  )
+  .isConvert();

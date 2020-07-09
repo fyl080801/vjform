@@ -10,7 +10,7 @@ export function getSourceValue(option) {
   return get(source, path, $default);
 }
 
-feature("transform")(
+feature.transform(
   resolveGetter("bind"),
   resolveSetter("bind", (context, option) =>
     getSourceValue.call(context, option)

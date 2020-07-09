@@ -1,18 +1,23 @@
 import { getFeature } from "../../feature/map";
+import { getMapDefault } from "../../utils/helpers";
 import "./fieldOptions";
 import "./displayOptions";
 import "./model";
 import "./text";
 import "./errorOptions";
+import "./condition";
+
+const getProviders = () => {
+  const stored = getFeature("provider");
+  return getMapDefault(stored, "providers", []);
+};
 
 export default function() {
   const providers = [];
 
-  getFeature("provider").forEach(instance => {
+  getProviders().forEach(instance => {
     providers.push(instance);
   });
 
-  return providers.sort((a, b) => {
-    a.index - b.index;
-  });
+  return providers.sort((a, b) => a.index - b.index);
 }

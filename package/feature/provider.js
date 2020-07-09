@@ -1,12 +1,15 @@
+import { getMapDefault } from "../utils/helpers";
+
 export default store => {
-  return (name, factory) => {
+  return factory => {
+    const providers = getMapDefault(store, "providers", []);
+
     const instance = {
-      name,
       factory,
       index: 0
     };
 
-    store.set(name, instance);
+    providers.push(instance);
 
     return {
       withIndex: index => {

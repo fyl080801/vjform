@@ -2,7 +2,7 @@ import Vue from "vue";
 import Element from "element-ui";
 import App from "./App";
 import router from "./router";
-import vjform from "../package";
+import vjform from "../package/index";
 
 import "element-ui/lib/theme-chalk/index.css";
 

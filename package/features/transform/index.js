@@ -1,5 +1,5 @@
 import { cloneDeep, forEach } from "lodash-es";
-import { getMapDeault } from "../../utils";
+import { getMapDefault } from "../../utils/helpers";
 import { getFeature } from "../../feature/map";
 import "./bind";
 import "./func";
@@ -8,7 +8,7 @@ import "./array";
 
 const getProviders = () => {
   const stored = getFeature("transform");
-  return getMapDeault(stored, "providers", []);
+  return getMapDefault(stored, "providers", []);
 };
 
 function processTransform(field, key, collection) {

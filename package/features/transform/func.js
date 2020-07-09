@@ -38,7 +38,7 @@ export function getFunctionResult(option) {
   }
 }
 
-feature("transform")(
+feature.transform(
   resolveGetter("func"),
   resolveSetter("func", (context, option) =>
     getFunctionResult.call(context, option)

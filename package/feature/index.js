@@ -11,6 +11,13 @@ const registers = {
   functional
 };
 
-export default type => {
-  return registers[type](getFeature(type));
+export const register = type => {
+  return (registers[type] || function() {})(getFeature(type));
+};
+
+export default {
+  provider: register("provider"),
+  datasource: register("datasource"),
+  transform: register("transform"),
+  functional: register("functional")
 };

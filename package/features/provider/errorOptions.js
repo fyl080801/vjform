@@ -25,7 +25,7 @@ function provider(field) {
     : $fieldOptions;
 }
 
-feature("provider")("errorOptions", function(field) {
+feature.provider(function(field) {
   const { model, errorOptions } = field;
 
   if (model === undefined || errorOptions === undefined) {

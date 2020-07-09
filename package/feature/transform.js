@@ -1,8 +1,8 @@
-import { getMapDeault } from "../utils";
+import { getMapDefault } from "../utils/helpers";
 
 export default store => {
   return (getter, deal) => {
-    const providers = getMapDeault(store, "providers", []);
+    const providers = getMapDefault(store, "providers", []);
 
     const provider = {
       getter,
