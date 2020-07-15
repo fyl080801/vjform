@@ -6,7 +6,6 @@
       :params="params"
       :datasource="datasource"
       :watchs="watchs"
-      :inits="inits"
       :components="components"
       :schema="schema"
     ></vjform>
@@ -41,7 +40,6 @@ export default {
       params: {},
       datasource: {},
       watchs: {},
-      inits: {},
       components: {},
       schema: {}
     };

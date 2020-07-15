@@ -221,7 +221,7 @@ export default {
 
 ## 可视化设计器
 
-[vjdesign](https://github.com/fyl080801/vjdesign) 是 vjform 的可视化设计器，目前可视化设计器正在开发中
+[vjdesign](https://github.com/fyl080801/vjdesign) 是 vjform 的可视化设计器
 
 也可访问 [gitee 项目](https://gitee.com/fyl080801_admin/vjdesign)
 

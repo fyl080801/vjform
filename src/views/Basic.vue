@@ -6,9 +6,9 @@
       :params="params"
       :datasource="datasource"
       :watchs="watchs"
-      :inits="inits"
       :components="components"
       :schema="schema"
+      :listeners="listeners"
       @input="changed"
       @state-changed="stateChanged"
     ></vjform>
@@ -58,25 +58,37 @@ export default {
           defaultData: []
         }
       },
-      inits: {
-        subtext: {
-          $func: true,
-          $arguments: {
-            val: { $type: "bind", $source: "model.text" }
-          },
-          $result: "val ? val.length : 0"
-        }
-      },
-      watchs: {
-        "model.text": {
-          subtext: {
-            $func: true,
-            $arguments: {
-              val: { $type: "bind", $source: "model.text" }
+      listeners: [
+        {
+          watch: { $type: "bind", $source: "model.text" },
+          immediate: true,
+          actions: [
+            {
+              model: "subtext",
+              result: {
+                $type: "func",
+                $arguments: {
+                  val: { $type: "bind", $source: "model.text" }
+                },
+                $result: "val ? val.length : 0"
+              }
             },
-            $result: "val ? val.length : 0"
-          }
-        },
+            {
+              result: { $type: "bind", $source: "datasource.tabledata.load" }
+            }
+          ]
+        }
+      ],
+      watchs: {
+        // "model.text": {
+        //   subtext: {
+        //     $func: true,
+        //     $arguments: {
+        //       val: { $type: "bind", $source: "model.text" }
+        //     },
+        //     $result: "val ? val.length : 0"
+        //   }
+        // },
         "model.select.key": {
           selectcase: null
         }

@@ -4,14 +4,14 @@ import datasource from "./mixins/datasource";
 import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
 import helper from "./mixins/helper";
-import inits from "./mixins/init";
+import listeners from "./mixins/listeners";
 
 export default {
   name: "vjform",
   components: {
     renderer
   },
-  mixins: [datasource, schema, watchs, inits, helper],
+  mixins: [datasource, schema, watchs, helper, listeners],
   props: {
     value: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },
@@ -19,7 +19,7 @@ export default {
     schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
     watchs: { type: Object, default: () => ({}) },
-    inits: { type: Object, default: () => ({}) },
+    listeners: { type: Array, default: () => ({}) },
     components: { type: Object, default: () => ({}) },
     options: { type: Object, default: () => ({}) }
   },
