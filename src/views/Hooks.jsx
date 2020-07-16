@@ -49,21 +49,39 @@ const component = withHooks(h => {
       tabledata: {
         type: "request",
         autoload: true,
-        watchs: ["params.times"],
         url: "/data/tabledata.json",
         method: "GET",
         defaultData: []
       }
     },
-    watchs: {
-      "model.Region.value": {
-        "Standard.vmInstanceType": null
+    listeners: [
+      {
+        watch: {
+          $type: "bind",
+          $source: "model.Region.value"
+        },
+        actions: [{ model: "Standard.vmInstanceType", expression: null }]
       },
-      "model.Standard.diskInstanceType.instanceType": {
-        "Standard.diskSize": 40,
-        "Standard.iops": 500
+      {
+        watch: {
+          $type: "bind",
+          $source: "model.Standard.diskInstanceType.instanceType"
+        },
+        actions: [
+          { model: "Standard.diskSize", expression: 40 },
+          { model: "Standard.iops", expression: 500 }
+        ]
+      },
+      {
+        watch: { $type: "bind", $source: "params.times" },
+        deep: true,
+        actions: [
+          {
+            expression: { $type: "bind", $source: "datasource.tabledata.load" }
+          }
+        ]
       }
-    },
+    ],
     model: {},
     fields: [
       {
@@ -207,7 +225,7 @@ const component = withHooks(h => {
         value={data.model}
         params={data.params}
         datasource={data.datasource}
-        watchs={data.watchs}
+        listeners={data.listeners}
         schema={data.schema}
         onInput={changed}
         on-state-changed={stateChanged}

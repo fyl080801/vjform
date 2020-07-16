@@ -5,9 +5,7 @@
       v-model="model"
       :params="params"
       :datasource="datasource"
-      :watchs="watchs"
       :components="components"
-      :schema="schema"
     ></vjform>
     <p>{{ JSON.stringify(model) }}</p>
   </div>
@@ -39,9 +37,7 @@ export default {
       },
       params: {},
       datasource: {},
-      watchs: {},
-      components: {},
-      schema: {}
+      components: {}
     };
   }
 };

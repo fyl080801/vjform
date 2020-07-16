@@ -5,7 +5,6 @@
       v-model="model"
       :params="params"
       :datasource="datasource"
-      :watchs="watchs"
       :components="components"
       :schema="schema"
     ></vjform>
@@ -75,7 +74,6 @@ export default {
           data: { $type: "bind", $source: "model.obj" }
         }
       },
-      watchs: {},
       components: {},
       schema: {}
     };

@@ -13,7 +13,8 @@ export default {
       handler() {
         this.release();
         this.regist();
-      }
+      },
+      deep: true
     }
   },
 
@@ -35,14 +36,29 @@ export default {
     },
     release() {
       this.listenerStore.forEach(listener => listener());
+      this.listenerStore = [];
     },
     process(actions) {
       actions.forEach(item => {
-        const { model, result } = transform.call(this.data, item);
-        const value = typeof result === "function" ? result() : result;
+        const { model, condition = true, expression } = transform.call(
+          this.data,
+          item
+        );
+
+        if (!condition) {
+          return;
+        }
+
+        const result = typeof result === "function" ? expression() : expression;
 
         if (typeof model === "string" && !isEmpty(model)) {
-          this.$deepSet(this.data.model, model, value);
+          if (result instanceof Promise) {
+            result.then(value => {
+              this.$deepSet(this.data.model, model, value);
+            });
+          } else {
+            this.$deepSet(this.data.model, model, result);
+          }
         }
       });
     }
