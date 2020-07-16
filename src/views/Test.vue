@@ -5,7 +5,6 @@
       :value="model"
       :params="params"
       :datasource="datasource"
-      :watchs="watchs"
       :components="components"
       :schema="schema"
     ></vjform>
@@ -24,7 +23,6 @@ export default {
     fields: { type: Array, default: () => [] },
     schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
-    watchs: { type: Object, default: () => ({}) },
     components: { type: Object, default: () => ({}) }
   }
 };

@@ -5,7 +5,6 @@
       :value="model"
       :params="params"
       :datasource="datasource"
-      :watchs="watchs"
       :components="components"
       :schema="schema"
       :listeners="listeners"
@@ -65,7 +64,7 @@ export default {
           actions: [
             {
               model: "subtext",
-              result: {
+              expression: {
                 $type: "func",
                 $arguments: {
                   val: { $type: "bind", $source: "model.text" }
@@ -74,25 +73,23 @@ export default {
               }
             },
             {
-              result: { $type: "bind", $source: "datasource.tabledata.load" }
+              expression: {
+                $type: "bind",
+                $source: "datasource.tabledata.load"
+              }
+            }
+          ]
+        },
+        {
+          watch: { $type: "bind", $source: "model.select.key" },
+          actions: [
+            {
+              model: "selectcase",
+              expression: null
             }
           ]
         }
       ],
-      watchs: {
-        // "model.text": {
-        //   subtext: {
-        //     $func: true,
-        //     $arguments: {
-        //       val: { $type: "bind", $source: "model.text" }
-        //     },
-        //     $result: "val ? val.length : 0"
-        //   }
-        // },
-        "model.select.key": {
-          selectcase: null
-        }
-      },
       model: {
         text: "xxxxxx",
         subtext: "",
