@@ -19,7 +19,7 @@ export default {
     schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
     watchs: { type: Object, default: () => ({}) },
-    listeners: { type: Array, default: () => ({}) },
+    listeners: { type: Array, default: () => [] },
     components: { type: Object, default: () => ({}) },
     options: { type: Object, default: () => ({}) }
   },
