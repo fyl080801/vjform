@@ -1,4 +1,4 @@
-import transform from "../features/transform";
+import transform, { isTransform } from "../features/transform";
 import { isEmpty, get } from "lodash-es";
 
 export default {
@@ -21,18 +21,22 @@ export default {
   methods: {
     regist() {
       this.listeners.forEach(listener => {
-        const transedWatch = listener.watch
+        const transedWatch = isTransform.call(this.data, "watch", listener)
           ? transform.call(this.data, {
               value: listener.watch
             })
           : null;
+
+        if (!transedWatch && typeof listener.watch !== "string") {
+          return;
+        }
 
         this.listenerStore.push(
           this.$watch(
             () =>
               transedWatch
                 ? transedWatch.value
-                : get(this.data, listener.source),
+                : get(this.data, listener.watch),
             () => this.process(listener.actions),
             { deep: listener.deep, immediate: listener.immediate }
           )
