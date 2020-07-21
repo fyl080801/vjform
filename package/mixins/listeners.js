@@ -1,5 +1,5 @@
 import transform from "../features/transform";
-import { isEmpty } from "lodash-es";
+import { isEmpty, get } from "lodash-es";
 
 export default {
   data() {
@@ -21,13 +21,16 @@ export default {
   methods: {
     regist() {
       this.listeners.forEach(listener => {
-        const transedWatch = transform.call(this.data, {
-          value: listener.watch
-        });
+        if (!listener.watch) {
+          return;
+        }
 
         this.listenerStore.push(
           this.$watch(
-            () => transedWatch.value,
+            () =>
+              typeof listener.watch === "string"
+                ? get(this.data, listener.watch)
+                : transform.call(this.data, { value: listener.watch }).value,
             () => this.process(listener.actions),
             { deep: listener.deep, immediate: listener.immediate }
           )
@@ -49,7 +52,8 @@ export default {
           return;
         }
 
-        const result = typeof result === "function" ? expression() : expression;
+        const result =
+          typeof expression === "function" ? expression() : expression;
 
         if (typeof model === "string" && !isEmpty(model)) {
           if (result instanceof Promise) {
