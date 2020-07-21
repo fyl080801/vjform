@@ -30,10 +30,6 @@ function processTransform(field, key, collection) {
   );
 }
 
-export function isTransform(key, owner) {
-  return !!getProviders().find(item => item.getter.call(this, key, owner));
-}
-
 export default function(fields, clone = true) {
   const ref = clone ? cloneDeep(fields) : fields;
   forEach(ref, processTransform.bind(this));
