@@ -20,18 +20,22 @@ function processTransform(field, key, collection) {
     item.getter.call(this, key, collection)
   );
 
+  let result;
+
   if (trans) {
-    trans.deal.call(this, key, collection);
+    result = trans.deal.call(this, key, collection);
   }
 
-  forEach(
-    trans && trans.convert ? collection[key] : field,
-    processTransform.bind(this)
-  );
+  if (result !== false) {
+    forEach(
+      trans && trans.convert ? collection[key] : field,
+      processTransform.bind(this)
+    );
+  }
 }
 
-export default function(fields, clone = true) {
-  const ref = clone ? cloneDeep(fields) : fields;
+export default function(obj, clone = true) {
+  const ref = clone ? cloneDeep(obj) : obj;
   forEach(ref, processTransform.bind(this));
   return ref;
 }
