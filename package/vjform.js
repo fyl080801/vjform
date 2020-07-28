@@ -5,6 +5,7 @@ import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
 import helper from "./mixins/helper";
 import listeners from "./mixins/listeners";
+import { v4 } from "uuid";
 
 export default {
   name: "vjform",
@@ -59,10 +60,17 @@ export default {
         value,
         { context: this }
       );
+    },
+    attachKey(fields = []) {
+      fields.forEach(field => {
+        field.key = field.key || v4();
+        this.attachKey(field.children);
+      });
     }
   },
   created() {
     this.transform(this.fields);
+    this.attachKey(this.renderFields);
   },
   render(h) {
     return h("renderer", {

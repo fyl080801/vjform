@@ -59,7 +59,7 @@ export default {
       },
       listeners: [
         {
-          watch: { $type: "bind", $source: "model.text" },
+          watch: "model.text",
           immediate: true,
           actions: [
             {
@@ -160,6 +160,10 @@ export default {
                             },
                             $result: "'输入了：' + value + ' 个字'"
                           }
+                        },
+                        {
+                          component: "p",
+                          text: "输入文字时候会不断发请求"
                         }
                       ]
                     },
