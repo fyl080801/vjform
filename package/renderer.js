@@ -48,12 +48,12 @@ export default {
         );
       });
 
-      const { component, fieldOptions = {}, children = [] } = $field;
+      const { component, fieldOptions = {}, children = [], key } = $field;
 
       if (!isEmpty(component)) {
         return h(
           this.components[component] || component,
-          { ...fieldOptions },
+          { ...fieldOptions, key: fieldOptions.key || key },
           children
             .map(child => this.createFieldComponent(h, child))
             .filter(item => item !== undefined && item !== null)
