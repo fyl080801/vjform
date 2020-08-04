@@ -20,6 +20,9 @@ module.exports = [
       libraryTarget: "umd",
       library: "VueJsonForm",
       umdNamedDefine: true
+    },
+    externals: {
+      vue: "Vue"
     }
   }),
   merge(common, production, {
