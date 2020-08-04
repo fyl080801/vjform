@@ -2,7 +2,7 @@ const path = require("path");
 const merge = require("webpack-merge");
 const nodeExternals = require("webpack-node-externals");
 const common = require("./webpack.config.common");
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const production = {
   entry: path.resolve(__dirname, "./package/index.js"),
@@ -13,9 +13,15 @@ const production = {
   }
 };
 
+const plugins = [];
+
+if (process.env.npm_config_report) {
+  plugins.push(new BundleAnalyzerPlugin());
+}
+
 module.exports = [
   merge(common, production, {
-    // plugins: [new BundleAnalyzerPlugin()],
+    plugins: plugins,
     output: {
       path: path.resolve(__dirname, "./dist"),
       filename: "vjform.umd.js",
@@ -25,6 +31,9 @@ module.exports = [
     },
     externals: {
       vue: "Vue"
+    },
+    resolve: {
+      alias: { vue$: "vue/dist/vue.esm.js" }
     }
   }),
   merge(common, production, {

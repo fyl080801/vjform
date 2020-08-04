@@ -6,7 +6,6 @@
       :params="params"
       :datasource="datasource"
       :components="components"
-      :schema="schema"
     ></vjform>
     <div>{{ JSON.stringify(model) }}</div>
   </div>
@@ -21,7 +20,6 @@ export default {
     model: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },
     fields: { type: Array, default: () => [] },
-    schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
     components: { type: Object, default: () => ({}) }
   }
