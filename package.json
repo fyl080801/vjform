@@ -64,6 +64,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
+    "babel-plugin-lodash": "^3.3.4",
     "chalk": "^3.0.0",
     "codecov": "^3.7.0",
     "eslint": "^5.16.0",
@@ -79,6 +80,7 @@
     "vuepress-plugin-container": "^2.1.4",
     "vuepress-plugin-demo-block": "^0.7.2",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
