@@ -6,7 +6,6 @@
       :params="params"
       :datasource="datasource"
       :components="components"
-      :schema="schema"
     ></vjform>
     <p>{{ JSON.stringify(datasource) }}</p>
   </div>
@@ -74,8 +73,7 @@ export default {
           data: { $type: "bind", $source: "model.obj" }
         }
       },
-      components: {},
-      schema: {}
+      components: {}
     };
   }
 };

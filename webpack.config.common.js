@@ -8,15 +8,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
+        options: { presets: ["@vue/babel-preset-jsx"] }
       }
     ]
   },
-  plugins: [
-    new LodashModuleReplacementPlugin({
-      cloning: true,
-      caching: true,
-      paths: true
-    })
-  ]
+  plugins: [new LodashModuleReplacementPlugin()]
 };
