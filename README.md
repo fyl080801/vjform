@@ -110,7 +110,7 @@ template
 
 ```vue
 <template>
-  <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
+  <vjform v-model="model" :fields="fields"></vjform>
 </template>
 ```
 
@@ -122,15 +122,6 @@ export default {
     return {
       // 数据 model
       model: {},
-      // 验证 model 的 schema
-      schema: {
-        type: "object",
-        properties: {
-          firstName: {
-            type: "string"
-          }
-        }
-      },
       // Vue 组件或 html 元素组成的数组
       fields: [
         {
@@ -159,7 +150,7 @@ export default {
 
 ```vue
 <template>
-  <vjform v-model="model" :schema="schema" :fields="fields"></vjform>
+  <vjform v-model="model" :fields="fields"></vjform>
 </template>
 ```
 
@@ -171,15 +162,6 @@ export default {
     return {
       // 数据 model
       model: {},
-      // 验证 model 的 schema
-      schema: {
-        type: "object",
-        properties: {
-          firstName: {
-            type: "string"
-          }
-        }
-      },
       // Vue 组件或 html 元素组成的数组
       fields: [
         {
@@ -226,10 +208,6 @@ export default {
 也可访问 [gitee 项目](https://gitee.com/fyl080801_admin/vjdesign)
 
 ## 依赖
-
-### Ajv
-
-基于 JSON schema 验证 json 格式
 
 ### Lodash
 

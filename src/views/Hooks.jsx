@@ -8,7 +8,6 @@ const component = withHooks(h => {
     params: {
       times: { timeSpans: "", timeUnits: "" }
     },
-    schema: {},
     datasource: {
       regions: {
         type: "object",
@@ -226,7 +225,6 @@ const component = withHooks(h => {
         params={data.params}
         datasource={data.datasource}
         listeners={data.listeners}
-        schema={data.schema}
         onInput={changed}
         on-state-changed={stateChanged}
       ></vjform>

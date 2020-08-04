@@ -1,10 +1,8 @@
 import { getFeature } from "../../feature/map";
 import { getMapDefault } from "../../utils/helpers";
 import "./fieldOptions";
-import "./displayOptions";
 import "./model";
 import "./text";
-import "./errorOptions";
 import "./condition";
 
 const getProviders = () => {

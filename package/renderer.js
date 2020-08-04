@@ -1,7 +1,6 @@
 import provider from "./features/provider";
 import helper from "./mixins/helper";
 import { isEmpty } from "lodash-es";
-import Ajv from "ajv";
 
 export default {
   name: "renderer",
@@ -14,7 +13,6 @@ export default {
   mixins: [helper],
   data() {
     return {
-      ajv: new Ajv(),
       providers: null
     };
   },

@@ -1,7 +1,6 @@
 import renderer from "./renderer";
 import transform from "./features/transform";
 import datasource from "./mixins/datasource";
-import schema from "./mixins/schema";
 import watchs from "./mixins/watchs";
 import helper from "./mixins/helper";
 import listeners from "./mixins/listeners";
@@ -12,12 +11,11 @@ export default {
   components: {
     renderer
   },
-  mixins: [datasource, schema, watchs, helper, listeners],
+  mixins: [datasource, watchs, helper, listeners],
   props: {
     value: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },
     fields: { type: Array, default: () => [] },
-    schema: { type: Object, default: () => ({}) },
     datasource: { type: Object, default: () => ({}) },
     watchs: { type: Object, default: () => ({}) },
     listeners: { type: Array, default: () => [] },
@@ -44,7 +42,6 @@ export default {
       data: {
         model: this.value,
         params: this.params,
-        state: { valid: false, fields: {}, errors: [] },
         sourcedata: {},
         datasource: {}
       }

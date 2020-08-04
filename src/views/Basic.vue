@@ -6,7 +6,6 @@
       :params="params"
       :datasource="datasource"
       :components="components"
-      :schema="schema"
       :listeners="listeners"
       @input="changed"
       @state-changed="stateChanged"
@@ -30,15 +29,6 @@ export default {
           { key: 1, value: "选项1", children: [1, 2, 3, 4] },
           { key: 2, value: "选项2", children: [5, 6, 7] }
         ]
-      },
-      schema: {
-        type: "object",
-        required: ["checked"],
-        properties: {
-          text: { type: "string", minLength: 1 },
-          radiovalue: { type: "string", minLength: 1 },
-          checked: { type: "boolean", const: true }
-        }
       },
       components: { text: Text },
       datasource: {
@@ -306,10 +296,6 @@ export default {
                     {
                       component: "el-form-item",
                       condition: { $type: "bind", $source: "model.checked" },
-                      // displayOptions: {
-                      //   model: "checked",
-                      //   schema: { type: "boolean", const: true }
-                      // },
                       fieldOptions: { props: { label: "选项组:" } },
                       children: [
                         {
