@@ -7,6 +7,13 @@ const domPropsCheckedElements = ["checkbox", "radio"];
 const innerHTMLElements = ["textarea"];
 // const requiredElements = ["input", "select", "textarea"];
 
+const converter = {
+  number: value => +value,
+  string: value => value + "",
+  boolean: value => !!value,
+  date: value => new Date(value)
+};
+
 function defaultHandler(field) {
   const { component, fieldOptions } = field;
 
@@ -60,7 +67,8 @@ function provider(field) {
   const {
     on = "input",
     nativeOn,
-    handler = defaultHandler.call(this, field)
+    handler = defaultHandler.call(this, field),
+    type
   } = onDefine;
 
   initFieldOptions.call(
@@ -77,7 +85,13 @@ function provider(field) {
   if (typeof get(fieldOptions[tirgger], nativeOn || on) !== "function") {
     Object.assign(fieldOptions[tirgger], {
       [nativeOn || on]: value => {
-        this.$deepSet(this.model, propertyName, handler(value));
+        const result = handler(value);
+        const convert = converter[type];
+        this.$deepSet(
+          this.model,
+          propertyName,
+          convert ? convert(result) : result
+        );
       }
     });
   }
