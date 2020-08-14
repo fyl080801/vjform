@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get, cloneDeep } from "lodash-es";
 import { loadSourceData } from "../../api/vjform";
 
 import feature from "../../feature";
@@ -18,6 +18,14 @@ feature
       loading: false,
       data: null,
       watchs: []
+    };
+
+    const reset = () => {
+      instance.data = cloneDeep(defaultData);
+    };
+
+    const clear = () => {
+      instance.data = [];
     };
 
     const load = async () => {
@@ -59,6 +67,8 @@ feature
     });
 
     instance.load = load;
+    instance.clear = clear;
+    instance.reset = reset;
 
     return instance;
   })
