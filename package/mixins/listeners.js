@@ -31,7 +31,11 @@ export default {
               typeof listener.watch === "string"
                 ? get(this.data, listener.watch)
                 : transform.call(this.data, { value: listener.watch }).value,
-            () => this.process(listener.actions),
+            () => {
+              this.$nextTick(() => {
+                this.process(listener.actions);
+              });
+            },
             { deep: listener.deep, immediate: listener.immediate }
           )
         );
