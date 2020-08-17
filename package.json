@@ -42,15 +42,11 @@
     ]
   },
   "dependencies": {
-    "async-validator": "^3.3.0",
     "axios": "^0.19.1",
     "core-js": "^3.6.5",
-    "element-ui": "^2.13.2",
     "lodash-es": "^4.17.15",
     "uuid": "^8.3.0",
-    "vue": "^2.6.10",
-    "vue-hooks": "^0.3.2",
-    "vue-router": "^3.3.4"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
@@ -66,6 +62,7 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/test-utils": "^1.0.3",
     "acorn": "^7.3.1",
+    "async-validator": "^3.3.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.5.1",
     "babel-loader": "^8.1.0",
@@ -74,6 +71,7 @@
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "chalk": "^3.0.0",
     "codecov": "^3.7.0",
+    "element-ui": "^2.13.2",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^5.0.0",
@@ -81,7 +79,9 @@
     "lodash-webpack-plugin": "^0.11.5",
     "minimist": "^1.2.5",
     "prettier": "^1.19.1",
+    "vue-hooks": "^0.3.2",
     "vue-jest": "^3.0.6",
+    "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.5.2",
     "vuepress-plugin-container": "^2.1.4",
