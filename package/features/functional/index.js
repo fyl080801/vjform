@@ -6,6 +6,11 @@ import "./reduce";
 import "./equal";
 import "./filter";
 import "./get";
+import "./includes";
+import "./addition";
+import "./division";
+import "./multiply";
+import "./subtraction";
 
 export default () => {
   const stored = [];

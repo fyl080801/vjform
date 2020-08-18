@@ -4,5 +4,5 @@ feature
   .functional("MAP", (array, mapper) => {
     return array.map(mapper);
   })
-  .withDescription("数组转换")
-  .withGroup("数组");
+  .withDescription("集合转换")
+  .withGroup("集合");
