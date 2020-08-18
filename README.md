@@ -201,6 +201,50 @@ export default {
 };
 ```
 
+## 版本 1.3.0 重大更新
+
+### 去掉了 json-schema 验证 model 和 displayOptions 功能
+
+现在表单验证和提交行为已经可以通过 json 直接定义了，统一验证 model 就没必要了
+
+现在可以通过组件上定义 condition 实现组件是否存在并支持使用转换关联任何来源，比起 displayOptions 基于 json-schema 只能验证 model 功能强大
+
+### 去掉 inits 属性
+
+增加了 listeners，设置 immediate 属性代替初次执行的监听行为
+
+### 增加了 reference 数据源
+
+数据源关联组件的 fieldOptions 上定义的 ref，可使用组件的方法和属性
+
+```json
+{
+  "datasource": {
+    "form": { "type": "reference", "ref": "form" }
+  },
+  "fields": [
+    {
+      "component": "el-form",
+      "fieldOptions": { "ref": "form" },
+      "children": [
+        {
+          "component": "el-button",
+          "text": "重置验证",
+          "fieldOptions": {
+            "on": {
+              "click": {
+                "$type": "bind",
+                "$source": "datasource.form.instance.clearValidate"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## 可视化设计器
 
 [vjdesign](https://github.com/fyl080801/vjdesign) 是 vjform 的可视化设计器
