@@ -1,4 +1,5 @@
 import feature from "../../feature";
+import { deepSet } from "../../utils/helpers";
 import { set, get, isEmpty } from "lodash-es";
 
 const attrsValueElements = ["input", "option", "textarea"];
@@ -87,11 +88,7 @@ function provider(field) {
       [nativeOn || on]: value => {
         const result = handler(value);
         const convert = converter[type];
-        this.$deepSet(
-          this.model,
-          propertyName,
-          convert ? convert(result) : result
-        );
+        deepSet(this.model, propertyName, convert ? convert(result) : result);
       }
     });
   }

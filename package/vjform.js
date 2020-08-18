@@ -2,7 +2,6 @@ import renderer from "./renderer";
 import transform from "./features/transform";
 import datasource from "./mixins/datasource";
 import watchs from "./mixins/watchs";
-import helper from "./mixins/helper";
 import listeners from "./mixins/listeners";
 import { v4 } from "uuid";
 
@@ -11,7 +10,7 @@ export default {
   components: {
     renderer
   },
-  mixins: [datasource, watchs, helper, listeners],
+  mixins: [datasource, watchs, listeners],
   props: {
     value: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },

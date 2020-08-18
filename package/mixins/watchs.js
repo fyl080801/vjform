@@ -1,5 +1,6 @@
 import { get, isObject } from "lodash-es";
 import transform from "../features/transform";
+import { deepSet } from "../utils/helpers";
 
 export default {
   data() {
@@ -25,14 +26,10 @@ export default {
         const transedValue = transed[field];
         if (field === "" && isObject(transedValue)) {
           Object.keys(transedValue).forEach(transedKey => {
-            this.$deepSet(
-              this.data.model,
-              transedKey,
-              transedValue[transedKey]
-            );
+            deepSet(this.data.model, transedKey, transedValue[transedKey]);
           });
         } else {
-          this.$deepSet(this.data.model, field, transedValue);
+          deepSet(this.data.model, field, transedValue);
         }
       });
     },

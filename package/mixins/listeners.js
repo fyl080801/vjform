@@ -1,5 +1,6 @@
 import transform from "../features/transform";
 import { isEmpty, get } from "lodash-es";
+import { deepSet } from "../utils/helpers";
 
 export default {
   data() {
@@ -33,11 +34,14 @@ export default {
                 : transform.call(this.data, { value: listener.watch }).value,
             () => {
               const { condition = true, actions } = listener;
-              if (condition) {
-                this.$nextTick(() => {
-                  this.process(actions);
-                });
+
+              if (!condition) {
+                return;
               }
+
+              this.$nextTick(() => {
+                this.process(actions);
+              });
             },
             { deep: listener.deep, immediate: listener.immediate }
           )
@@ -50,26 +54,40 @@ export default {
     },
     process(actions) {
       actions.forEach(item => {
-        const { model, condition = true, expression } = transform.call(
-          this.data,
-          item
-        );
+        const {
+          model,
+          condition = true,
+          expression,
+          async = false
+        } = transform.call(this.data, item);
 
         if (!condition) {
           return;
         }
 
-        const result =
-          typeof expression === "function" ? expression() : expression;
+        const executor = options => {
+          const { model, expression } = options;
 
-        if (typeof model === "string" && !isEmpty(model)) {
-          if (result instanceof Promise) {
-            result.then(value => {
-              this.$deepSet(this.data.model, model, value);
-            });
-          } else {
-            this.$deepSet(this.data.model, model, result);
+          const result =
+            typeof expression === "function" ? expression() : expression;
+
+          if (typeof model === "string" && !isEmpty(model)) {
+            if (result instanceof Promise) {
+              result.then(value => {
+                deepSet(this.data.model, model, value);
+              });
+            } else {
+              deepSet(this.data.model, model, result);
+            }
           }
+        };
+
+        if (async) {
+          setTimeout(() => {
+            executor({ model, expression });
+          });
+        } else {
+          executor({ model, expression });
         }
       });
     }
