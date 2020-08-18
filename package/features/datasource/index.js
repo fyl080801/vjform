@@ -3,6 +3,7 @@ import transform from "../transform";
 import "./object";
 import "./request";
 import "./submit";
+import "./reference";
 
 // model先赋个初值，不然如果数据源autoload可能取不到数据
 // 也把props赋过去，从服务端或固定的数据从服务端返回也可用作参数

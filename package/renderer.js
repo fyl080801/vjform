@@ -1,5 +1,4 @@
 import provider from "./features/provider";
-import helper from "./mixins/helper";
 import { isEmpty } from "lodash-es";
 
 export default {
@@ -10,7 +9,6 @@ export default {
     options: Object,
     components: Object
   },
-  mixins: [helper],
   data() {
     return {
       providers: null
