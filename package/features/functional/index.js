@@ -5,12 +5,14 @@ import "./text";
 import "./reduce";
 import "./equal";
 import "./filter";
+import "./find";
 import "./get";
 import "./includes";
 import "./addition";
 import "./division";
 import "./multiply";
 import "./subtraction";
+import "./set";
 
 export default () => {
   const stored = [];
