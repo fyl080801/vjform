@@ -33,14 +33,8 @@ export default {
                 ? get(this.data, listener.watch)
                 : transform.call(this.data, { value: listener.watch }).value,
             () => {
-              const { condition = true, actions } = listener;
-
-              if (!condition) {
-                return;
-              }
-
               this.$nextTick(() => {
-                this.process(actions);
+                this.process(listener.actions);
               });
             },
             { deep: listener.deep, immediate: listener.immediate }
