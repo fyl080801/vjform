@@ -1,8 +1,9 @@
 import feature from "../../feature";
-import { deepSet } from "../../utils/helpers";
+import emitter from "../../utils/emitter";
 
 feature
-  .functional("SET", (obj, path, value) => {
-    deepSet(obj, path, value);
+  .functional("SET", function(path, value) {
+    // 从转换触发的函数不可直接修改model里的值
+    emitter.$emit("update", { path, value });
   })
   .withDescription("赋值");
