@@ -5,6 +5,7 @@ import "./bind";
 import "./func";
 import "./on";
 import "./array";
+import "./update";
 
 const getProviders = () => {
   const stored = getFeature("transform");

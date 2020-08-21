@@ -130,6 +130,8 @@ button click
 
 ## 交互行为
 
+点击弹窗
+
 ::: demo
 
 ```html
@@ -144,39 +146,39 @@ button click
     data() {
       return {
         model: {
-          value: 0
+          dialogShow: false
         },
         fields: [
           {
             component: "el-button",
-            model: [
-              "dialogShow",
-              {
-                on: "click",
-                handler: { $type: "on", $result: "true" }
-              }
-            ],
             fieldOptions: {
               props: {
                 type: "warning"
+              },
+              on: {
+                click: {
+                  $type: "update",
+                  $model: "dialogShow",
+                  $result: "true"
+                }
               }
             },
             children: [{ component: "span", text: "对话框" }]
           },
           {
             component: "el-dialog",
-            model: [
-              "dialogShow",
-              {
-                on: "close",
-                handler: { $type: "on", $result: "false" }
-              }
-            ],
             fieldOptions: {
               props: {
                 title: "提示",
                 visible: { $type: "bind", $source: "model.dialogShow" },
                 width: "30%"
+              },
+              on: {
+                close: {
+                  $type: "update",
+                  $model: "dialogShow",
+                  $result: "false"
+                }
               }
             },
             children: [
@@ -190,27 +192,29 @@ button click
                 children: [
                   {
                     component: "el-button",
-                    model: [
-                      "dialogShow",
-                      {
-                        on: "click",
-                        handler: { $type: "on", $result: "false" }
+                    text: "取消",
+                    fieldOptions: {
+                      on: {
+                        click: {
+                          $type: "update",
+                          $model: "dialogShow",
+                          $result: "false"
+                        }
                       }
-                    ],
-                    text: "取消"
+                    }
                   },
                   {
                     component: "el-button",
-                    model: [
-                      "dialogShow",
-                      {
-                        on: "click",
-                        handler: { $type: "on", $result: "false" }
-                      }
-                    ],
                     text: "确定",
                     fieldOptions: {
-                      props: { type: "primary" }
+                      props: { type: "primary" },
+                      on: {
+                        click: {
+                          $type: "update",
+                          $model: "dialogShow",
+                          $result: "false"
+                        }
+                      }
                     }
                   }
                 ]
