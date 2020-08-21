@@ -3,6 +3,7 @@ import { resolveGetter, resolveSetter } from "./helper";
 import transform from "./index";
 import { getFunctionResult } from "./func";
 import { deepSet } from "../../utils/helpers";
+import { cloneDeep } from "lodash-es";
 
 export function getAssignFunction(option) {
   return function() {
@@ -12,7 +13,11 @@ export function getAssignFunction(option) {
       context,
       transform.call(context, option)
     );
-    deepSet(this.model, $model, result);
+    deepSet(
+      this.model,
+      $model,
+      typeof result === "object" ? cloneDeep(result) : result
+    );
   }.bind(this);
 }
 
