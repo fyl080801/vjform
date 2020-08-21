@@ -4,6 +4,7 @@ import "./fieldOptions";
 import "./model";
 import "./text";
 import "./condition";
+import "./events";
 
 const getProviders = () => {
   const stored = getFeature("provider");

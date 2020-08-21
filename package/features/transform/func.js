@@ -6,6 +6,10 @@ export function getFunctionResult(option) {
   const { $arguments = {}, $result, $default, $debug = false } = option;
   const args = [];
 
+  if (typeof $result !== "string") {
+    return $result || $default;
+  }
+
   Object.keys($arguments).forEach(key => {
     args.push({ key, value: $arguments[key] });
   });

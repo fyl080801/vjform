@@ -504,6 +504,33 @@ export default {
                       ]
                     },
                     {
+                      component: "el-button",
+                      text: "连续事件",
+                      events: [
+                        {
+                          name: "click",
+                          handler: {
+                            $type: "on",
+                            $arguments: {
+                              arg: { $type: "bind", $source: "arguments[0]" }
+                            },
+                            $result: "console.log(arg)"
+                          }
+                        },
+                        {
+                          name: "click",
+                          handler: { $type: "on", $result: "alert('1')" }
+                        },
+                        {
+                          name: "click",
+                          handler: { $type: "on", $result: "alert('2')" }
+                        }
+                      ],
+                      fieldOptions: {
+                        on: { click: { $type: "on", $result: "alert('3')" } }
+                      }
+                    },
+                    {
                       component: "el-form-item",
                       children: [
                         {
