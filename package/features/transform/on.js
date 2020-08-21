@@ -5,7 +5,7 @@ import transform from "./index";
 
 export function getOnFunction(option) {
   return function() {
-    const context = Object.assign({}, this, { arguments: [...arguments] });
+    const context = { ...this, arguments: [...arguments] };
     return getFunctionResult.call(context, transform.call(context, option));
   }.bind(this);
 }
