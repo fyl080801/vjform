@@ -55,6 +55,108 @@
 
 :::
 
+## 交互行为
+
+点击弹窗
+
+::: demo
+
+```html
+<template>
+  <div>
+    <vjform v-model="model" :fields="fields" />
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        model: {
+          dialogShow: false
+        },
+        fields: [
+          {
+            component: "el-button",
+            fieldOptions: {
+              props: {
+                type: "warning"
+              },
+              on: {
+                click: {
+                  $type: "update",
+                  $model: "dialogShow",
+                  $result: "true"
+                }
+              }
+            },
+            children: [{ component: "span", text: "对话框" }]
+          },
+          {
+            component: "el-dialog",
+            fieldOptions: {
+              props: {
+                title: "提示",
+                visible: { $type: "bind", $source: "model.dialogShow" },
+                width: "30%"
+              },
+              on: {
+                close: {
+                  $type: "update",
+                  $model: "dialogShow",
+                  $result: "false"
+                }
+              }
+            },
+            children: [
+              {
+                component: "span",
+                text: "文字......"
+              },
+              {
+                component: "span",
+                fieldOptions: { slot: "footer", class: "dialog-footer" },
+                children: [
+                  {
+                    component: "el-button",
+                    text: "取消",
+                    fieldOptions: {
+                      on: {
+                        click: {
+                          $type: "update",
+                          $model: "dialogShow",
+                          $result: "false"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    component: "el-button",
+                    text: "确定",
+                    fieldOptions: {
+                      props: { type: "primary" },
+                      on: {
+                        click: {
+                          $type: "update",
+                          $model: "dialogShow",
+                          $result: "false"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+    }
+  };
+</script>
+```
+
+:::
+
 ## 定义
 
 | 属性        | 说明            | 类型   |
