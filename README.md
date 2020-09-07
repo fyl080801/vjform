@@ -213,6 +213,68 @@ export default {
 
 增加了 listeners，设置 immediate 属性代替初次执行的监听行为
 
+### 增加 update 转换
+
+可以通过 update 转换实现更新 model 里的值
+
+```json
+{
+  "model": {
+    "text": ""
+  },
+  "fields": [
+    {
+      "component": "input",
+      "on": {
+        "input": {
+          "$type": "update",
+          "$model": "text",
+          "$arguments": {
+            "evt": { "$type": "bind", "$source": "arguments[0]" }
+          },
+          "$result": "evt.target.value"
+        }
+      }
+    }
+  ]
+}
+```
+
+### events 事件 provider
+
+```json
+{
+  "fields": [
+    {
+      "component": "input",
+      "events": [
+        {
+          "name": "input",
+          "handler": {
+            "$type": "update",
+            "$model": "text",
+            "$arguments": {
+              "evt": { "$type": "bind", "$source": "arguments[0]" }
+            },
+            "$result": "evt.target.value"
+          }
+        },
+        {
+          "name": "keydown",
+          "handler": {
+            "$type": "on",
+            "$arguments": {
+              "evt": { "$type": "bind", "$source": "arguments[0]" }
+            },
+            "$result": "alert(evt.code)"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
 ### 增加了 reference 数据源
 
 数据源关联组件的 fieldOptions 上定义的 ref，可使用组件的方法和属性
