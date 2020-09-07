@@ -225,14 +225,16 @@ export default {
   "fields": [
     {
       "component": "input",
-      "on": {
-        "input": {
-          "$type": "update",
-          "$model": "text",
-          "$arguments": {
-            "evt": { "$type": "bind", "$source": "arguments[0]" }
-          },
-          "$result": "evt.target.value"
+      "fieldOptions": {
+        "on": {
+          "input": {
+            "$type": "update", // 转换之后是一个函数，执行更新 model 里的某个属性值
+            "$model": "text", // model 里的属性
+            "$arguments": {
+              "evt": { "$type": "bind", "$source": "arguments[0]" }
+            },
+            "$result": "evt.target.value"
+          }
         }
       }
     }
@@ -241,6 +243,8 @@ export default {
 ```
 
 ### events 事件 provider
+
+通过 events 定义实现在组件上快捷定义事件处理函数，并可在组件的一个事件上定义多个函数
 
 ```json
 {
