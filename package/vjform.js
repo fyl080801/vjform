@@ -1,7 +1,6 @@
 import renderer from "./renderer";
 import transform from "./features/transform";
 import datasource from "./mixins/datasource";
-import watchs from "./mixins/watchs";
 import listeners from "./mixins/listeners";
 import emitter from "./utils/emitter";
 import { deepSet } from "./utils/helpers";
@@ -12,13 +11,12 @@ export default {
   components: {
     renderer
   },
-  mixins: [datasource, watchs, listeners],
+  mixins: [datasource, listeners],
   props: {
     value: [Object, Array],
     params: { type: [Object, Array], default: () => ({}) },
     fields: { type: Array, default: () => [] },
     datasource: { type: Object, default: () => ({}) },
-    watchs: { type: Object, default: () => ({}) },
     listeners: { type: Array, default: () => [] },
     components: { type: Object, default: () => ({}) },
     options: { type: Object, default: () => ({}) }

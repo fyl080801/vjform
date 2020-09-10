@@ -53,9 +53,9 @@ export default {
           immediate: true,
           actions: [
             {
-              model: "subtext",
-              expression: {
-                $type: "func",
+              handle: {
+                $type: "update",
+                $model: "subtext",
                 $arguments: {
                   val: { $type: "bind", $source: "model.text" }
                 },
@@ -63,7 +63,8 @@ export default {
               }
             },
             {
-              expression: {
+              async: true,
+              handle: {
                 $type: "bind",
                 $source: "datasource.tabledata.load"
               }
@@ -74,8 +75,7 @@ export default {
           watch: { $type: "bind", $source: "model.select.key" },
           actions: [
             {
-              model: "selectcase",
-              expression: null
+              handle: { $type: "update", $model: "selectcase", $result: null }
             }
           ]
         }
@@ -153,7 +153,7 @@ export default {
                         },
                         {
                           component: "p",
-                          text: "输入文字时候会不断发请求"
+                          text: "输入文字时候会不断发请求，所以有点卡"
                         }
                       ]
                     },
