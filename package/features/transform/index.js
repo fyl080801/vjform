@@ -13,9 +13,8 @@ const getProviders = () => {
 };
 
 function processTransform(field, key, collection) {
-  if (!field || (typeof field !== "object" && !Array.isArray(field))) {
-    return;
-  }
+  const noForeach =
+    !field || (typeof field !== "object" && !Array.isArray(field));
 
   const trans = getProviders().find(item =>
     item.getter.call(this, key, collection)
@@ -25,6 +24,10 @@ function processTransform(field, key, collection) {
 
   if (trans) {
     result = trans.deal.call(this, key, collection);
+  }
+
+  if (noForeach) {
+    return;
   }
 
   if (result !== false) {
