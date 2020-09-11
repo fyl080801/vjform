@@ -2,6 +2,8 @@ import vjform from "./vjform";
 import feature from "./feature";
 import functional from "./features/functional";
 import datasource from "./features/datasource";
+import innerTransform from "./features/transform";
+import * as helper from "./utils/helpers";
 import { resolveGetter, resolveSetter } from "./features/transform/helper";
 
 const install = function(Vue) {
@@ -14,6 +16,9 @@ if (typeof window !== "undefined" && window.Vue) {
 
 export const getFunctionals = functional;
 export const getDatasources = datasource;
+export const deepSet = helper.deepSet;
+export const transform = innerTransform;
+
 export const buildTransformGetter = resolveGetter;
 export const buildTransformSetter = resolveSetter;
 

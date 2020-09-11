@@ -1,6 +1,5 @@
 import transform from "../features/transform";
-import { isEmpty, get } from "lodash-es";
-import { deepSet } from "../utils/helpers";
+import { get } from "lodash-es";
 
 export default {
   data() {
@@ -49,10 +48,10 @@ export default {
     process(actions) {
       actions.forEach(item => {
         const {
-          model,
           condition = true,
-          expression,
-          async = false
+          handler,
+          async = false,
+          timeout
         } = transform.call(this.data, item);
 
         if (!condition) {
@@ -60,28 +59,21 @@ export default {
         }
 
         const executor = options => {
-          const { model, expression } = options;
+          const { handler } = options;
 
-          const result =
-            typeof expression === "function" ? expression() : expression;
-
-          if (typeof model === "string" && !isEmpty(model)) {
-            if (result instanceof Promise) {
-              result.then(value => {
-                deepSet(this.data.model, model, value);
-              });
-            } else {
-              deepSet(this.data.model, model, result);
-            }
+          if (typeof handler !== "function") {
+            return;
           }
+
+          handler();
         };
 
         if (async) {
           setTimeout(() => {
-            executor({ model, expression });
-          });
+            executor({ handler });
+          }, timeout);
         } else {
-          executor({ model, expression });
+          executor({ handler });
         }
       });
     }

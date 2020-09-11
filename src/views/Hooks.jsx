@@ -59,7 +59,15 @@ const component = withHooks(h => {
           $type: "bind",
           $source: "model.Region.value"
         },
-        actions: [{ model: "Standard.vmInstanceType", expression: null }]
+        actions: [
+          {
+            handler: {
+              $type: "update",
+              $model: "Standard.vmInstanceType",
+              $result: null
+            }
+          }
+        ]
       },
       {
         watch: {
@@ -67,8 +75,16 @@ const component = withHooks(h => {
           $source: "model.Standard.diskInstanceType.instanceType"
         },
         actions: [
-          { model: "Standard.diskSize", expression: 40 },
-          { model: "Standard.iops", expression: 500 }
+          {
+            handler: {
+              $type: "update",
+              $model: "Standard.diskSize",
+              $result: 40
+            }
+          },
+          {
+            handler: { $type: "update", $model: "Standard.iops", $result: 500 }
+          }
         ]
       },
       {
@@ -76,7 +92,7 @@ const component = withHooks(h => {
         deep: true,
         actions: [
           {
-            expression: { $type: "bind", $source: "datasource.tabledata.load" }
+            handler: { $type: "bind", $source: "datasource.tabledata.load" }
           }
         ]
       }
