@@ -61,7 +61,7 @@ const component = withHooks(h => {
         },
         actions: [
           {
-            handle: {
+            handler: {
               $type: "update",
               $model: "Standard.vmInstanceType",
               $result: null
@@ -76,14 +76,14 @@ const component = withHooks(h => {
         },
         actions: [
           {
-            handle: {
+            handler: {
               $type: "update",
               $model: "Standard.diskSize",
               $result: 40
             }
           },
           {
-            handle: { $type: "update", $model: "Standard.iops", $result: 500 }
+            handler: { $type: "update", $model: "Standard.iops", $result: 500 }
           }
         ]
       },
@@ -92,7 +92,7 @@ const component = withHooks(h => {
         deep: true,
         actions: [
           {
-            handle: { $type: "bind", $source: "datasource.tabledata.load" }
+            handler: { $type: "bind", $source: "datasource.tabledata.load" }
           }
         ]
       }

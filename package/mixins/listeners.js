@@ -49,7 +49,7 @@ export default {
       actions.forEach(item => {
         const {
           condition = true,
-          handle,
+          handler,
           async = false,
           timeout
         } = transform.call(this.data, item);
@@ -59,21 +59,21 @@ export default {
         }
 
         const executor = options => {
-          const { handle } = options;
+          const { handler } = options;
 
-          if (typeof handle !== "function") {
+          if (typeof handler !== "function") {
             return;
           }
 
-          handle();
+          handler();
         };
 
         if (async) {
           setTimeout(() => {
-            executor({ handle });
+            executor({ handler });
           }, timeout);
         } else {
-          executor({ handle });
+          executor({ handler });
         }
       });
     }

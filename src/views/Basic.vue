@@ -53,7 +53,7 @@ export default {
           immediate: true,
           actions: [
             {
-              handle: {
+              handler: {
                 $type: "update",
                 $model: "subtext",
                 $arguments: {
@@ -64,7 +64,7 @@ export default {
             },
             {
               async: true,
-              handle: {
+              handler: {
                 $type: "bind",
                 $source: "datasource.tabledata.load"
               }
@@ -75,7 +75,7 @@ export default {
           watch: { $type: "bind", $source: "model.select.key" },
           actions: [
             {
-              handle: { $type: "update", $model: "selectcase", $result: null }
+              handler: { $type: "update", $model: "selectcase", $result: null }
             }
           ]
         }
