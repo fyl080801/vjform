@@ -1,5 +1,5 @@
 import { withHooks, useData } from "vue-hooks";
-import vjform from "../../package/vjform";
+import vjform from "../../package";
 
 // eslint-disable-next-line no-unused-vars
 const component = withHooks(h => {

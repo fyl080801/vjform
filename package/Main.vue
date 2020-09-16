@@ -1,3 +1,13 @@
+<template>
+  <renderer
+    :model="this.value"
+    :fields="renderFields"
+    :components="components"
+    :options="options"
+  ></renderer>
+</template>
+
+<script>
 import renderer from "./renderer";
 import transform from "./features/transform";
 import datasource from "./mixins/datasource";
@@ -25,6 +35,7 @@ export default {
     fields: {
       handler(value) {
         this.transform(value);
+        this.attachKey(this.renderFields);
       },
       deep: true
     },
@@ -47,9 +58,6 @@ export default {
     };
   },
   methods: {
-    onInput(value) {
-      this.$emit("input", value);
-    },
     transform(value) {
       this.renderFields = transform.call(
         { ...this.data, $context: this },
@@ -63,6 +71,9 @@ export default {
         this.attachKey(field.children);
       });
     },
+    onInput(value) {
+      this.$emit("input", value);
+    },
     onUpdate({ path, value }) {
       deepSet(this.data.model, path, value);
     }
@@ -74,18 +85,6 @@ export default {
   },
   beforeDestroy() {
     emitter.$off("update", this.onUpdate);
-  },
-  render(h) {
-    return h("renderer", {
-      props: {
-        fields: this.renderFields,
-        value: this.data,
-        components: this.components,
-        options: this.options
-      },
-      on: {
-        input: this.onInput
-      }
-    });
   }
 };
+</script>
