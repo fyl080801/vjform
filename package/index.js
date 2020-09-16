@@ -1,4 +1,4 @@
-import vjform from "./vjform";
+import vjform from "./Main.vue";
 import feature from "./feature";
 import functional from "./features/functional";
 import datasource from "./features/datasource";

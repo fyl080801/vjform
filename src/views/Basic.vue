@@ -2,13 +2,11 @@
   <div>
     <vjform
       :fields="fields"
-      :value="model"
+      v-model="model"
       :params="params"
       :datasource="datasource"
       :components="components"
       :listeners="listeners"
-      @input="changed"
-      @state-changed="stateChanged"
     ></vjform>
     <div>{{ JSON.stringify(model) }}</div>
     <div>{{ JSON.stringify(formState) }}</div>
@@ -16,7 +14,7 @@
 </template>
 
 <script>
-import vjform from "../../package/vjform";
+import vjform from "../../package/index";
 import Text from "../components/Text";
 
 export default {

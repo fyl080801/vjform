@@ -5,7 +5,7 @@ export default {
   name: "renderer",
   props: {
     fields: Array,
-    value: [Object, Array],
+    model: [Object, Array],
     options: Object,
     components: Object
   },
@@ -13,22 +13,6 @@ export default {
     return {
       providers: null
     };
-  },
-  computed: {
-    model() {
-      return this.value.model;
-    },
-    state() {
-      return this.value.state;
-    }
-  },
-  watch: {
-    "value.model": {
-      handler(value) {
-        this.$emit("input", value);
-      },
-      deep: true
-    }
   },
   methods: {
     createFieldComponent(h, field) {

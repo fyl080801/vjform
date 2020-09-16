@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import vjform from "../../package/vjform";
+import vjform from "../../package/index";
 
 export default {
   components: { vjform },
