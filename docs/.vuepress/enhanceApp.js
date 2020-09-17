@@ -1,5 +1,5 @@
 import Element from "element-ui";
-import vjform from "../../package/index";
+import vjform from "../../lib";
 
 import "element-ui/lib/theme-chalk/index.css";
 

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import vjform from "../../package/index";
+import vjform from "../../lib";
 import Text from "../components/Text";
 
 export default {

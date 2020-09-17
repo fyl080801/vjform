@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Element from "element-ui";
-import vjform from "../package";
+import vjform from "../lib";
 
 Vue.config.productionTip = false;
 
