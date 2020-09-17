@@ -43,7 +43,7 @@ export default {
   },
   render(h) {
     return h(
-      "div",
+      (this.options || {}).component || "div",
       { class: ["v-jform"] },
       this.fields
         .map(item => this.createFieldComponent(h, item))
