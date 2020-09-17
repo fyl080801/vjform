@@ -1,6 +1,6 @@
 import { shallowMount, mount } from "@vue/test-utils";
 import Test from "@/views/Test.vue";
-import vjform from "../../package/index";
+import vjform from "../../lib";
 
 describe("Basic", () => {
   it("Render Basic", () => {
