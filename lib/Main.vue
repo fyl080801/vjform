@@ -35,7 +35,6 @@ export default {
     fields: {
       handler(value) {
         this.transform(value);
-        this.attachKey(this.renderFields);
       },
       deep: true
     },
@@ -52,7 +51,6 @@ export default {
       data: {
         model: this.value,
         params: this.params,
-        sourcedata: {},
         datasource: {}
       }
     };
@@ -64,6 +62,8 @@ export default {
         value,
         { context: this }
       );
+
+      this.attachKey(this.renderFields);
     },
     attachKey(fields = []) {
       fields.forEach(field => {
@@ -71,16 +71,12 @@ export default {
         this.attachKey(field.children);
       });
     },
-    onInput(value) {
-      this.$emit("input", value);
-    },
     onUpdate({ path, value }) {
       deepSet(this.data.model, path, value);
     }
   },
   created() {
     this.transform(this.fields);
-    this.attachKey(this.renderFields);
     emitter.$on("update", this.onUpdate);
   },
   beforeDestroy() {

@@ -1,9 +1,8 @@
-import { withHooks } from "vue-hooks";
+import Vue from "vue";
 
-const component = withHooks((h, attrs, props) => {
-  return <p>{props.value}</p>;
+export default Vue.extend({
+  props: { value: String },
+  render() {
+    return <p>{this.value}</p>;
+  }
 });
-
-component.props = { value: String };
-
-export default component;
