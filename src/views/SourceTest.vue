@@ -46,7 +46,7 @@ export default {
           text: {
             $type: "func",
             $arguments: {
-              input: { $type: "bind", $source: "sourcedata.obj" },
+              input: { $type: "bind", $source: "datasource.obj.data" },
               org: { $type: "bind", $source: "datasource.obj.data" }
             },
             $result: "JSON.stringify(org)"

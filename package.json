@@ -1,7 +1,7 @@
 {
   "name": "vjform",
   "description": "Vue JSON Form",
-  "version": "1.3.2-beta.2",
+  "version": "1.4.0-beta.1",
   "private": false,
   "author": {
     "name": "fyl080801",
@@ -19,7 +19,7 @@
     "url": "git+https://github.com/fyl080801/vjform.git"
   },
   "license": "MIT",
-  "main": "dist/vjform.umd.js",
+  "main": "dist/vjform.umd.min.js",
   "module": "dist/vjform.common.js",
   "engines": {
     "node": ">= 8.0.0",

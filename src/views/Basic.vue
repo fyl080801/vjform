@@ -254,7 +254,7 @@ export default {
                             $type: "array",
                             $data: {
                               $bind: true,
-                              $source: "sourcedata.requestsource"
+                              $source: "datasource.requestsource.data"
                             },
                             $field: {
                               component: "el-option",
@@ -470,7 +470,7 @@ export default {
                               stripe: true,
                               data: {
                                 $type: "bind",
-                                $source: "sourcedata.tabledata"
+                                $source: "datasource.tabledata.data"
                               }
                             }
                           },
