@@ -9,13 +9,13 @@
 
 <script>
 import renderer from "./renderer";
-import transform from "./features/transform";
 import datasource from "./mixins/datasource";
 import listeners from "./mixins/listeners";
 import { v4 } from "uuid";
+import { getTransform } from "./features/transform";
 
 export default {
-  name: "vjform",
+  name: "v-jform",
   components: {
     renderer
   },
@@ -55,12 +55,7 @@ export default {
   },
   methods: {
     transform(value) {
-      this.renderFields = transform.call(
-        { ...this.data, $context: this },
-        value,
-        { context: this }
-      );
-
+      this.renderFields = getTransform(this.data).transform(value);
       this.attachKey(this.renderFields);
     },
     attachKey(fields = []) {
