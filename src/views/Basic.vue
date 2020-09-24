@@ -136,8 +136,6 @@ export default {
                         },
                         {
                           component: "p",
-                          model: "text",
-                          errorOptions: { style: "color: red" },
                           text: {
                             $type: "func",
                             $arguments: {
@@ -175,7 +173,7 @@ export default {
                               children: {
                                 $type: "array",
                                 $data: {
-                                  $bind: true,
+                                  $type: "bind",
                                   $source: "params.list"
                                 },
                                 $field: {
@@ -253,7 +251,7 @@ export default {
                           children: {
                             $type: "array",
                             $data: {
-                              $bind: true,
+                              $type: "bind",
                               $source: "datasource.requestsource.data"
                             },
                             $field: {
@@ -337,7 +335,7 @@ export default {
                           component: "el-radio-group",
                           model: ["radiovalue"],
                           children: {
-                            $array: true,
+                            $type: "array",
                             $data: ["选项1", "选项2", "选项3"],
                             $field: {
                               component: "el-radio",
