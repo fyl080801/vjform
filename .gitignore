@@ -22,3 +22,5 @@ yarn-error.log*
 
 **/.vuepress/dist
 /tests/coverage
+
+/lib_bak
