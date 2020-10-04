@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import vjform from "../../lib";
+import vjform from '../../lib'
 
 export default {
   components: { vjform },
@@ -23,5 +23,5 @@ export default {
     datasource: { type: Object, default: () => ({}) },
     components: { type: Object, default: () => ({}) }
   }
-};
+}
 </script>

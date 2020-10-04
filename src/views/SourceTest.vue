@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import vjform from "../../lib";
+import vjform from '../../lib'
 
 export default {
   components: { vjform },
@@ -20,20 +20,20 @@ export default {
     return {
       fields: [
         {
-          component: "el-row",
+          component: 'el-row',
           children: [
             {
-              component: "el-col",
+              component: 'el-col',
               fieldOptions: {
                 props: { span: 12 }
               },
               children: [
                 {
-                  component: "el-form",
+                  component: 'el-form',
                   children: [
                     {
-                      component: "el-input",
-                      model: ["obj.text"]
+                      component: 'el-input',
+                      model: ['obj.text']
                     }
                   ]
                 }
@@ -42,41 +42,41 @@ export default {
           ]
         },
         {
-          component: "p",
+          component: 'p',
           text: {
-            $type: "func",
+            $type: 'func',
             $arguments: {
-              input: { $type: "bind", $source: "datasource.obj.data" },
-              org: { $type: "bind", $source: "datasource.obj.data" }
+              input: { $type: 'bind', $source: 'datasource.obj.data' },
+              org: { $type: 'bind', $source: 'datasource.obj.data' }
             },
-            $result: "JSON.stringify(org)"
+            $result: 'JSON.stringify(org)'
           }
         },
         {
-          component: "p",
+          component: 'p',
           text: {
-            $type: "func",
+            $type: 'func',
             $arguments: {
-              modeldata: { $type: "bind", $source: "model" }
+              modeldata: { $type: 'bind', $source: 'model' }
             },
-            $result: "JSON.stringify(modeldata)"
+            $result: 'JSON.stringify(modeldata)'
           }
         }
       ],
       model: {
-        obj: { text: "sss", num: 1 }
+        obj: { text: 'sss', num: 1 }
       },
       params: {},
       datasource: {
         obj: {
-          type: "object",
-          data: { $type: "bind", $source: "model.obj" }
+          type: 'object',
+          data: { $type: 'bind', $source: 'model.obj' }
         }
       },
       components: {}
-    };
+    }
   }
-};
+}
 </script>
 
 <style></style>

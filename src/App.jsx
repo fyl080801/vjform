@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   render() {
@@ -11,6 +11,6 @@ export default Vue.extend({
         </p>
         <router-view />
       </div>
-    );
+    )
   }
-});
+})
