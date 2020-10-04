@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import vjform from "../../lib";
+import vjform from '../../lib'
 
 export default {
   components: { vjform },
@@ -20,27 +20,27 @@ export default {
     return {
       fields: [
         {
-          component: "p",
+          component: 'p',
           text: {
-            $type: "func",
+            $type: 'func',
             $arguments: {
-              text1: { $type: "bind", $source: "model.text1" },
-              text2: { $type: "bind", $source: "model.text2" }
+              text1: { $type: 'bind', $source: 'model.text1' },
+              text2: { $type: 'bind', $source: 'model.text2' }
             },
-            $result: "TEXT(text1,text2)"
+            $result: 'TEXT(text1,text2)'
           }
         }
       ],
       model: {
-        text1: "sss",
-        text2: "xxxx"
+        text1: 'sss',
+        text2: 'xxxx'
       },
       params: {},
       datasource: {},
       components: {}
-    };
+    }
   }
-};
+}
 </script>
 
 <style></style>

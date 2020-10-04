@@ -1,8 +1,8 @@
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
   props: { value: String },
   render() {
-    return <p>{this.value}</p>;
+    return <p>{this.value}</p>
   }
-});
+})
