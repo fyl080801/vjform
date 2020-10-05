@@ -9,7 +9,7 @@ button click
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -20,29 +20,29 @@ button click
         model: {},
         fields: [
           {
-            component: "el-button",
+            component: 'el-button',
             fieldOptions: {
               on: {
                 click: {
-                  $type: "on",
+                  $type: 'on',
                   $result: "alert('xxx')"
                 }
               },
               props: {
-                type: "primary"
+                type: 'primary'
               }
             },
             children: [
               {
-                component: "span",
-                text: "点击触发一个事件"
+                component: 'span',
+                text: '点击触发一个事件'
               }
             ]
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 
@@ -55,7 +55,7 @@ button click
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -68,31 +68,31 @@ button click
         },
         fields: [
           {
-            component: "el-button",
+            component: 'el-button',
             model: [
-              "triggerChecked",
+              'triggerChecked',
               {
-                on: "click",
+                on: 'click',
                 handler: {
-                  $type: "on",
+                  $type: 'on',
                   $arguments: {
                     value: {
-                      $type: "bind",
-                      $source: "model.triggerChecked"
+                      $type: 'bind',
+                      $source: 'model.triggerChecked'
                     }
                   },
-                  $result: "!value"
+                  $result: '!value'
                 }
               }
             ],
             fieldOptions: {
               props: {
                 type: {
-                  $type: "func",
+                  $type: 'func',
                   $arguments: {
                     value: {
-                      $type: "bind",
-                      $source: "model.triggerChecked"
+                      $type: 'bind',
+                      $source: 'model.triggerChecked'
                     }
                   },
                   $result: "value ? 'success' : 'danger'"
@@ -101,17 +101,17 @@ button click
             },
             children: [
               {
-                component: "span",
-                text: "点击后改变值和样式："
+                component: 'span',
+                text: '点击后改变值和样式：'
               },
               {
-                component: "span",
+                component: 'span',
                 text: {
-                  $type: "func",
+                  $type: 'func',
                   $arguments: {
                     value: {
-                      $type: "bind",
-                      $source: "model.triggerChecked"
+                      $type: 'bind',
+                      $source: 'model.triggerChecked'
                     }
                   },
                   $result: "value ? '是' : '否'"
@@ -120,9 +120,9 @@ button click
             ]
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 

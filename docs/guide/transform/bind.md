@@ -16,7 +16,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -25,33 +25,33 @@
     data() {
       return {
         model: {
-          text: ""
+          text: ''
         },
         fields: [
           {
-            component: "input",
-            model: ["text"],
+            component: 'input',
+            model: ['text'],
             fieldOptions: {
               domProps: {
-                placeholder: "请输入文字"
+                placeholder: '请输入文字'
               }
             }
           },
           {
-            component: "p",
+            component: 'p',
             fieldOptions: {
               domProps: {
                 innerText: {
-                  $type: "bind",
-                  $source: "model.text"
+                  $type: 'bind',
+                  $source: 'model.text'
                 }
               }
             }
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 

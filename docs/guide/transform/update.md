@@ -9,7 +9,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     {{ model.num }}
   </div>
 </template>
@@ -23,33 +23,33 @@
         },
         fields: [
           {
-            component: "el-button",
+            component: 'el-button',
             fieldOptions: {
               on: {
                 click: {
-                  $type: "update",
-                  $model: "num",
+                  $type: 'update',
+                  $model: 'num',
                   $arguments: {
-                    org: { $type: "bind", $source: "model.num" }
+                    org: { $type: 'bind', $source: 'model.num' }
                   },
-                  $result: "ADDITION(org, 1)"
+                  $result: 'ADDITION(org, 1)'
                 }
               },
               props: {
-                type: "primary"
+                type: 'primary'
               }
             },
             children: [
               {
-                component: "span",
-                text: "点击更新值"
+                component: 'span',
+                text: '点击更新值'
               }
             ]
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 
@@ -64,7 +64,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -77,69 +77,69 @@
         },
         fields: [
           {
-            component: "el-button",
+            component: 'el-button',
             fieldOptions: {
               props: {
-                type: "warning"
+                type: 'warning'
               },
               on: {
                 click: {
-                  $type: "update",
-                  $model: "dialogShow",
-                  $result: "true"
+                  $type: 'update',
+                  $model: 'dialogShow',
+                  $result: 'true'
                 }
               }
             },
-            children: [{ component: "span", text: "对话框" }]
+            children: [{ component: 'span', text: '对话框' }]
           },
           {
-            component: "el-dialog",
+            component: 'el-dialog',
             fieldOptions: {
               props: {
-                title: "提示",
-                visible: { $type: "bind", $source: "model.dialogShow" },
-                width: "30%"
+                title: '提示',
+                visible: { $type: 'bind', $source: 'model.dialogShow' },
+                width: '30%'
               },
               on: {
                 close: {
-                  $type: "update",
-                  $model: "dialogShow",
-                  $result: "false"
+                  $type: 'update',
+                  $model: 'dialogShow',
+                  $result: 'false'
                 }
               }
             },
             children: [
               {
-                component: "span",
-                text: "文字......"
+                component: 'span',
+                text: '文字......'
               },
               {
-                component: "span",
-                fieldOptions: { slot: "footer", class: "dialog-footer" },
+                component: 'span',
+                fieldOptions: { slot: 'footer', class: 'dialog-footer' },
                 children: [
                   {
-                    component: "el-button",
-                    text: "取消",
+                    component: 'el-button',
+                    text: '取消',
                     fieldOptions: {
                       on: {
                         click: {
-                          $type: "update",
-                          $model: "dialogShow",
-                          $result: "false"
+                          $type: 'update',
+                          $model: 'dialogShow',
+                          $result: 'false'
                         }
                       }
                     }
                   },
                   {
-                    component: "el-button",
-                    text: "确定",
+                    component: 'el-button',
+                    text: '确定',
                     fieldOptions: {
-                      props: { type: "primary" },
+                      props: { type: 'primary' },
                       on: {
                         click: {
-                          $type: "update",
-                          $model: "dialogShow",
-                          $result: "false"
+                          $type: 'update',
+                          $model: 'dialogShow',
+                          $result: 'false'
                         }
                       }
                     }
@@ -149,9 +149,9 @@
             ]
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 

@@ -5,7 +5,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -16,21 +16,21 @@
         model: {},
         fields: [
           {
-            component: "p",
+            component: 'p',
             fieldOptions: {
               domProps: {
-                innerText: "通过 innerText 属性显示"
+                innerText: '通过 innerText 属性显示'
               }
             }
           },
           {
-            component: "p",
-            text: "通过 text 属性显示"
+            component: 'p',
+            text: '通过 text 属性显示'
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 
