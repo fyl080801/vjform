@@ -5,7 +5,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
@@ -17,24 +17,24 @@
           value: 0
         },
         fields: [
-          { component: "span", text: "15 + " },
-          { component: "el-input-number", model: ["value"] },
-          { component: "span", text: " = " },
+          { component: 'span', text: '15 + ' },
+          { component: 'el-input-number', model: ['value'] },
+          { component: 'span', text: ' = ' },
           {
-            component: "span",
+            component: 'span',
             text: {
-              $type: "func",
+              $type: 'func',
               $arguments: {
-                value: { $type: "bind", $source: "model.value" },
+                value: { $type: 'bind', $source: 'model.value' },
                 constvalue: 15
               },
-              $result: "constvalue + value"
+              $result: 'constvalue + value'
             }
           }
         ]
-      };
+      }
     }
-  };
+  }
 </script>
 ```
 
