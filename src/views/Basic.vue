@@ -9,7 +9,6 @@
       :listeners="listeners"
     ></vjform>
     <div>{{ JSON.stringify(model) }}</div>
-    <div>{{ JSON.stringify(formState) }}</div>
   </div>
 </template>
 
@@ -59,13 +58,6 @@ export default {
                 },
                 $result: 'val ? val.length : 0'
               }
-            },
-            {
-              async: true,
-              handler: {
-                $type: 'bind',
-                $source: 'datasource.tabledata.load'
-              }
             }
           ]
         },
@@ -74,6 +66,26 @@ export default {
           actions: [
             {
               handler: { $type: 'update', $model: 'selectcase', $result: null }
+            }
+          ]
+        },
+        {
+          watch: 'model.selectcase',
+          actions: [
+            {
+              async: true,
+              // 只有值不为空的时候才执行
+              condition: {
+                $type: 'func',
+                $arguments: {
+                  val: { $type: 'bind', $source: 'model.selectcase' }
+                },
+                $result: 'IF(val, true, false)'
+              },
+              handler: {
+                $type: 'bind',
+                $source: 'datasource.tabledata.load'
+              }
             }
           ]
         }
@@ -146,10 +158,6 @@ export default {
                             },
                             $result: "'输入了：' + value + ' 个字'"
                           }
-                        },
-                        {
-                          component: 'p',
-                          text: '输入文字时候会不断发请求，所以有点卡'
                         }
                       ]
                     },
@@ -598,12 +606,6 @@ export default {
           ]
         }
       ]
-    }
-  },
-  methods: {
-    changed() {},
-    stateChanged(state) {
-      this.formState = state
     }
   }
 }
