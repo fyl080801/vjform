@@ -1,23 +1,21 @@
 <template>
   <div>
-    <vjform
+    <v-jform
       :fields="fields"
       v-model="model"
       :params="params"
       :datasource="datasource"
       :components="components"
       :listeners="listeners"
-    ></vjform>
+    ></v-jform>
     <div>{{ JSON.stringify(model) }}</div>
   </div>
 </template>
 
 <script>
-import vjform from '../../lib'
 import Text from '../components/Text'
 
 export default {
-  components: { vjform },
   data() {
     return {
       formState: {},
