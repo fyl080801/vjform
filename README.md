@@ -55,7 +55,7 @@ npm start
 
 ### 说明
 
-转换支持将固定参数（params）、表单数据（model）、数据源（datasource）、数组元素（scope）、函数参数（arguments）这些数据关联到组件元素属性上实现值的联动
+转换支持将固定参数 `params`、表单数据 `model`、数据源 `datasource`、数组元素 `scope`、函数参数 `arguments`、组件引用 `refs` 这些数据关联到组件元素属性上实现值的联动
 
 支持绑定值、计算属性、数组、事件定义，将以上数据关联到对象属性上
 
@@ -81,6 +81,9 @@ npm start
 - 函数参数（arguments）:
   由于计算属性和事件定义最终转换结果是函数，因此函数 arguments 对象可作为下一级绑定或计算属性的输入
 
+- 组件引用（refs）
+  指组件的实例，在组件 `fieldOptions` 中定义 `ref` 属性后，可通过 `refs` 获取组件的实例并使用组件中的方法作为另一个组件的事件处理程序
+
 ## 文档
 
 待更新...
@@ -96,10 +99,10 @@ npm i vjform
 ### 项目中引用
 
 ```js
-import Vue from "vue";
-import vjform from "vjform";
+import Vue from 'vue'
+import vjform from 'vjform'
 
-Vue.component("vjform", vjform);
+Vue.component('vjform', vjform)
 ```
 
 ### 基础示例
@@ -201,115 +204,79 @@ export default {
 };
 ```
 
-## 版本 1.3.0 重大更新
+## 版本 2.0.0 重大更新
 
-### 去掉了 json-schema 验证 model 和 displayOptions 功能
+### 变更扩展功能的注入方式
 
-现在表单验证和提交行为已经可以通过 json 直接定义了，统一验证 model 就没必要了
+使用 `use` 方法对当前项目全局注册功能
 
-现在可以通过组件上定义 condition 实现组件是否存在并支持使用转换关联任何来源，比起 displayOptions 基于 json-schema 只能验证 model 功能强大
+```javascript
+import vjform from 'vjform'
+import * as bind from './transform/bind'
+import fieldOptions from './provider/fieldOptions'
+import requestSource from './datasource/request'
+import addition from './functional/addition'
 
-### 去掉 inits 属性
+vjform.use(
+  ({
+    datasource, // 数据源
+    transform, // 转换
+    provider, // 渲染处理
+    functional // 功能函数
+  }) => {
+    transform(bind.getter, bind.deal)
+    provider(fieldOptions)
+    datasource('request', requestSource)
+    functional('addition', addition)
+  }
+)
+```
 
-增加了 listeners，设置 immediate 属性代替初次执行的监听行为
+### 可在使用时单独注入扩展功能
 
-### 增加 update 转换
+组件增加 `initialling` 方法，可单独对组件使用扩展
 
-可以通过 update 转换实现更新 model 里的值
-
-```json
-{
-  "model": {
-    "text": ""
-  },
-  "fields": [
-    {
-      "component": "input",
-      "fieldOptions": {
-        "on": {
-          "input": {
-            "$type": "update", // 转换之后是一个函数，执行更新 model 里的某个属性值
-            "$model": "text", // model 里的属性
-            "$arguments": {
-              "evt": { "$type": "bind", "$source": "arguments[0]" }
-            },
-            "$result": "evt.target.value"
-          }
-        }
+```html
+<template>
+  <v-jform
+    :fields="fields"
+    v-model="model"
+    :params="params"
+    :datasource="datasource"
+    :components="components"
+    :listeners="listeners"
+    :initialling="onInitialling"
+  ></v-jform>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        fields: [],
+        listeners: [],
+        model: {},
+        params: {},
+        datasource: {},
+        components: {}
+      }
+    },
+    methods: {
+      onInitialling({
+        datasource, // 数据源
+        transform, // 转换
+        provider, // 渲染处理
+        functional // 功能函数
+      }) {
+        // 同全局 use
       }
     }
-  ]
-}
+  }
+</script>
 ```
 
-### events 事件 provider
+### 在转换中使用的对象支持使用另一个组件的实例
 
-通过 events 定义实现在组件上快捷定义事件处理函数，并可在组件的一个事件上定义多个函数
-
-```json
-{
-  "fields": [
-    {
-      "component": "input",
-      "events": [
-        {
-          "name": "input",
-          "handler": {
-            "$type": "update",
-            "$model": "text",
-            "$arguments": {
-              "evt": { "$type": "bind", "$source": "arguments[0]" }
-            },
-            "$result": "evt.target.value"
-          }
-        },
-        {
-          "name": "keydown",
-          "handler": {
-            "$type": "on",
-            "$arguments": {
-              "evt": { "$type": "bind", "$source": "arguments[0]" }
-            },
-            "$result": "alert(evt.code)"
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-
-### 增加了 reference 数据源
-
-数据源关联组件的 fieldOptions 上定义的 ref，可使用组件的方法和属性
-
-```json
-{
-  "datasource": {
-    "form": { "type": "reference", "ref": "form" }
-  },
-  "fields": [
-    {
-      "component": "el-form",
-      "fieldOptions": { "ref": "form" },
-      "children": [
-        {
-          "component": "el-button",
-          "text": "重置验证",
-          "fieldOptions": {
-            "on": {
-              "click": {
-                "$type": "bind",
-                "$source": "datasource.form.instance.clearValidate"
-              }
-            }
-          }
-        }
-      ]
-    }
-  ]
-}
-```
+### 内置的网络请求数据源改用 fetch 实现
 
 ## 可视化设计器
 
@@ -323,10 +290,10 @@ export default {
 
 使用了 `get` `set` `forEach` 等 API
 
+### mitt
+
+从转换或渲染处理中想要改变 `model` 的值采用发布订阅机制由外层容器组件负责统一更新，分离核心功能值更新对 vue2 的依赖，以便于将来支持 vue3 或 react
+
 ### Vue
 
 基于 `v2.5.9` 测试，理论上支持高于 `v2.4.0` 版本
-
-### Axios
-
-数据源支持基于使用 Axios 更新数据
