@@ -30,7 +30,7 @@ export default {
         requestsource: {
           type: 'request',
           autoload: true,
-          url: '/data/testdata.json?he=sss',
+          url: '/data/testdata.json',
           method: 'GET',
           defaultData: []
         },
@@ -113,6 +113,7 @@ export default {
                 {
                   component: 'el-form',
                   fieldOptions: {
+                    ref: 'mainform',
                     props: { labelWidth: '120px', size: 'small' }
                   },
                   children: [
@@ -446,6 +447,26 @@ export default {
                             }
                           },
                           children: [{ component: 'span', text: '对话框' }]
+                        },
+                        {
+                          component: 'el-button',
+                          fieldOptions: {
+                            on: {
+                              click: {
+                                $type: 'on',
+                                $arguments: {
+                                  form: {
+                                    $type: 'bind',
+                                    $source: 'refs.mainform'
+                                  }
+                                },
+                                $result: 'console.log(form)'
+                              }
+                            }
+                          },
+                          children: [
+                            { component: 'span', text: '输出form组件实例' }
+                          ]
                         }
                       ]
                     },
