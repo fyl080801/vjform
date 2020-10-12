@@ -948,8 +948,8 @@
   resolved "https://registry.npm.taobao.org/@babel/types/download/@babel/types-7.11.5.tgz#d9de577d01252d77c6800cee039ee64faf75662d"
   integrity sha1-2d5XfQElLXfGgAzuA57mT691Zi0=
   dependencies:
-    "@babel/helper-validator-identifier" "^7.10.4"
-    lodash "^4.17.19"
+    esutils "^2.0.2"
+    lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
 "@babel/types@^7.11.0", "@babel/types@^7.11.5":
