@@ -7,7 +7,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <hr />
     <p>基本的 model 定义: {{ model.text }}</p>
   </div>
@@ -47,7 +47,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <hr />
     <p>结果通过自定义处理方法: {{ model.num }}</p>
   </div>
@@ -90,7 +90,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <hr />
     <p>改变返回的新值: {{ model.triggerChecked }}</p>
   </div>

@@ -1,17 +1,17 @@
-import Vue from "vue";
-import Element from "element-ui";
-import App from "./App";
-import router from "./router";
-import vjform from "../package/index";
+import Vue from 'vue'
+import Element from 'element-ui'
+import App from './App'
+import router from './router'
+import vjform from '../lib'
 
-import "element-ui/lib/theme-chalk/index.css";
+import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
-Vue.use(Element);
-Vue.use(vjform);
+Vue.use(Element)
+Vue.use(vjform)
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app')

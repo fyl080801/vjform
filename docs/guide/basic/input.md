@@ -9,7 +9,7 @@ html input
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <p>{{ model.text }}</p>
   </div>
 </template>
@@ -49,7 +49,7 @@ html select
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <p>{{ model.selected }}</p>
   </div>
 </template>
@@ -104,7 +104,7 @@ html select
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
     <p>{{ model.text }}</p>
     <p>{{ model.selected }}</p>
   </div>

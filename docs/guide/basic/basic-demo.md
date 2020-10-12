@@ -5,7 +5,7 @@
 ```html
 <template>
   <div>
-    <vjform v-model="model" :fields="fields" />
+    <v-jform v-model="model" :fields="fields" />
   </div>
 </template>
 
