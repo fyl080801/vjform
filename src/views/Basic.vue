@@ -457,7 +457,7 @@ export default {
                                 $arguments: {
                                   form: {
                                     $type: 'bind',
-                                    $source: 'refs.mainform'
+                                    $source: 'refs'
                                   }
                                 },
                                 $result: 'console.log(form)'
@@ -472,7 +472,10 @@ export default {
                     },
                     {
                       component: 'el-form-item',
-                      fieldOptions: { props: { label: '表格数据:' } },
+                      fieldOptions: {
+                        ref: 'tableinstance',
+                        props: { label: '表格数据:' }
+                      },
                       children: [
                         {
                           component: 'el-table',
