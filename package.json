@@ -1,7 +1,7 @@
 {
   "name": "vjform",
   "description": "Vue JSON Form",
-  "version": "2.0.2",
+  "version": "2.1.0-beta.1",
   "private": false,
   "author": {
     "name": "fyl080801",
@@ -51,7 +51,7 @@
   "dependencies": {
     "axios": "^0.19.1",
     "core-js": "^3.6.5",
-    "json-to-object": "^1.4.6",
+    "json-to-object": "^1.5.0",
     "lodash-es": "^4.17.15",
     "mitt": "^2.1.0",
     "qs": "^6.9.4",
