@@ -282,7 +282,7 @@ vjform.use(
 
 [vjdesign](https://github.com/fyl080801/vjdesign) 是 vjform 的可视化设计器
 
-也可访问 [gitee 项目](https://gitee.com/fyl080801_admin/vjdesign)
+也可访问 [gitee 项目](https://gitee.com/fyl080801/vjdesign)
 
 ## 依赖
 
