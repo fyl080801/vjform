@@ -1,13 +1,14 @@
 language: node_js
 sudo: false
 node_js:
-  - '8'
-  - '10'
-before_install:
-  - npm i npminstall -g
+  - stable
 install:
-  - npminstall
+  - yarn install
 script:
-  - npm run test
+  - yarn test:unit
+  - yarn dist
+  - yarn build
+  - chmod u+x deploy.sh
+  - bash ./deploy.sh
 after_script:
-  - npminstall codecov && codecov
+  - yarn install codecov && codecov
