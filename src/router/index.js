@@ -10,7 +10,8 @@ const routes = [
   { path: '/', component: Basic },
   { path: '/basic', component: Basic },
   { path: '/source', component: SourceTest },
-  { path: '/fx', component: FxTest }
+  { path: '/fx', component: FxTest },
+  { path: '/tabs', component: () => import('../views/Tabs.vue') }
 ]
 
 const router = new VueRouter({

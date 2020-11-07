@@ -1,0 +1,50 @@
+<template>
+  <div>
+    <v-jform
+      :fields="fields"
+      v-model="model"
+      :params="params"
+      :datasource="datasource"
+      :components="components"
+      :listeners="listeners"
+      :options="options"
+    ></v-jform>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      params: {},
+      model: {},
+      components: {},
+      datasource: {},
+      listeners: [],
+      fields: [
+        {
+          component: 'div',
+          children: [
+            {
+              component: 'el-tabs',
+              children: [
+                {
+                  component: 'el-tab-pane',
+                  fieldOptions: { props: { label: 'tab1' } }
+                },
+                {
+                  component: 'el-tab-pane',
+                  fieldOptions: { props: { label: 'tab2' } }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      options: {
+        directComponents: ['el-tab-pane']
+      }
+    }
+  }
+}
+</script>
