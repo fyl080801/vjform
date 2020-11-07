@@ -30,10 +30,12 @@ export default {
               children: [
                 {
                   component: 'el-tab-pane',
+                  options: { direct: true },
                   fieldOptions: { props: { label: 'tab1' } }
                 },
                 {
                   component: 'el-tab-pane',
+                  options: { direct: true },
                   fieldOptions: { props: { label: 'tab2' } }
                 }
               ]
@@ -42,7 +44,7 @@ export default {
         }
       ],
       options: {
-        directComponents: ['el-tab-pane']
+        // directComponents: ['el-tab-pane']
       }
     }
   }
