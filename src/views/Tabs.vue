@@ -31,12 +31,14 @@ export default {
                 {
                   component: 'el-tab-pane',
                   options: { direct: true },
-                  fieldOptions: { props: { label: 'tab1' } }
+                  fieldOptions: { props: { label: 'tab1' } },
+                  children: [{ component: 'span', text: 'aaa' }]
                 },
                 {
                   component: 'el-tab-pane',
                   options: { direct: true },
-                  fieldOptions: { props: { label: 'tab2' } }
+                  fieldOptions: { props: { label: 'tab2' } },
+                  children: [{ component: 'span', text: 'bbb' }]
                 }
               ]
             }
