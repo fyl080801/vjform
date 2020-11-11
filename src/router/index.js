@@ -11,7 +11,8 @@ const routes = [
   { path: '/basic', component: Basic },
   { path: '/source', component: SourceTest },
   { path: '/fx', component: FxTest },
-  { path: '/tabs', component: () => import('../views/Tabs.vue') }
+  { path: '/tabs', component: () => import('../views/Tabs.vue') },
+  { path: '/scoped', component: () => import('../views/ScopedSlot.vue') }
 ]
 
 const router = new VueRouter({

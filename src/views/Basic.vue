@@ -56,16 +56,16 @@ export default {
                 },
                 $result: 'val ? val.length : 0'
               }
-            },
-            {
-              handler: {
-                $type: 'on',
-                $arguments: {
-                  ref: { $type: 'bind', $source: 'refs' }
-                },
-                $result: 'console.log(ref)'
-              }
             }
+            // {
+            //   handler: {
+            //     $type: 'on',
+            //     $arguments: {
+            //       ref: { $type: 'bind', $source: 'refs' }
+            //     },
+            //     $result: 'console.log(ref)'
+            //   }
+            // }
           ]
         },
         {
