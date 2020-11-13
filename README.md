@@ -1,9 +1,8 @@
 # Vue JSON form
 
-[![NPM version][https://img.shields.io/npm/v/vjform.svg?style=flat-square]][https://npmjs.org/package/vjform]
-[![David deps][https://img.shields.io/david/fyl080801/vjform.svg?style=flat-square]][https://david-dm.org/fyl080801/vjform]
-[![Known Vulnerabilities][https://snyk.io/test/npm/vjform/badge.svg?style=flat-square]][https://snyk.io/test/npm/vjform]
-[![npm download][https://img.shields.io/npm/dm/vjform.svg?style=flat-square]][https://npmjs.org/package/vjform]
+[![NPM version](https://img.shields.io/npm/v/vjform.svg?style=flat-square)](https://www.npmjs.com/package/vjform)
+[![Known Vulnerabilities](https://snyk.io/test/npm/vjform/badge.svg?style=flat-square)](https://snyk.io/test/npm/vjform)
+[![npm download](https://img.shields.io/npm/dm/vjform.svg?style=flat-square)](https://npmjs.org/package/vjform)
 
 > 通过 JSON 呈现任何组件与定义脚本的实现
 
