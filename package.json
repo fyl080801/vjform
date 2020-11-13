@@ -49,7 +49,6 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.19.1",
     "core-js": "^3.6.5",
     "json-to-object": "^1.5.0",
     "lodash-es": "^4.17.15",
