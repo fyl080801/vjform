@@ -1,6 +1,22 @@
 import { isArray } from 'lodash-es'
 
-export default (field, options) => {
+export const transform = (prop, owner) => {
+  const value = owner[prop]
+  if (
+    value &&
+    value.component &&
+    value.fieldOptions &&
+    value.fieldOptions.scopedSlot
+  ) {
+    return () => {
+      return false
+    }
+  }
+
+  return false
+}
+
+export const provider = (field, options) => {
   const { node, registry } = options
 
   const provider = (field, context) => {

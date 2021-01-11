@@ -8,11 +8,14 @@
       :components="components"
       :listeners="listeners"
       :options="options"
+      @setup="onSetup"
     ></v-jform>
   </div>
 </template>
 
 <script>
+import { provider, transform } from '../extends/scopedSlot'
+
 export default {
   data() {
     return {
@@ -138,7 +141,6 @@ export default {
                             $arguments: {
                               idx: {
                                 $type: 'bind',
-
                                 $source: 'scope.$index'
                               },
                               list: { $type: 'bind', $source: 'model.list' }
@@ -200,6 +202,12 @@ export default {
         }
       ],
       options: {}
+    }
+  },
+  methods: {
+    onSetup(builder) {
+      builder.transform(transform)
+      builder.provider(provider)
     }
   }
 }
