@@ -18,6 +18,12 @@
 
 使用 Vue JSON form 组件可以解决 JSON 格式的这些弊端，组件支持用特定 JSON 对象表示属性值和方法，最终在运行时解析属性转换成真正的值或方法。
 
+现已推出支持 vue3.0 版本
+
+[Github](https://github.com/fyl080801/json-to-render)
+
+[Gitee](https://gitee.com/fyl080801/json-to-render)
+
 ## Getting Start
 
 克隆项目，执行
